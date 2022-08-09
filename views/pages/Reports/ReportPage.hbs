@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeonioLand Report View - {{#each oneGData}}{{type}}{{/each}}</title> 
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}  
+</head>
+
+<body>
+    <div id="wrapper"> 
+        {{> partials/topnav}}
+        {{> partials/sidenav}} 
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Report View - {{#each oneGData}}{{type}}{{/each}}
+                </h1> 
+                <input type="text" value="{{id}}" id="reportId" hidden>
+            </div>
+            <div id="page-inner">   
+                <div class="row"> 
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10" > 
+                        <div class="card" style="padding:2rem"  > 
+                            {{#each oneGData}}{{dateSubmitted}}{{/each}}
+                            {{#each otherData}}  
+                                <div style="padding-bottom:{{#if hr}}50px{{else}}25px{{/if}}; padding-top:25px "> 
+                                    {{#if buDeptFilter}} 
+                                        <div style="padding-bottom: 50px;">
+                                            <select id="bufilter" class="col-md-6" disabled> </select>
+                                            <select id="dptfilter" class="col-md-6" disabled> </select> 
+                                        </div>
+                                    {{/if}} 
+                                    {{#if deptPosFilter}}
+                                        <div style="padding-bottom: 50px;"> 
+                                            <select id="dptrevfilter" class="col-md-6" disabled></select>
+                                            <select id="posrevfilter" class="col-md-6" disabled></select>
+                                        </div>  
+                                    {{/if}}
+                                    <h5>{{title}}</h5>
+                                    <div class="col-12">
+                                        <canvas id="{{chartId}}" width="400" height="400" style="max-height: 45vh "></canvas> 
+                                    </div>
+                                    {{#if scaleDescription}} 
+                                    <ul style="padding: 20px;">
+                                       <li> 5 - Most Favorable</li>
+                                       <li> 4 - Favorable</li>
+                                       <li> 3 - Average</li>
+                                       <li> 2 - Unfavorable</li>
+                                       <li> 1 - Most Unfavorable</li>
+                                       <li> 0 - Not Applicable</li>
+                                    </ul>
+                                    {{/if}}
+                                    {{#if rateDes}} 
+                                        <ul style="padding: 20px ;">
+                                            <li>1	Exceeds all targets and expectations by more than 50%</li>
+                                            <li>2	Met 100% of the targets and expectations and exceeded them by at least 10%</li>
+                                            <li>3	All targets and expectations met</li>
+                                            <li>4	Most targets and expectations met by at least 75%. Performance at this level is marginally below required levels</li>
+                                            <li>5	Employee did not meet the objective of the project/ showed negative or adverse influence</li>
+                                        </ul> 
+                                    {{/if }}
+                                    <h6>Chart Description</h6>   
+                                    <div class="col-md-12" id="{{chartId}}-ta" style="border: 1px solid grey; padding:10px; overflow-wrap: break-word;"> </div> 
+                                </div>
+                                {{#if hr}}   <hr/>  {{/if}}
+                            {{/each}}  
+                        </div>  
+                    </div>    
+                    <div class="col-md-1"></div>  
+                </div>
+            </div> 
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  --> 
+    <!-- JS Scripts--> 
+    {{> partials/endOfBodyJSScripts}}    
+    <script src="/js/Dashboard/charts.js" type="text/javascript" defer> </script>
+    {{#if oneGData.traindev}}
+        <script src="/js/Reports/traindev.js" type="text/javascript" defer> </script>
+    {{/if}}
+    {{#if oneGData.perfomgmt}}
+        <script src="/js/Reports/perfomgmt.js" type="text/javascript" defer> </script>
+    {{/if}}
+    {{#if oneGData.recret}}
+        <script src="/js/Reports/recret.js" type="text/javascript" defer> </script>
+    {{/if}} 
+</body> 
+</html>

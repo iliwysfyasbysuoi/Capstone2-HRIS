@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Evaluation Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+   <script src="/js/TrainingEvaluationFormPage.js" type="text/javascript" defer> </script> 
+   {{!-- <script src="moment.min.js"></script> --}}
+   {{!-- <script src="daterangepicker.js"></script> --}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Evaluation Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                
+                 {{> forms/TrainingEvaluationForm }}
+
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+
+</body>
+
+</html>

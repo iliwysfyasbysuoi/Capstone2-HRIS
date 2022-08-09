@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.employeeactionforms"}],"uuid":"20a56aeac61f42d699d0037eb5beff6f","collectionName":"employeeactionforms","type":"collection"}

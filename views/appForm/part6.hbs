@@ -1,0 +1,79 @@
+<div class="col s12 step step-6">
+    <div class="row">
+        <div class="card-action card-title center">
+            V. CONTACT INFORMATION (In Case of Emergency)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="form-group col s12">
+                <label for="ci_person">CONTACT PERSON:</label>
+                <input id="ci_person" type="text" class="validate" name="ci_person" value="" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="form-group col s12">
+                <label for="ci_relationship">RELATIONSHIP:</label>
+                <input id="ci_relationship" type="text" class="validate" name="ci_relationship" value="" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="form-group col s12">
+                <label for="ci_address">ADDRESS:</label>
+                <input id="ci_address" type="text" class="validate" name="ci_address"  value=""required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="form-group col s12">
+                <label for="ci_num">CONTACT NUMBER (Mobile):</label>
+                <input id="ci_num" type="text" class="format_cell_num validate" onkeypress="return isNumberKey(event)" maxlength="13" name="ci_num" value="" required>
+            </div>
+        </div>
+    </div>
+    <div class="row terms_and_conditions">
+        <div class="col s12">
+            <input type="checkbox" id="TAC_consent" name="TAC_consent"  onchange="verifyConsent()" value="agree">
+            <label for="TAC_consent">I agree with the <a href="#TermsAndConditionsModal" id="openTermsAndConditions">Terms and Conditions</a></label>
+        </div>
+    </div>
+    <div class="row data_privacy_consent">
+        <div class="col s12">
+            <input type="checkbox" id="DP_consent" name="DP_consent" onchange="verifyConsent()" value="agree">
+            <label for="DP_consent">I consent to the <a href="#PrivacyPolicyModal" id="openDataPrivacyPolicy" class="modal-trigger text-black">Data Privacy Policy</a></label>
+        </div>
+    </div>
+</div>
+
+{{!-- start:: Privacy Policy Modal --}}
+<div id="PrivacyPolicyModal" class="modal modal-fixed-footer" style="width: 80vw; color: black !important;">
+    <div class="modal-content PP-modal-content">
+        {{> partials/PrivacyPolicy}}
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action 
+                modal-close btn btn-flat ">
+            Close
+        </a>
+    </div>
+</div>
+{{!-- end:: Privacy Policy Modal --}}
+
+{{!-- start:: Terms and Conditions Modal --}}
+<div id="TermsAndConditionsModal" class="modal modal-fixed-footer" style="width: 80vw; color: black !important;">
+    <div class="modal-content TAC-modal-content">
+        {{> partials/TermsAndConditions}}
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action 
+                modal-close btn btn-flat ">
+            Close
+        </a>
+    </div>
+</div>
+{{!-- end:: Terms and Conditions Modal --}}

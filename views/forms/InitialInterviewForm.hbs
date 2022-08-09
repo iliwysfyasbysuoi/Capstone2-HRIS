@@ -1,0 +1,260 @@
+<div class="row">
+    <div class="col-lg-12">
+        <form class="card" method="post" action="/submitInitialInterviewForm">
+            <div class="card-action card-title center">
+                Initial Interview Form
+            </div>
+
+            <div class="applicationID">
+                <input type="text" id="application_id" name="application_id" value = "{{applicationID}}" hidden>
+            </div>
+
+            <div class="card-action">
+                <center>Personal Background and Academic Preparations </center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                            <label for="pbac">Rating</label>
+                            <select class="pbac" id="pbac" name="pbac" required>
+                                <option value="" disabled selected> Select Rating</option>
+                                <option value="5" >5 - Outstanding</option>
+                                <option value="4">4 - Above Average</option>
+                                <option value="3">3 - Meets Expecations</option>
+                                <option value="2">2 - Below Expectations</option>
+                                <option value="1">1 - Needs Improvement</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label for="pbac_comments">Comments</label>
+                            <input id="pbac_comments" name="pbac_comments" type="text" class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Interpersonal/Communication Skills</center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                            <label for="ic_skills">Rating</label>
+                            <select class="ic_skills" id="ic_skills" name="ic_skills" required>
+                                <option value="" disabled selected> Select Rating</option>
+                                <option value="5" >5 - Outstanding</option>
+                                <option value="4">4 - Above Average</option>
+                                <option value="3">3 - Meets Expecations</option>
+                                <option value="2">2 - Below Expectations</option>
+                                <option value="1">1 - Needs Improvement</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label for="ic_skills_comments">Comments</label>
+                            <input id="ic_skills_comments" name="ic_skills_comments" type="text" class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Work Experience/Work History</center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                            <label for="work_history">Rating</label>
+                            <select class="work_history" id="work_history" name="work_history" required>
+                                <option value="" disabled selected> Select Rating</option>
+                                <option value="5" >5 - Outstanding</option>
+                                <option value="4">4 - Above Average</option>
+                                <option value="3">3 - Meets Expecations</option>
+                                <option value="2">2 - Below Expectations</option>
+                                <option value="1">1 - Needs Improvement</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label for="work_history_comments">Comments</label>
+                            <input id="work_history_comments" name="work_history_comments" type="text" class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Functional Skills</center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                            <label for="functional_skills">Rating</label>
+                            <select class="functional_skills" id="functional_skills" name="functional_skills" required>
+                                <option value="" disabled selected> Select Rating</option>
+                                <option value="5" >5 - Outstanding</option>
+                                <option value="4">4 - Above Average</option>
+                                <option value="3">3 - Meets Expecations</option>
+                                <option value="2">2 - Below Expectations</option>
+                                <option value="1">1 - Needs Improvement</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label for="functional_skills_comments">Comments</label>
+                            <input id="functional_skills_comments" name="functional_skills_comments" type="text"
+                                class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Personality/Personal Impact</center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                            <label for="personality">Rating</label>
+                            <select class="personality" id="personality" name="personality" required>
+                                <option value="" disabled selected> Select Rating</option>
+                                <option value="5" >5 - Outstanding</option>
+                                <option value="4">4 - Above Average</option>
+                                <option value="3">3 - Meets Expecations</option>
+                                <option value="2">2 - Below Expectations</option>
+                                <option value="1">1 - Needs Improvement</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label for="personality_comments">Comments</label>
+                            <input id="personality_comments" name="personality_comments" type="text" class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Overall Impression</center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                            <label for="impression">Rating</label>
+                            <select class="impression" id="impression" name="impression" required>
+                                <option value="" disabled selected> Select Rating</option>
+                                <option value="5" >5 - Outstanding</option>
+                                <option value="4">4 - Above Average</option>
+                                <option value="3">3 - Meets Expecations</option>
+                                <option value="2">2 - Below Expectations</option>
+                                <option value="1">1 - Needs Improvement</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label for="impression_comments">Comments</label>
+                            <input id="impression_comments" name="impression_comments" type="text" class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Other Comments</center>
+
+                <div class="col s12">
+
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <br>
+                            <label for="other_comments">Areas For Improvement and Recommendation</label>
+                            <input id="other_comments" name="other_comments" type="text" class="validate" placeholder="Optional">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+            <div class="card-action">
+                <center>Interview Assessment</center>
+
+                <div class="col s12">
+
+                    <div class="row">
+                        <div class="form-group col s3">
+                            <br>
+                            <label for="verdict">Verdict</label>
+                            <select class="verdict" name="verdict" id="verdict" required>
+                                <option value="Approved" selected>Approve</option>
+                                <option value="Disapproved">Disapprove</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+
+            </div>
+
+
+            <div class="card-action">
+                <div class="row">
+                    <center><button class="waves-effect waves-light btn" id="submit" type="submit">Submit</button></center>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

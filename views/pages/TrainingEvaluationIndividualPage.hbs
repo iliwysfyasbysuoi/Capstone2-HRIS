@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Evaluation</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Evaluation Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content">
+
+                                <div class="row">
+                                   <table class=" col s12 ">
+                                    <tbody>
+                                        <tr></tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Name of Participant #</td>
+                                            <td class="participantName">{{evaluation.employeeDetails.name}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Position Title/Designation</td>
+                                            <td class="participantPosition">{{evaluation.employeeDetails.position}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Division/Department</td>
+                                            <td class="participantDepartment">{{evaluation.employeeDetails.department}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Program Title</td>
+                                            <td class="programTitle">{{evaluation.trainingDetails.trainingTitle}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Training Institution/Organizer</td>
+                                            <td class="programOrganizer">{{evaluation.trainingDetails.trainingSponsor}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Training Periods</td>
+                                            <td class="trainingPeriod">{{formatDateAndTime evaluation.trainingDetails.trainingDate}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <td></td>
+                                            <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Evaluation Item</th>
+                                                    <th>Rating</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Usefulness of Program
+                                                        <p style="color:gray;"><i>The degree of usefulness of the program to both your work and personal development</i></p>
+                                                    </td>
+                                                    <td class="programUsefulness">{{evaluation.programUsefulness}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Adequacy of Program Content
+                                                        <p style="color:gray;"><i>The depth of instruction or volume of knowledge from the program</i></p>
+                                                    </td>
+                                                    <td class="programAdequacy">{{evaluation.programAdequacy}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Skills Practice
+                                                        <p style="color:gray;"><i>The adequacy of skills practice where such session is required</i></p>
+                                                    </td>
+                                                    <td class="programSkillsPractice">{{evaluation.programSkillsPractice}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Instructor's Effectiveness (Knowledge of Subject)
+                                                        <p style="color:gray;"><i>The instructor's mastery of the subject and his ability to effectively answer the questions raised during training</i></p>
+                                                    </td>
+                                                    <td class="programInstructorKnowledge">{{evaluation.programInstructorKnowledge}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Instructor's Effectiveness (Delivery of Subject)
+                                                        <p style="color:gray;"><i>How well the instructor is able to make the participants enjoy and understand the subject</i></p>
+                                                    </td>
+                                                    <td class="programInstructorDelivery">{{evaluation.programInstructorDelivery}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Classroom Facilities</td>
+                                                    <td class="programFacility">{{evaluation.programFacility}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Audio Visual Support</td>
+                                                    <td class="programAVSupport">{{evaluation.programAVSupport}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Quality of Lecture Notes/Hand-Outs</td>
+                                                    <td class="programLectureNotes">{{evaluation.programLectureNotes}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Length/Duration of the Program</td>
+                                                    <td class="programDuration">{{evaluation.programDuration}}</td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                        </tr>
+                                        <table>
+                                        <tr>
+                                            <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Additional Comments/Suggestions</td>
+                                            <td class="comments">{{evaluation.comments}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Commitment Statement</td>
+                                            <td class="commitmentStatement">{{evaluation.commitmentStatement}}</td>
+                                            <td> </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <!-- TODO: Add script for filter -->
+
+</body>
+</html>

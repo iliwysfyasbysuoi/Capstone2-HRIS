@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.goalcyclelists"}],"uuid":"41db7d314d744a06830459b4d1196e07","collectionName":"goalcyclelists","type":"collection"}

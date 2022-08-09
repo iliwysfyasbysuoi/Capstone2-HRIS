@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="col-lg-12">
+        <form class="card">
+            <div class="card-action card-title center">
+                Training and Development Needs
+            </div>
+
+            <div class="card-action"> 
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="form-group col s8">
+                            <label for="job_area">Job Area</label>
+                            <input placeholder="" id="job_area" type="text" class="validate" name="job_area" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col s8">
+                            <label for="tnd_requirement">Possible Training/Development Requirement</label>
+                            <input id="tnd_requirement" type="text" class="validate" name="tnd_requirement" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <a class="waves-effect waves-light btn" id="add">Add</a>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+                
+            </div>
+
+            <div class="card-action"> 
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <!--TODO: add table-->
+                        <div class="col-md-12">
+                        <div class="table-responsive">
+                                            <table class="table table-hover pointer green-thead">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Job Area</th>
+                                                        <th>Possible Training and Development Requirement</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each TNDNeedsData}}
+                                                    <tr>
+                                                        <td>{{jobarea}}</td>
+                                                        <td>{{tndreq}}</td>
+                                                        <td><a class="waves-effect waves-light btn" id="remove">Remove</a></td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                            </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+                
+            </div>
+
+            <div class="card-action"> <center>Overall Rating/Recommendation</center>
+
+                <div class="col s12">
+                    <div class="row">
+                        <br>
+                        <div class="input-group col  s3">
+                             <label for="overall_rating">Rating</label>
+                             <select class="overall_rating" id="overall_rating" name="overall_rating"  required>
+                                 <option value=""  disabled> Select Type</option>
+                                 <option value="5" selected>5 - Very Good Fit</option>
+                                 <option value="4">4 - Shows Potential</option>
+                                 <option value="3">3 - Meets Basic Expecations</option>
+                                 <option value="2">2 - Below Expectations</option>
+                                 <option value="1">1 - Substandard Unfit For Position</option>
+                             </select>
+                        </div>
+
+                    </div>
+
+                    <div class = "row">
+                        <div class="form-group col s12">
+                            <label for="remarks">Remarks</label>
+                            <input id="remarks" name="remarks" type="text" class="validate">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="clearBoth"></div>
+                
+            </div>
+
+           
+            <div class="card-action">
+                <div class="row">
+                    <center><a class="waves-effect waves-light btn" id="submit">Submit</a></center>
+                </div>
+            </div>
+            </forms>
+    </div>
+</div>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Nomination Approval Page</title>
+    <script src="/js/TrainingNominationApprovalPage.js" type="text/javascript" defer> </script>
+    {{!-- <script src="/js/TrainingNominationFormPage.js" type="text/javascript" defer> </script> --}}
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Nomination
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="col-md-9" id="PRF-card">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <tbody>
+                                        <tr>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Training ID</td>
+                                            <td class="trainingID">{{training.trainingID}}</td>
+
+                                            <td class="PRF-info-label">Date created</td>
+                                            <td class="requestDate">{{formatDateAndTime training.requestDate}}</td>
+
+                                            <td class="PRF-info-label">Last updated</td>
+                                            <td class="updatedDate">{{formatDateAndTime training.updatedDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="PRF-info-label">Status</td>
+                                            <td class="TNFStatus">{{training.status}}</td>
+                                            <td> </td>
+
+                                            <td class="PRF-info-label">Training Fee</td>
+                                            <td class="trainingFee">{{training.trainingFee}}</td>
+                                            <td> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="PRF-info-label">Title</td>
+                                            <td class="title" colspan="5">{{training.trainingTitle}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Venue</td>
+                                            <td>{{training.venue}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Sponsor</td>
+                                            <td class="sponsor" colspan="2">{{training.sponsor}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">Inclusive Dates:</td>
+                                        </tr>
+                                        {{#each training.inclusiveDates}}
+                                            <tr>
+                                                <td colspan="6">{{formatDateAndTime this}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <thead>
+                                        <tr>
+                                            <th>Business Unit</th>
+                                            <th>Department</th>
+                                            <th>Position</th>
+                                            <th>Skill</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each training.skills}}
+                                            <tr>
+                                                <td>{{skillBusinessUnit}} </td>
+                                                <td>{{skillDepartment}} </td>
+                                                <td>{{skillPosition}} </td>
+                                                <td>{{skillName}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <thead>
+                                        <tr>
+                                            <th>Registration Requirements</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each training.registrationRequirements}}
+                                            <tr>
+                                                <td>{{this}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>Position</th>
+                                            <th colspan="2">Contractual Period</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each training.employees}}
+                                            <tr>
+                                                <td>{{employeeName}} </td>
+                                                <td>{{employeePosition}} </td>
+                                                <td colspan="2">{{employeeContractPeriod}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" id="approvals-progress-card">
+                    <div class="card">
+                        <div class="card-action">
+                            Approvals Progress
+                        </div>
+                        <div class="card-content">
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success approved-bar">
+                                    <span class="approved-bar-label"> </span> Approved
+                                </div>
+                                <div class="progress-bar progress-bar-danger disapproved-bar">
+                                    <span class="disapproved-bar-label"> </span> Disapproved
+                                </div>
+                                <div class="progress-bar info pending-bar">
+                                    <span class="pending-bar-label"> </span> Pending
+                                </div>
+                            </div>
+                            <div class="card-action buttons-card">
+                                {{!--
+                                Buttons for Approve, Disapprove, List Job Vacancy, and got to Job Listing Page will be
+                                here.
+                                The elements are added via PRFIndividualPage.js since appearance of buttons
+                                depends on the user and the status of the PRF.
+                                --}}
+                            </div>
+                            {{#with training.disapproveReason as |disapproveReason|}}
+                            <div class="disapprovalReason">
+                                <b>Reason: </b> {{disapproveReason}}
+                            </div>
+                            {{/with}}
+                            <table class="table table-responsive col s12 approvalsidebar">
+                                <thead>
+                                    <td colspan="3" class="center card-title"> Approvals </td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="PRF-info-label " style="width:100%;">Approver</td>
+                                        <td class="PRF-info-label center">Status</td>
+
+                                    </tr>
+                                    {{#ifEquals training.approvalDHead.approval "Approved"}}
+                                    <tr class="success">
+                                    {{/ifEquals}}
+                                    {{#ifEquals training.approvalDHead.approval "Pending"}}
+                                    <tr class="info">
+                                    {{/ifEquals}}
+                                    {{#ifEquals training.approvalDHead.approval "Disapproved"}}
+                                    <tr class="danger">
+                                    {{/ifEquals}}
+                                        <td class="">
+                                             <span class="PRF-info-label">Department Head </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{training.approvalDHead.approver.firstName}}
+                                                {{training.approvalDHead.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{training.approvalDHead.approver.businessUnit}}</span> <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{training.approvalDHead.approver.department}}</span> <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{training.approvalDHead.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalDHead-status">{{training.approvalDHead.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    {{#ifEquals training.approvalBUHead.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals training.approvalBUHead.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals training.approvalBUHead.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">Business Unit Head </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{training.approvalBUHead.approver.firstName}}
+                                                {{training.approvalBUHead.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{training.approvalBUHead.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{training.approvalBUHead.approver.department}}</span> <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{training.approvalBUHead.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalBUHead-status">{{training.approvalBUHead.approval}}</span>
+                                        </td>
+                                    </tr>
+
+
+                                    {{#ifEquals training.approvalCHRODDirector.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals training.approvalCHRODDirector.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals training.approvalCHRODDirector.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">CHROD Director </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{training.approvalCHRODDirector.approver.firstName}}
+                                                {{training.approvalCHRODDirector.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{training.approvalCHRODDirector.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{training.approvalCHRODDirector.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{training.approvalCHRODDirector.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalCHRODDirector-status">{{training.approvalCHRODDirector.approval}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {{!-- for testing  --}}
+                {{!-- <div class="row" style="margin:100px;">
+                    <label for="update_date_in_performance_goal_cycle">Test: Change Effective Date for Performance Goal Cycle</label>
+                    <input type="date" id="update_date_in_performance_goal_cycle" />
+                    <button id="update_button_performance_goal_cycle">Update</button>
+                </div> --}}
+                {{!-- end for testing  --}}
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+
+
+        <!-- /. WRAPPER  -->
+
+        <!-- EvaluationModal Modal Structure -->
+        <div id="EvaluationModal" 
+            class="modal modal-fixed-footer">
+            <div class="modal-content">
+                {{!-- loaded via js --}}
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action 
+                    modal-close btn btn-flat ">
+                    Close
+                </a>
+            </div>
+        </div>
+
+        <!-- disapproveModal Modal Structure -->
+            <div id="disapproveModal" class="modal">
+                <form action="/DisapproveTNF" id="disapprovalForm" method="post">
+                    <div class="modal-content">
+                        <h5 class="modal-header"> 
+                            {{!-- insert via JS --}}
+                            Reason for disapproval
+                        </h5>
+                        <p class="modal-text">
+                            {{!-- insert via JS --}}
+                            
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        {{!-- insert buttons via JS --}}
+                    
+                        <button 
+                            class="waves-effect waves-light btn btn-danger " id="disapproveBtn" type="submit">
+                            Disapprove
+                        </button>
+                        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    </div>
+                </form>
+                
+            </div>
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+
+
+</body>
+
+</html>

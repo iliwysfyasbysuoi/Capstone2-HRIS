@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.employeetrackers"}],"uuid":"5d613f0dd5884fe7b360cd50fa46e319","collectionName":"employeetrackers","type":"collection"}

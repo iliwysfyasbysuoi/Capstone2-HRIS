@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offboarding</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    <script src="/js/offboardingIndividual.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Offboarding
+                </h1>
+            </div>
+            <input hidden value={{offboarding._id}} id="id">
+            <div id="page-inner">
+                <div class="col-sm-9" id="PRF-card">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <div class="row">
+                                    <table class=" col s12 ">
+                                        <tbody>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Offboarding ID</td>
+                                                <td class="requisitionID">{{offboarding.offboardingID}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Name</td>
+                                                <td class="PRFStatus">{{offboarding.name}}</td>
+                                                <td> </td>
+
+                                                <td class="PRF-info-label">Status</td>
+                                                <td class="PRFStatus">{{offboarding.status}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Position</td>
+                                                <td>{{offboarding.position}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Business Unit/Company</td>
+                                                <td>{{offboarding.businessUnit}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Department</td>
+                                                <td>{{offboarding.department}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Nature of Separation</td>
+                                                <td>{{offboarding.natureOfSeparation}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Request Date</td>
+                                                <td>{{formatDateAndTime offboarding.requestDate}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Update Date</td>
+                                                <td>{{formatDateAndTime offboarding.updatedDate}}</td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="row col s12">
+                                <div class="table-responsive">
+                                    {{!-- {{#if offboarding.allDeptHeadSubmitted}} --}}
+
+                                    <table class="table table-hover pointer green-thead" >
+                                        <thead>
+                                            <tr>
+                                                <th>Department</th>
+                                                <th>List of Accountabilities</th>
+                                                <th>Status of Accountabilities</th>
+                                                <th>Approved By</th>
+                                                <th>Date Submitted</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tableInfo">
+                                        </tbody>
+                                        <tbody class="userTableInfo">
+                                        </tbody>
+                                    </table>
+                                    {{!-- {{/if}} --}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Separation Letter-->
+                    {{#if offboarding.separationLetter}}
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-action center">
+                                Separation Letter
+                            </div>
+                            <div class="row">
+                                <div class row="col s12">{{offboarding.separationLetter}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                </div>
+                <div class="col-sm-3 approvalDiv" id="approvals-progress-card">
+                    <div class="card">
+                        <div class="card-action center">
+                            Approval 
+                        </div>
+                        {{#if data}}
+                        <div class="alert alert-danger center" role="alert">
+                            Schedule not available
+                        </div>
+                        {{/if}}
+                        <div class="card-action buttons-card center action-button">
+                        </div>
+
+                        <div class="card-content">
+
+                            {{#ifEquals offboarding.status "Closed"}}
+                            <div class="center">
+                                This form has been disapproved. 
+                                <br>
+                                <b>Reason: </b> {{offboarding.disapprovalReason}}
+                            </div>
+                            {{/ifEquals}}
+                            {{#if offboarding.allDeptHeadSubmitted}}
+                            {{#ifEquals offboarding.status "Pending"}}
+                            <table class="table table-responsive col s12">
+                                <thead>
+                                    <td colspan="3" class="center card-title"> Approvals </td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="PRF-info-label " style="width:100%;">Approver</td>
+                                        <td class="PRF-info-label center">Status</td>
+                                    </tr>
+                                    <div>
+                                        {{#ifEquals offboarding.approvalHR.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalHR.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalHR.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">HR Supervisor</span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{offboarding.approvalHR.approver.firstName}}
+                                                    {{offboarding.approvalHR.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{offboarding.approvalHR.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{offboarding.approvalHR.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{offboarding.approvalHR.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalHR-status">{{offboarding.approvalHR.approval}}</span>
+                                            </td>
+                                        </tr>
+
+                                        {{#ifEquals offboarding.approvalBUHead.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalBUHead.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalBUHead.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">Business Unit Head </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{offboarding.approvalBUHead.approver.firstName}}
+                                                    {{offboarding.approvalBUHead.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{offboarding.approvalBUHead.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{offboarding.approvalBUHead.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{offboarding.approvalBUHead.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalBUHead-status">{{offboarding.approvalBUHead.approval}}</span>
+                                            </td>
+                                        </tr>
+
+
+                                        {{#ifEquals offboarding.approvalCHRODDirector.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalCHRODDirector.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalCHRODDirector.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">CHROD Director </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{offboarding.approvalCHRODDirector.approver.firstName}}
+                                                    {{offboarding.approvalCHRODDirector.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{offboarding.approvalCHRODDirector.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{offboarding.approvalCHRODDirector.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{offboarding.approvalCHRODDirector.approver.position}}
+                                                </span>
+
+                                            </td>
+                                            <td class="vertical-align center">
+                                                <span
+                                                    class="approvalCHRODDirector-status">{{offboarding.approvalCHRODDirector.approval}}</span>
+                                            </td>
+                                        </tr>
+                                    </div>
+
+                                </tbody>
+                            </table>
+                            {{/ifEquals}}
+                            {{#ifEquals offboarding.status "Completed"}}
+
+                            <table class="table table-responsive col s12">
+                                <thead>
+                                    <td colspan="3" class="center card-title"> Approvals </td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="PRF-info-label " style="width:100%;">Approver</td>
+                                        <td class="PRF-info-label center">Status</td>
+
+                                    </tr>
+                                    <div>
+                                        {{#ifEquals offboarding.approvalHR.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalHR.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalHR.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">HR Supervisor</span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{offboarding.approvalHR.approver.firstName}}
+                                                    {{offboarding.approvalHR.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{offboarding.approvalHR.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{offboarding.approvalHR.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{offboarding.approvalHR.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalHR-status">{{offboarding.approvalHR.approval}}</span>
+                                            </td>
+                                        </tr>
+
+                                        {{#ifEquals offboarding.approvalBUHead.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalBUHead.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalBUHead.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">Business Unit Head </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{offboarding.approvalBUHead.approver.firstName}}
+                                                    {{offboarding.approvalBUHead.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{offboarding.approvalBUHead.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{offboarding.approvalBUHead.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{offboarding.approvalBUHead.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalBUHead-status">{{offboarding.approvalBUHead.approval}}</span>
+                                            </td>
+                                        </tr>
+
+
+                                        {{#ifEquals offboarding.approvalCHRODDirector.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalCHRODDirector.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals offboarding.approvalCHRODDirector.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">CHROD Director </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{offboarding.approvalCHRODDirector.approver.firstName}}
+                                                    {{offboarding.approvalCHRODDirector.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{offboarding.approvalCHRODDirector.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{offboarding.approvalCHRODDirector.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{offboarding.approvalCHRODDirector.approver.position}}
+                                                </span>
+
+                                            </td>
+                                            <td class="vertical-align center">
+                                                <span
+                                                    class="approvalCHRODDirector-status">{{offboarding.approvalCHRODDirector.approval}}</span>
+                                            </td>
+                                        </tr>
+                                    </div>
+
+                                </tbody>
+                            </table>
+                            {{/ifEquals}}
+                            {{/if}}
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal Structure -->
+                <div id="disapproveModal" class="modal">
+                    <form action="/ApproveClearanceAccountability" id="disapprovalForm" method="post">
+                        <div class="modal-content">
+                            <h5 class="modal-header"> 
+                                {{!-- insert via JS --}}
+                                Reason for disapproval
+                            </h5>
+                            <p class="modal-text">
+                                {{!-- insert via JS --}}
+                                
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            {{!-- insert buttons via JS --}}
+                        
+                            <button 
+                                class="waves-effect waves-light btn btn-danger " id="disapproveBtn" type="submit">
+                                Disapprove
+                            </button>
+                            <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        </div>
+                    </form>
+                    
+                </div>
+
+                
+                <!-- /. WRAPPER  -->
+
+                <!-- JS Scripts-->
+                {{> partials/endOfBodyJSScripts}}
+
+
+
+
+
+</body>
+
+</html>

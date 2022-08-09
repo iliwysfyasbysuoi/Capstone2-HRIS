@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information Page</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+    <script src="/js/Personal_Information_Page/PersonalInformationPage.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+
+    {{> partials/topnav}}
+    {{> partials/sidenav}}
+
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                Personal Information Page
+            </h1>
+        </div>
+        <div id="page-inner">
+
+            <div class="row">
+                <div class="card">
+                    <div class="PIF_action_btn_div">
+                        <a id="update_PIF" class="btn" href='/form/PersonalInformationForm?mode=update'>Update</a>
+                        <a id="delete_PIF" class="btn red modal-trigger" href='#ConfirmDeleteModal'>Delete</a>
+                    </div>
+
+                    <!--Personal information form -->
+                    <div class="Personal-Information card-content">
+                        <param class="applicationID" id="applicationID" name="applicationID"
+                            value="{{applicationData._id}}">
+
+                        <h1>Personal Information</h1>
+                        {{!-- <table class="table  table-bordered table-hover table-responsive"
+                            id="personal_information_overview">
+                            <tbody>
+                                <tr>
+                                    <td class="PRF-info-label">First Name</td>
+                                    <td class="firstName">{{applicationData.fName}}</td>
+                                    <td class="PRF-info-label">Nickname</td>
+                                    <td class="nickName">{{applicationData.nickName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Middle Name</td>
+                                    <td class="middleName">{{applicationData.middleName}}</td>
+                                    <td class="PRF-info-label">Email</td>
+                                    <td class="personalEmail">{{applicationData.personalEmail}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Last Name</td>
+                                    <td class="lastName">{{applicationData.lastName}}</td>
+                                </tr>
+                            </tbody>
+                        </table> --}}
+                        <h2>I. Personal Data</h2>
+                        <table class="table  table-bordered table-hover" id="personal_data">
+                            <tbody>
+                                <tr>
+                                    <td class="PRF-info-label">Age</td>
+                                    <td class="age">{{applicationData.personalInformation.age}}</td>
+                                    <td class="PRF-info-label">Date of Birth</td>
+                                    <td class="dateOfBirth">{{formatDate
+                                        applicationData.personalInformation.dateOfBirth}}
+                                    </td>
+                                    <td class="PRF-info-label">Place of Birth</td>
+                                    <td class="placeOfBirth">
+                                        {{applicationData.personalInformation.placeOfBirth}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Tel. No.</td>
+                                    <td class="telNum">{{applicationData.personalInformation.telNum}}</td>
+                                    <td class="PRF-info-label">Mobile No.</td>
+                                    <td class="mobileNum">{{applicationData.personalInformation.mobileNum}}</td>
+                                    <td class="PRF-info-label">Gender</td>
+                                    <td class="gender">{{applicationData.personalInformation.gender}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Present Address</td>
+                                    <td class="presentAddress" colspan="5">
+                                        {{applicationData.personalInformation.presentAddress}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Provincial Address</td>
+                                    <td class="provincialAddress" colspan="5">
+                                        {{applicationData.personalInformation.provincialAddress}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Weight</td>
+                                    <td class="weight">{{applicationData.personalInformation.weight}}</td>
+                                    <td class="PRF-info-label">Height</td>
+                                    <td class="height">{{applicationData.personalInformation.height}}</td>
+                                    <td class="PRF-info-label">Civil Status</td>
+                                    <td class="civilStatus">{{applicationData.personalInformation.civilStatus}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Citizenship</td>
+                                    <td class="citizenship">{{applicationData.personalInformation.citizenship}}
+                                    </td>
+                                    <td class="PRF-info-label">Religion</td>
+                                    <td class="religion">{{applicationData.personalInformation.religion}}</td>
+                                    <td class="PRF-info-label">Blood Type</td>
+                                    <td class="bloodType">{{applicationData.personalInformation.bloodType}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">SSS No.</td>
+                                    <td class="SSS">{{applicationData.personalInformation.SSS}}</td>
+                                    <td class="PRF-info-label">TIN</td>
+                                    <td class="TIN">{{applicationData.personalInformation.TIN}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered table-hover" id="parents_info">
+                            <tbody>
+                                <tr>
+                                    <td class="PRF-info-label">Name of Father</td>
+                                    <td class="fatherName" colspan="2">
+                                        {{applicationData.personalInformation.fatherName}}</td>
+                                    <td class="PRF-info-label">Name of Mother</td>
+                                    <td class="motherName" colspan="2">
+                                        {{applicationData.personalInformation.motherName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Father's Home Address</td>
+                                    <td class="fatherHomeAddress" colspan="2">
+                                        {{applicationData.personalInformation.fatherHomeAddress}}</td>
+                                    <td class="PRF-info-label">Mother's Home Address</td>
+                                    <td class="motherHomeAddress" colspan="2">
+                                        {{applicationData.personalInformation.motherHomeAddress}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Father's Occupation</td>
+                                    <td class="fatherOccupation" colspan="2">
+                                        {{applicationData.personalInformation.fatherOccupation}}</td>
+                                    <td class="PRF-info-label">Mother's Occupation</td>
+                                    <td class="motherOccupation" colspan="2">
+                                        {{applicationData.personalInformation.motherOccupation}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="PRF-info-label">Father's Company</td>
+                                    <td class="fatherCompany" colspan="2">
+                                        {{applicationData.personalInformation.fatherCompany}}</td>
+                                    <td class="PRF-info-label">Mother's Company</td>
+                                    <td class="motherCompany" colspan="2">
+                                        {{applicationData.personalInformation.motherCompany}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--NAME OF SIBLING Array-->
+                        <table class="table table-striped table-bordered table-hover" id="sibling-name">
+                            <thead>
+                                <tr>
+                                    <th>Name of Sibling</th>
+                                    <th>Date of Birth</th>
+                                    <th>Civil Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if applicationData.personalInformation.siblings}}
+                                {{#each applicationData.personalInformation.siblings}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{formatDate dateOfBirth}}</td>
+                                    <td>{{civilStatus}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="3" class="center">No record.</td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+
+                        <h2>II. Educational Background</h2>
+
+                        <!--SCHOOL RECORD Array-->
+                        <table class="table table-striped table-bordered table-hover" id="school-record">
+                            <thead>
+                                <tr>
+                                    <th>School Level</th>
+                                    <th>Name of School</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Degree/Course Finished</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if applicationData.personalInformation.schoolRecords}}
+                                {{#each applicationData.personalInformation.schoolRecords}}
+                                <tr>
+                                    <td>{{level}}</td>
+                                    <td>{{nameAddress}}</td>
+                                    <td>{{formatDate fromDate}}</td>
+                                    <td>{{formatDate toDate}}</td>
+                                    <td>{{degree}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="5" class="center">No record.</td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+                        <table class="table  table-bordered table-hover" id="special_award">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" colspan="1"> Special Award, Citation, or
+                                        Scholarships Received</td>
+                                    <td class="award center" colspan="5">
+                                        {{#if applicationData.personalInformation.award}}
+                                        {{applicationData.personalInformation.award}}
+                                        {{else}}
+                                        None
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--GOVERNMENT/BOARD EXAMS TAKEN Array-->
+                        <table class="table table-striped table-bordered table-hover" id="exams-taken">
+                            <thead>
+                                <tr>
+                                    <th>Examination</th>
+                                    <th>Date of Exam</th>
+                                    <th>Date Passed</th>
+                                    <th>Rating</th>
+                                    <th>Rank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if applicationData.personalInformation.exams}}
+                                {{#each applicationData.personalInformation.exams}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{formatDate examDate}}</td>
+                                    <td>{{formatDate passedDate}}</td>
+                                    <td>{{rating}}</td>
+                                    <td>{{rank}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="5" class="center">No record.</td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+
+                        <!--TRAININGS AND SEMINARS ATTENDED Array-->
+                        <table class="table table-striped table-bordered table-hover" id="trainings-attended">
+                            <thead>
+                                <tr>
+                                    <th>Title of Seminar</th>
+                                    <th>Organizer</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if
+                                applicationData.personalInformation.trainingsAndSeminarInfo}}
+                                {{#each
+                                applicationData.personalInformation.trainingsAndSeminarInfo}}
+                                <tr>
+                                    <td>{{title}}</td>
+                                    <td>{{organizer}}</td>
+                                    <td>{{formatDate date}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="3" class="center">No record.</td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+
+                        <h2>III. Employment Record</h2>
+
+                        <!--EMPLOYMENT RECORD Array-->
+                        <table class="table table-striped table-bordered table-hover" id="employment-record">
+                            <thead>
+                                <tr>
+                                    <th>Name & Address of Company</th>
+                                    <th>Nature of Business</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Position Held</th>
+                                    <th>Reason For Leaving</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if
+                                applicationData.personalInformation.employmentRecordInfo}}
+                                {{#each
+                                applicationData.personalInformation.employmentRecordInfo}}
+                                <tr>
+                                    <td>{{nameAddress}}</td>
+                                    <td>{{nature}}</td>
+                                    <td>{{formatDate fromDate}}</td>
+                                    <td>{{formatDate toDate}}</td>
+                                    <td>{{position}}</td>
+                                    <td>{{reasonForLeaving}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="6" class="center">No record.</td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+
+                        <h2>IV. Membership/s in a Professional or Civic Organization</h2>
+
+                        <!--ORGANIZATION MEMBERSHIP Array-->
+                        <table class="table table-striped table-bordered table-hover" id="org-membership">
+                            <thead>
+                                <tr>
+                                    <th>Name of Organization</th>
+                                    <th>Position in Organization</th>
+                                    <th>inclusive Year(s)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if
+                                applicationData.personalInformation.organizations}}
+                                {{#each
+                                applicationData.personalInformation.organizations}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{position}}</td>
+                                    <td>{{inclusiveYears}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="3" class="center">No record.
+                                    </td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+
+                        <!--CHARACTER REFERENCE Array-->
+                        <table class="table table-striped table-bordered table-hover" id="character-reference">
+                            <thead>
+                                <tr>
+                                    <th>Character Reference Name</th>
+                                    <th>Relationship to Applicant</th>
+                                    <th>Occupation</th>
+                                    <th>Company Name & Address</th>
+                                    <th>Tel/Mobile No.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#if
+                                applicationData.personalInformation.characterReferences}}
+                                {{#each
+                                applicationData.personalInformation.characterReferences}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{relationship}}</td>
+                                    <td>{{occupation}}</td>
+                                    <td>{{companyNameAndAddress}}</td>
+                                    <td>{{contactNum}}</td>
+                                </tr>
+                                {{/each}}
+                                {{else}}
+                                <tr>
+                                    <td colspan="5" class="center">No
+                                        record.</td>
+                                </tr>
+                                {{/if}}
+                            </tbody>
+                        </table>
+
+                        <h2>V. Contact Information (In Case of mergency)</h2>
+
+                        <table class="table  table-bordered table-hover" id="emergency_contact_incormation">
+                            <tr>
+                                <td class="PRF-info-label">Contact Person
+                                </td>
+                                <td class="contactPerson">
+                                    {{applicationData.personalInformation.contactPerson}}
+                                </td>
+                                <td class="PRF-info-label">Relationship</td>
+                                <td class="contactRelationship">
+                                    {{applicationData.personalInformation.contactRelationship}}
+                                </td>
+                                <td class="PRF-info-label">Contact Number
+                                </td>
+                                <td class="contactNumber">
+                                    {{applicationData.personalInformation.contactNumber}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="PRF-info-label">Address</td>
+                                <td class="contactAddress" colspan="5">
+                                    {{applicationData.personalInformation.contactAddress}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- start:: Confirm Delete Modal --}}
+    <div id="ConfirmDeleteModal" class="modal " style="color: black !important;">
+        <div class="modal-content confirm-delete-modal-content">
+            Are you sure you want to delete your Personal Information record?
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action confirm-delete-btn
+                    btn red ">
+                Yes, delete.
+            </a>
+            <a href="#!" class="modal-action 
+                    modal-close btn btn-flat ">
+                Cancel
+            </a>
+        </div>
+    </div>
+    {{!-- end:: Confirm Delete Modal --}}
+
+    {{> partials/endOfBodyJSScripts}}
+</body>
+
+</html>

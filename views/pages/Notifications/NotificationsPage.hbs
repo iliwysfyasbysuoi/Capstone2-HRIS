@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notifications</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    {{!-- begin:: scripts for Task Tracker Page --}}
+    <script src="/js/Notifications/notifications_page.js" type="text/javascript" defer> </script>
+    {{!-- end:: scripts for Task Tracker Page--}}
+
+    <style>
+    
+    .clock_div{
+        position: absolute;
+        float: right !important;
+        right: 10px !important;
+        top: 10px;
+    }
+
+    .clock {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+      background-color: #286132;
+      margin: auto;
+      padding: 10px 5px;
+    }
+     
+
+    .time {
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      padding: 5px;
+    }
+
+    .date-time {
+      font-size: 14px;
+      color: #fff;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .time {
+        font-size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper" style="height: 100vh;">
+            <div class="header">
+                <div class="row">
+                    <div class="col s6">
+                        <h1 class="page-header">
+                            Notifications
+                        </h1>
+                    </div> 
+                </div>
+            </div>
+
+            <div id="page-inner"> 
+                <div class="row">
+                    <div class="card clock-card col s6 m3 clock_div">
+                        <div class="card-action">
+                            <div class="clock">
+                                <span class="time"></span> <span class="date-time"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:30px ;">
+                    <ul id='notifications_list'> 
+                        {{!-- populated with /js/Notifications/notifications_page.js --}}
+                    </ul>
+                </div> 
+            </div>
+            <!-- /. page-inner -->
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+ 
+
+            {{!-- script for the clock --}}
+            <script>
+                var time = document.querySelector('.time');
+                var dateTime = document.querySelector('.date-time');
+
+                function updateClock() {
+                // Get the current time, day , month and year
+                var now = new Date();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+                var day = now.getDay();
+                var date = now.getDate();
+                var month = now.getMonth();
+                var year = now.getFullYear();
+
+                // store day and month name in an array
+                var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+                // format date and time
+                hours = hours % 12 || 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                date = date < 10 ? '0' + date : date;
+
+                // display date and time
+                var period = hours > 12 ? 'AM' : 'PM';
+                time.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + period;
+                dateTime.innerHTML = dayNames[day] + ', ' + monthNames[month] + ' ' + date + ', ' + year;
+                }
+
+                updateClock();
+                setInterval(updateClock, 1000);
+            </script>
+
+
+
+</body>
+
+</html>

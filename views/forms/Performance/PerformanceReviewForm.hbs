@@ -1,0 +1,243 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-content">
+                <table>
+                    <tr>
+                        <td class="PRF-info-label">Employee Name</td>
+                        <td class="employeeName">{{user.firstName}} {{user.lastName}}</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td class="PRF-info-label">Position Title</td>
+                        <td class="employeePosition">{{user.position}}</td>
+                        <td> </td>
+                        <td class="PRF-info-label">Division/Department</td>
+                        <td class="employeeDepartment">{{user.department}}</td>
+                        <td> </td>
+                    <td> </td>
+                        <td class="PRF-info-label">Business Unit</td>
+                        <td class="employeeDepartment">{{user.businessUnit}}</td>
+                        <td> </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <form class="card col-lg-12" action="/submit-performance-review" method="post">
+        <div class="card-action">
+            <div class="col s12">
+                <div class="row">
+                    <div class="form-group col 12">
+                        <center>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Rating Scale</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Exceeds all targets and expectations by more than 50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Met 100% of the targets and expectations and exceeded them by at least 10%.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>All targets and expectations met</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Most targets and expectations met by at least 75%. Performance at this level
+                                            is marginally below required levels</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Employee did not meet the objective of the project/ showed negative or
+                                            adverse influenc</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </center>
+
+                    </div>
+                </div>
+
+                <div class="clearBoth"></div>
+
+                <!--Assessment of the Elements of Job Description-->
+
+                <div class="col s12">
+                    <div class="row">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Key Results Areas and Description of Accountabilities</th>
+                                    <th>Performance Indicators/Measures</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--For each KPI set-->
+                                {{!-- {{#each }} --}}
+                                {{#each cycleData.listOfCycles}}
+                                <tr>
+                                    <input type="text" value="{{keyResAreas}}" hidden name="kpikeyResAreas"/>
+                                    <td>{{keyResAreas}}
+                                        <input type="text" value="{{description}}" hidden name="kpiDescription"/>
+                                        <p style="color:gray;"><i>{{description}}</i></p>
+                                    </td>
+                                        <input type="text" value="{{perfoIndicator}}" name="kpiPerfoIndicator" hidden />
+                                    <td class="programUsefullness">{{perfoIndicator}}</td>
+                                    <td>
+                                        <select name="kpiRating" id="kpiRating" labelledby="Rating" required>
+                                            <option value="5">5</option>
+                                            <option value="4">4</option>
+                                            <option value="3">3</option>
+                                            <option value="2">2</option>
+                                            <option value="1">1</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="clearBoth"></div>
+            <input type="text" name="userId" value="{{user._id}}" hidden />
+            <input type="text" name="appraisalId" id="appraisalId" value="{{appraisalId}}" hidden />
+
+            <!-- Competencies -->
+            <div class="card-action">
+                <div class="col s12">
+                    <div class="row">
+                        <a class="waves-effect waves-light btn addEmployee" style="float: right;" id="submit">Add
+                            Skill/Competency</a>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Functional Skills/Leadership Competencies</th>
+                                    <th>Critical Incidents Where this Skill/Competency was Displayed</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTrainingList" class="employeeTrainingList">
+                                <tr>
+                                    <td>
+                                        <textarea class="form-control" name="competencyName" class="competencyName"
+                                            rows="3" required></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" name="competencyIncident"
+                                            class="competencyIncident" rows="3" required></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="clearBoth"></div>
+
+            <!-- Core Values-->
+            <div class="card-action">
+                <div class="col s12">
+                    <div class="row">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Core Values</th>
+                                    <th>Behavioral Indicators/Example of Behaviors Displayed</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTrainingList" class="employeeTrainingList">
+                                <tr>
+                                    <td>Entrepreneurial Spirit</td>
+                                    <td>
+                                        <textarea class="form-control" name="entrepSpirit" class="entrepSpirit" rows="3"
+                                            required></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Focus</td>
+                                    <td>
+                                        <textarea class="form-control" name="customerFocus" class="customerFocus"
+                                            rows="3" required></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Passion For Excellence</td>
+                                    <td>
+                                        <textarea class="form-control" name="passionExcellence"
+                                            class="passionExcellence" rows="3" required></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>People Development</td>
+                                    <td>
+                                        <textarea class="form-control" name="peopleDevelopment"
+                                            class="peopleDevelopment" rows="3" required></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Commitment To Stakeholders Relationship</td>
+                                    <td>
+                                        <textarea class="form-control" name="stakeholderCommitment"
+                                            class="stakeholderCommitment" rows="3" required></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="clearBoth"></div>
+
+            <!--Performance Summary and Agreements-->
+            <div class="card-action">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label>Specify other work-related items that should be noted about the employee</label>
+                            <p style="color:gray;"><i>Include career plan or possible movements</i></p>
+                        </div>
+
+                        <div class="form-group col s12">
+                            <textarea class="form-control" name="workRelatedItems" class="workRelatedItems" rows="3"
+                                required></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col s12">
+                            <label>Other Comments about the employee’s performance</label>
+                        </div>
+                        <div class="form-group col s12">
+                            <textarea class="form-control" name="otherComments" class="otherComments" rows="3"
+                                required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearBoth"></div>
+            <div class="card-action">
+                <div class="row">
+                    <center><button class="waves-effect waves-light btn" type="submit">Submit</button></center>
+                </div>
+            </div>
+    </form>
+</div>

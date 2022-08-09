@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeonioLand</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    <script src="/js/agenda-test/agenda-test.js" type="text/javascript" defer> </script>
+
+</head> 
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Agenda Test
+                </h1>
+
+            </div>
+            <div id="page-inner">
+
+                <div class="row">
+
+                    <div class="card col s12">
+                        <div class="card-header">
+
+                        </div>
+                        <div class="card-content">
+                            <h1>J1</h1><br>
+                            <p>"test"</p> 
+                            <button class ="btn J1"> do this </button>
+                            <p>What it does: Create a test-collections record after 10 seconds</p>
+                            <p>After time: 10 seconds</p>
+                        </div>
+
+                        <div class="card-content ">
+                            <h1>J2</h1><br>
+                            <p>"delete_applicants_data_after_6_months"</p> 
+                            <button class ="btn J2"> do this</button>
+                            <p>What it does: test ng actual fucntion.</p>
+                            <p>After time: 1 second</p>
+                            <p>Default target is <a href="/JobDetails/1">PRF 1</a> </p>
+                            <p>Detailed what it does:</p>
+                            <ol>
+                                <li>Get applicants for the PRF</li>
+                                <li>Check if the applicant has other applications that are newer than than their application for the PRF. This will filter out applicants who are "employed" and "transfered". 
+                                    It will also check and filter out users who are already an employee by checking the user's userType (in cases of internal rec) </li>
+                                <li>If NO newer application, they are up for data deletion:</li>
+                                
+                                    <ol type="a">
+                                        <li>[x] delete PIF</li>
+                                        <li>[x] delete all notifications related to the deleted applications (in next step) because mage-error sa task/notifs if hindi i-delete.</li>
+                                        {{!-- <li>[x] delete applications of the user</li> --}}
+                                        <li>[x] delete notifications of the user</li>
+                                        <li>[x] delete account of the user</li>
+                                    </ol>
+                                
+                            </ol>
+                        </div>
+                        <div class="card-content ">
+                            <h1>J3</h1><br>
+                            <p>"data_deletion_for_offboarding_employee"</p> 
+                            <button class ="btn J3"> do this</button>
+                            <p>What it does: test data_deletion_for_offboarding_employee function.</p>
+                            <p>After time: //</p>
+                            <p>Default target is lia.roces@leoniogroup.com </p>
+                            <p>Detailed what it does:</p>
+                            <ol>
+                                <li>Deletes data of a user</li>
+                                    <ol type="a">
+                                        <li>[x] delete PIF</li>
+                                        <li>[x] delete all notifications related to the deleted applications (in next step) because mage-error sa task/notifs if hindi i-delete.</li>
+                                        {{!-- <li>[x] delete applications of the user</li> --}}
+                                        <li>[x] delete notifications of the user</li>
+                                        <li>[x] delete account of the user</li>
+                                    </ol>
+                                
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    <!-- /. PAGE INNER  -->
+                </div>
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance Review Tracker</title>
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+</head>
+
+<body>
+    <div id="wrapper">
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Performance Review Tracker
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Performance Review
+                            </div>
+
+                            <div class="card-content">
+
+                                <div class="row">
+                                    <div class="input-group col filter-select ">
+
+                                        <label>Filter Position</label>
+                                        <select class="filter-table positions-dropdown">
+                                            <option value="none" selected>none</option>
+                                            {{#each positions}}
+                                                <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            {{!-- <th>Review #</th> --}}
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Department</th>
+                                            <th>Business Unit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {{#each userList}}
+                                        <tr
+                                            onclick="window.location.href = '/PerformanceAppraisalIndividual/{{reviewId}}';">
+                                            {{!-- <td>review_ID</td> --}}
+                                            <td>{{users.firstName}} {{users.lastName}}</td>
+                                            <td class="position">{{users.position}}</td>
+                                            <td>{{users.department}}</td>
+                                            <td>{{users.businessUnit}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{!-- {{/if}} --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+                    <footer>
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <script>
+            function search_table(value) {
+                $(".position").each(function () {
+                    var found = 'false';
+                    if (value==='none') {
+                          $(this).each(function () {    $(this).parent().show(); })
+                    }
+                    else 
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase() === value.toLowerCase()) {
+                            found = 'true';
+                        }
+
+                        if (found == 'true') {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    })
+                })
+            }
+
+            $('.filter-table').change(function () {
+               //  console.log($('.filter-table').val())
+                //   console.log($(this).val())
+               // if ($('.filter-table').val() == "none") {
+                   
+               //     window.location.href = "/PerformanceReviewTracker";
+                //} else {
+                    search_table($(this).val());
+                //}
+            })
+
+
+
+        </script>
+
+</body>
+
+</html>

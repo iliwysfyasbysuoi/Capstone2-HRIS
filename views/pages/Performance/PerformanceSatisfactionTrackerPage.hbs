@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/Performance/PerformanceSatisfactionTrackerPage.js" type="text/javascript" defer> </script>
+    <title>Performance Satisfaction Tracker</title>
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+</head>
+
+<body>
+    <div id="wrapper">
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Performance Satisfaction Tracker
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Performance Satisfaction
+                            </div>
+                            {{!-- unanswered appraisals only render for employees --}}
+                            {{!-- <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>For the Position</th>
+                                            <th>Start Date</th>
+                                            <th>Review Cycle</th>
+                                            <th>Current Cycle</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="unansAppraisals">
+                                    </tbody>
+                                </table>
+                            </div> --}}
+
+                            <div class="card-content">
+                                <div class="row">
+                                        <div class="input-group col filter-select" >
+                                            <label>Filter Position</label>
+                                            <select class="filter-table BUs">
+                                                <option selected value="none">All</option>
+                                                {{#each positions}}
+                                                <option value="{{this}}">{{this}}</option>
+                                                {{/each}}
+                                            </select>
+                                        
+                                    </div>
+
+                                </div>
+                                <br>
+                            </div>
+
+                            {{!-- answered appraisals --}}
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            {{!-- <th>Form #</th> --}}
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Department</th>
+                                            <th>Business Unit</th>
+                                            <th>Date Submitted</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if filteredData}}
+                                        {{#each filteredData}}
+                                        <tr
+                                            onclick="window.location.href = '/PerformanceAppraisalIndividualPage/{{_id}}';">
+                                            {{!-- <td>{{i}}</td> --}}
+                                            <td>{{name}}</td>
+                                            <td class="position">{{position}}</td>
+                                            <td>{{department}}</td>
+                                            <td>{{businessUnit}}</td>
+                                            <td>{{dateSubmitted}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+                    <footer>
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+
+        <script>
+            function search_table(value) {
+                $(".position").each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase() === value.toLowerCase()) {
+                            found = 'true';
+                        }
+                        if (found == 'true') {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    })
+                })
+            }
+            $('.filter-table').change(function () {
+                if ($('.filter-table').val() == "none") {
+                    window.location.href = "/PerformanceSatisfactionTracker";
+                } else {
+                    search_table($(this).val());
+                }
+            })
+        </script>
+
+</body>
+
+</html>

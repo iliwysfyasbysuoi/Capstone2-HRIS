@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Openings</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    {{!-- UI interaction js --}}
+    <script src="/js/JobDetailsPage.js" type="text/javascript" defer> </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Job Details
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/JobListing">Job Openings</a></li>
+                    <li class="active">Job Details</li>
+                </ol>
+
+            </div>
+
+            <div id="page-inner">
+
+                <div class="row">
+                    {{!-- {{#each JobDetailsList}} --}}
+                    <div class="col-md-12">
+                        <div class="card white">
+                            <div class="card-content black-text">
+                                <span class="card-title">{{JobDetailsList.positionTitle}}</span>
+                            </div>
+
+                            <div class="card-content black-text">
+                                <div><b>Employment Type:</b> {{JobDetailsList.employmentType}}</div>
+                                <div><b>Location:</b> {{JobDetailsList.location}}</div>
+                                <div><b>Business Unit:</b> {{JobDetailsList.businessUnit}}</div>
+                                <div><b>Department:</b> {{JobDetailsList.department}}</div>
+                                <div><b>RequisitionID:</b> <span class="requisitionID">{{JobDetailsList.requisitionID}}</span></div>
+                                <br>
+
+                                <div><b>Job Description</b></div>
+                                <div> {{JobDetailsList.jobDescription}}</div>
+                                <br>
+
+                                <div><b>Job Requirements</b></div>
+                                <div> {{JobDetailsList.positionRequirements}}</div>
+                            </div>
+
+                            
+                            <div class="card">
+                                <div class="card-content black-text card_footer_for_buttons" >
+                                    {{#ifEquals canApply "true"}}
+                                        <a class="btn applyBtn" value="{{JobDetailsList.requisitionID}}"
+                                            href="#alertModal">Apply</a>
+                                    {{/ifEquals}}
+                                    
+                                    {{#ifEquals canApply "false"}}
+                                        {{#with existingApplicationNotice as |notice|}}
+                                            <i class="fa fa-check" aria-hidden="true"></i> <b>{{notice}} Check your applications at <a href="/MyJobApplications">My Job Applications</a> </b>
+
+                                        {{/with}}
+                                    {{/ifEquals}}
+
+                                    
+                                </div>
+                            </div>
+                            
+                            
+
+                        </div>
+                    </div>
+                    {{!-- {{/each}} --}}
+                </div>
+                <!-- /. ROW  -->
+
+                 {{#ifEquals canSee "true"}}
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+
+                            <div class="row">
+                                <div class="input-group col filter-select ">
+                                    <label>Filter Status</label>
+                                    <select class="filter-table">
+                                        <option value="none" selected>None</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Disapproved">Disapproved</option>
+                                        <option value="Pre-Employment Requirements Pending">Pre-Employment Requirements Pending</option>
+                                        <option value="Pre-Employment Requirements Received">Pre-Employment Requirements Received</option>
+                                        <option value="Employed">Employed</option>
+                                        <option value="Transferred">Transferred</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                       
+                        <div class="table-responsive">
+                            <table class="table table-hover pointer green-thead">
+                                <thead>
+                                    <tr>
+                                        <th>Application #</th>
+                                        <th>Name</th>
+                                        {{!-- <th>Position Title</th>
+                                        <th>Business Unit</th>
+                                        <th>Department</th> --}}
+                                        <th>Application Date</th>
+                                        {{!-- <th>Target Start Date</th> --}}
+                                        {{!-- <th>Fully Approved Date</th> --}}
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#if JobApplicationData}}
+                                        {{!-- {{#if JobApplicationData}} --}}
+                                        {{#each JobApplicationData as |applicationInfo|}}
+                                        <tr onclick="window.location.href = '/ApplicantApproval/{{applicationInfo._id}}';">
+                                            <td>{{applicationInfo._id}}</td>
+                                            <td>{{applicationInfo.user.firstName}} {{applicationInfo.user.lastName}}</td>
+                                            {{!-- <td>{{applicationInfo.requisition.positionTitle}}</td>
+                                            <td>{{applicationInfo.requisition.businessUnit}}</td>
+                                            <td>{{applicationInfo.requisition.department}}</td> --}}
+                                            <td>{{formatDate applicationInfo.applicationDate}}</td>
+                                            {{!-- <td>{{formatDate applicationInfo.requisition.targetStartDate}}</td> --}}
+                                            {{!-- <td>{{formatDate applicationInfo.requisition.approvedDate}}</td> --}}
+                                            <td>{{applicationInfo.status}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{!-- {{/if}} --}}
+                                    {{else}}
+                                        <tr >
+                                            <td colspan="9" style="text-align: center;">No records for you yet.</td>
+                                        </tr>
+
+                                    {{/if}}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                {{/ifEquals}}
+            </div>
+            
+
+
+            
+
+            <!-- Modal Structure -->
+            <div id="alertModal" class="modal">
+                <div class="modal-content">
+                    <h5 class="modal-header"> 
+                        {{!-- insert via JS --}}
+                    </h5>
+                    <p class="modal-text">
+                        {{!-- insert via JS --}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    
+                    <div class="additional_btns">
+                        {{!-- insert buttons via JS --}}
+                    </div>
+                    <a href="#" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <footer>
+            </footer>
+        </div>
+        <!-- /. PAGE INNER  -->
+
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    {{> partials/endOfBodyJSScripts}}
+
+    <script>
+            function search_table(value) {
+                    $(".table td").each(function () {
+                        var found = 'false';
+                        $(this).each(function () {
+                            if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                                found = 'true';
+                            }
+
+                            if (found == 'true') {
+                                $(this).parent().show();
+                            }
+                            else {
+                                $(this).parent().hide();
+                            }
+                        })
+                    })
+                }
+
+                $('.filter-table').change(function () {
+                    if ($('.filter-table').val() == "none") {
+                        window.location.reload(true);
+                    } else {
+                        search_table($(this).val());
+                    }
+                })
+
+            
+
+        </script>
+
+
+</body>
+
+</html>

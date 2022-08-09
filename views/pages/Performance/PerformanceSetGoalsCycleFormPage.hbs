@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Goals Cycle Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    <script src="/js/Performance/PerformanceSetGoalsCycleFormPage.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{>partials/topnav}}
+        {{>partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Set Goals Cycle Form
+                </h1>
+            </div>
+            <div id="page-inner">
+
+                {{>forms/Performance/PerformanceSetGoalsCycleForm }}
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-action">
+                                Performance Cycles
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="input-group  filter-select w-100 col-12">
+                                        <label>Filter Position</label>
+                                        <select class="filter-table" name="positionFilter">
+                                            <option selected value="none">none</option>
+                                            {{#each positions}}
+                                            <option value="{{this}}">{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="table-responsive" style="max-height:50vh; height:50vh; overflow-y:scroll;">
+                                <table class="table table-hover pointer green-thead ">
+                                    <thead style="position:sticky; top:0">
+                                        <tr>
+                                            <th>Cycle #</th>
+                                            <th>Position</th>
+                                            <th>Review Cycle</th>
+                                            <th>Cycles</th>
+                                            <th>Start Date</th>
+                                            {{!-- <th>Notify Employees on</th> --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if GoalsCycleData}}
+                                        {{#each GoalsCycleData}}
+                                        <tr
+                                            onclick="window.location.href = '/PerformanceIndividualGoalsCycle/{{_id}}';">
+                                            <td>{{inc @index}}</td>
+                                            <td class="position">{{position}}</td>
+                                            <td>{{reviewCycle}}</td>
+                                            <td>{{cyclesLeft}}</td>
+                                            <td>{{formatDateAndTime startDate}}</td>
+                                            {{!-- <td>{{formatDateAndTime notifyDate}}</td> --}}
+                                        </tr>
+                                        {{/each}}
+                                        {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{>partials/endOfBodyJSScripts}}
+            <script>
+                function search_table(value) {
+                    $(".position").each(function () { 
+                        if (value.toLowerCase()==='none') $(this).each(function () { $(this).parent().show();    })
+                        else  $(this).each(function () {
+                            if ($(this).text().toLowerCase() === value.toLowerCase())  
+                                $(this).parent().show(); 
+                            else  
+                                $(this).parent().hide(); 
+                        })
+                    })
+                } 
+                $('.filter-table').change(function () { 
+                    search_table($(this).val()); 
+                }) 
+            </script>
+</body>
+
+</html>

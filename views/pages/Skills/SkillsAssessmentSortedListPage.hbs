@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills Assessment Tracker - List of Employees</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+  <script src="/js/DisplayPositions.js" type="text/javascript" defer> </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Skills Assessment Tracker - List of Employees
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Skills Assessment
+                            </div>
+                            
+                            <input id="skillID" hidden value={{skillID}}/>
+                            <div class="table-responsive">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+        <script src="/js/Skills/skillAssessmentEmployees.js" type="text/javascript" defer> </script>
+    
+        {{!-- <script>
+            function search_table(value) {
+                    $(".position").each(function () {
+                        var found = 'false';
+                        $(this).each(function () {
+                            if ($(this).text().toLowerCase() == value.toLowerCase()) {
+                                found = 'true';
+                            }
+
+                            if (found == 'true') {
+                                $(this).parent().show();
+                            }
+                            else {
+                                $(this).parent().hide();
+                            }
+                        })
+                    })
+                }
+
+                $('.filter-table').change(function () {
+                    if ($('.filter-table').val() == "none") {
+                        window.location.href = "/SkillAssessmentTracker";
+                    } else {
+                        search_table($(this).val());
+                    }
+                })
+
+            
+
+        </script> --}}
+
+</body>
+</html>

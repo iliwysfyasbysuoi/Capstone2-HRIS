@@ -1,0 +1,280 @@
+<div class="card">
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header">
+                <span><i class="material-icons">feedback</i>See Interview Feedbacks <i
+                        class="material-icons right">arrow_drop_down</i></span>
+            </div>
+            <div class="collapsible-body">
+                {{!-- <div class="card-tabs"> --}}
+                    <ul class="tabs tabs-fixed-width ">
+                        {{#if applicationData.initialInterviewFeedback.total}} <li class="tab"><a
+                                href="#initial_interview_feedback" class="active">Initial Interview
+                                Feedback</a></li>{{/if}}
+                        {{#if applicationData.functionalInterviewFeedback.total}}<li class="tab"><a
+                                href="#functional_interview_feedback">Functional Interview Feedback</a>
+                        </li>{{/if}}
+                        {{#if applicationData.finalInterviewFeedback.total}}<li class="tab"><a
+                                href="#final_interview_feedback">Final Interview Feedback</a></li>
+                        {{/if}}
+                    </ul>
+                    {{!--
+                </div> --}}
+                <div class="card-content  lighten-4">
+                    {{#if applicationData.initialInterviewFeedback.total}}
+                    <div id="initial_interview_feedback">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Competency</th>
+                                    <th>Rating</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Personal Background and Academic Preparations</td>
+                                    <td class="pbac_rating">
+                                        {{applicationData.initialInterviewFeedback.pbac}}</td>
+                                    <td class="pbac_comments">
+                                        {{applicationData.initialInterviewFeedback.pbac_comments}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Interpersonal/Communication Skills</td>
+                                    <td class="ic_skills_rating">
+                                        {{applicationData.initialInterviewFeedback.ic_skills}}</td>
+                                    <td class="ic_skills_comments">
+                                        {{applicationData.initialInterviewFeedback.ic_skills_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Work Experience/Work History</td>
+                                    <td class="work_history_rating">
+                                        {{applicationData.initialInterviewFeedback.work_history}}</td>
+                                    <td class="work_history_comments">
+                                        {{applicationData.initialInterviewFeedback.work_history_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Functional Skills</td>
+                                    <td class="functional_skills_rating">
+                                        {{applicationData.initialInterviewFeedback.functional_skills}}
+                                    </td>
+                                    <td class="functional_skills_comments">
+                                        {{applicationData.initialInterviewFeedback.functional_skills_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Personality/Personal Impact</td>
+                                    <td class="personality_rating">
+                                        {{applicationData.initialInterviewFeedback.personality}}</td>
+                                    <td class="personality_comments">
+                                        {{applicationData.initialInterviewFeedback.personality_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Overall Impression</td>
+                                    <td class="initial_impression_rating">
+                                        {{applicationData.initialInterviewFeedback.impression}}</td>
+                                    <td class="initial_impression_comments">
+                                        {{applicationData.initialInterviewFeedback.impression_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Rating</b></td>
+                                    <td class="initial_total_rating">
+                                        {{applicationData.initialInterviewFeedback.total}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Other Comments/Areas For Improvement and Recommendation
+                                    </td>
+                                    <td class="initial_other_comments">
+                                        {{applicationData.initialInterviewFeedback.other_comments}}</td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    {{/if}}
+                    {{#if applicationData.functionalInterviewFeedback.total}}
+                    <div id="functional_interview_feedback">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Competency</th>
+                                    <th>Rating</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Practical Experience</td>
+                                    <td class="practical_experience_rating">
+                                        {{applicationData.functionalInterviewFeedback.practical_experience}}
+                                    </td>
+                                    <td class="practical_experience_comments">
+                                        {{applicationData.functionalInterviewFeedback.practical_experience_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Functional Expertise/Job Mastery</td>
+                                    <td class="functional_expertise_rating">
+                                        {{applicationData.functionalInterviewFeedback.functional_expertise}}
+                                    </td>
+                                    <td class="functional_expertise_comments">
+                                        {{applicationData.functionalInterviewFeedback.functional_expertise_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Management Skills</td>
+                                    <td class="management_skills_rating">
+                                        {{applicationData.functionalInterviewFeedback.management_skills}}
+                                    </td>
+                                    <td class="management_skills_comments">
+                                        {{applicationData.functionalInterviewFeedback.management_skills_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Responsibility and Resourcefulness</td>
+                                    <td class="response_resource_rating">
+                                        {{applicationData.functionalInterviewFeedback.response_resource}}
+                                    </td>
+                                    <td class="response_resource_comments">
+                                        {{applicationData.functionalInterviewFeedback.response_resource_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Personal/Self-Management</td>
+                                    <td class="self_management_rating">
+                                        {{applicationData.functionalInterviewFeedback.self_management}}
+                                    </td>
+                                    <td class="self_management_comments">
+                                        {{applicationData.functionalInterviewFeedback.self_management_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Overall Impression</td>
+                                    <td class="functional_impression_rating">
+                                        {{applicationData.functionalInterviewFeedback.impression}}</td>
+                                    <td class="functional_impression_comments">
+                                        {{applicationData.functionalInterviewFeedback.impression_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Rating</b></td>
+                                    <td class="functional_total_rating">
+                                        {{applicationData.functionalInterviewFeedback.total}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Other Comments/Areas For Improvement and Recommendation
+                                    </td>
+                                    <td class="functional_other_comments">
+                                        {{applicationData.functionalInterviewFeedback.other_comments}}
+                                    </td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    {{/if}}
+                    {{#if applicationData.finalInterviewFeedback.total}}
+                    <div id="final_interview_feedback">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Competency</th>
+                                    <th>Rating</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Organizational Culture Fit</td>
+                                    <td class="org_fit_rating">
+                                        {{applicationData.finalInterviewFeedback.org_fit}}</td>
+                                    <td class="org_fit_comments">
+                                        {{applicationData.finalInterviewFeedback.org_fit_comments}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Personal Core Values Displayed</td>
+                                    <td class="core_values_rating">
+                                        {{applicationData.finalInterviewFeedback.core_values}}</td>
+                                    <td class="core_values_comments">
+                                        {{applicationData.finalInterviewFeedback.core_values_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Leadership Attributes</td>
+                                    <td class="leadership_rating">
+                                        {{applicationData.finalInterviewFeedback.leadership}}</td>
+                                    <td class="leadership_comments">
+                                        {{applicationData.finalInterviewFeedback.leadership_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Innovation/Entrepreneurship</td>
+                                    <td class="innovation_rating">
+                                        {{applicationData.finalInterviewFeedback.innovation}}</td>
+                                    <td class="innovation_comments">
+                                        {{applicationData.finalInterviewFeedback.innovation_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Accountability and Stewardship</td>
+                                    <td class="accountability_rating">
+                                        {{applicationData.finalInterviewFeedback.accountability}}</td>
+                                    <td class="accountability_comments">
+                                        {{applicationData.finalInterviewFeedback.accountability_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Personal Effectiveness</td>
+                                    <td class="personal_effectiveness_rating">
+                                        {{applicationData.finalInterviewFeedback.personal_effectiveness}}
+                                    </td>
+                                    <td class="personal_effectiveness_comments">
+                                        {{applicationData.finalInterviewFeedback.personal_effectiveness_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Potential for Growth/To Assume Next Higher Position</td>
+                                    <td class="potential_growth_rating">
+                                        {{applicationData.finalInterviewFeedback.potential_growth}}</td>
+                                    <td class="potential_growth_comments">
+                                        {{applicationData.finalInterviewFeedback.potential_growth_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Overall Impression</td>
+                                    <td class="final_impression_rating">
+                                        {{applicationData.finalInterviewFeedback.overall_impression}}
+                                    </td>
+                                    <td class="final_impression_comments">
+                                        {{applicationData.finalInterviewFeedback.overall_impression_comments}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Rating</b></td>
+                                    <td class="final_total_rating">
+                                        {{finapplicationData.finalInterviewFeedback.total}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Other Comments/Areas For Improvement and
+                                        Recommendation</td>
+                                    <td class="final_other_comments">
+                                        {{applicationData.finalInterviewFeedback.other_comments}}</td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

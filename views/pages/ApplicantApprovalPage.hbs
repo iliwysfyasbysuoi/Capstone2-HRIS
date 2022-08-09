@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applicant Approval</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    {{!--
+    <script src="/js/Personnel_Requisitions/PRFIndividualPage.js" type="text/javascript" defer> </script>
+    <script src="/js/PersonalInformationFormPage.js" type="text/javascript" defer> </script> --}}
+    <script src="/js/EmployeeActionForm.js" type="text/javascript" defer> </script>
+    <script src="/js/ApplicantApprovalPage.js" type="text/javascript" defer> </script>
+
+
+</head>
+
+<body>
+
+    {{> partials/topnav}}
+    {{> partials/sidenav}}
+
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                Applicant Approval
+            </h1>
+        </div>
+        <div id="page-inner">
+
+            {{!-- Partials for Application People Overview  ./views/partials/applicationPage_partials/application_people_overview --}}
+            <div class="row card" div="application_people_overview">
+                {{> partials/applicationPage_partials/application_people_overview}}
+            </div>
+
+            <div class="row" div="overview">
+                <div class="col s12 card flex-horizontal-center ">
+                    {{#ifEquals canSee true}}
+                        <div class="col s12 m4 card-content vertical-center">
+                            <div class="row">
+                                <p class="center small "><span class="PRF-info-label">Application Status: </span>
+                                    <span class="application_status badge">{{applicationData.status}}</span>
+                                </p>
+                            </div>
+                            <div class="row" id="approvals-progress-line">
+                                <div class="">
+                                    <p class=" text-center ">Approvals Progress Bar</p>
+                                    <div class="progress ">
+                                        <div class="progress-bar teal approved-bar white-text">
+                                            <span class="approved-bar-label "> </span> Approved
+                                        </div>
+                                        <div class="progress-bar red disapproved-bar white-text">
+                                            <span class="disapproved-bar-label "> </span> Disapproved
+                                        </div>
+                                        <div class="progress-bar blue interview-bar white-text">
+                                            <span class="interview-bar-label "> </span> Interview Scheduled
+                                        </div>
+                                        <div class="progress-bar grey lighten-3 pending-bar white-text">
+                                            <span class="pending-bar-label "> </span> Pending
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    {{/ifEquals}}
+
+                    {{#ifEquals canSee true}}
+                        {{#ifEquals applicationData.status "Pre-Employment Requirements Pending"}}
+                            <div class="col s12 m4 card-content vertical-center" >
+                                {{!-- partial for Pre-Employment Checklist for HR (aka may checkboxes) --}}
+                                {{> partials/applicationPage_partials/pre_emp_checklist_editable}}
+                            </div>
+                        {{/ifEquals}}
+                        {{#ifEquals applicationData.status "Pre-Employment Requirements Received"}}
+                            <div class="col s12 m4 card-content vertical-center" >
+                                {{!-- partial for Pre-Employment Checklist for HR (aka may checkboxes) --}}
+                                {{> partials/applicationPage_partials/pre_emp_checklist_info_only}}
+                            </div>
+                        {{/ifEquals}}
+                    <div class="col s12 m4 card-content  vertical-center" div="action-buttons"> 
+                        <div class="">
+                            <div id="actions-buttons-div " class="flex-vertical-center">
+                                <h4 class="h4 center">
+                                    {{!-- Actions --}}
+                                </h4>
+                                {{!-- Schedule Interview Button --}}
+                                <a class="waves-effect waves-light btn modal-trigger d-none"
+                                    id="schedule_interview_toggle" href="#ScheduleInterviewModal">Schedule
+                                    Interview</a>
+
+                                {{!-- Submit for Final approval Button --}}
+                                <a class="waves-effect waves-light btn modal-trigger d-none"
+                                    id="for_final_approval_toggle" href="#SubmitForFinalApprovalModal">Submit for
+                                    Final Approval</a></center>
+
+                                {{!-- Interview Evaluation Buttons --}}
+                                <a class="waves-effect waves-light btn modal-trigger d-none" id="evaluate_interview_btn"
+                                    href="#EvaluationModal">Evaluate Interview</a>
+
+                                {{!-- Final Approval Buttons --}}
+                                <div class="  btn-group center flex-vertical-center d-none" id="final-approval-btn">
+                                    <label for="">Final Approval</label>
+                                    <div class="row ">
+                                        <form action="/submitApplicationFinalApproval" class="col s12 m6" method="post">
+                                            <input type="hidden" name="verdict" value="Approved">
+                                            <input type="hidden" name="applicationID" value="{{applicationData._id}}">
+                                            <button type="submit" class=" waves-effect waves-light btn">Approve</button>
+                                        </form>
+
+                                        <form action="/submitApplicationFinalApproval" class="col s12 m6" method="post">
+                                            <input type="hidden" name="verdict" value="Disapproved">
+                                            <input type="hidden" name="applicationID" value="{{applicationData._id}}">
+                                            <button type="submit"
+                                                class="waves-effect waves-light btn red">Disapprove</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class=" btn-group center flex-vertical-center d-none" id="eaf-btn-group">
+                                    <label for="">Prepare Employee Action Form.</label>
+                                    <a class="waves-effect waves-light btn modal-trigger" id="eaf-modal-toggle"
+                                        href="#EmployeeActionFormModal">
+                                        Employee Action Form
+                                    </a>
+                                </div>
+                                {{!-- Interview Evaluation Buttons
+                                <a class="waves-effect waves-light btn btn-small modal-trigger d-none"
+                                    id="pre-emp-modal-toggle" href="#PreEmpModal">Update Pre-Employment Requirements</a>
+                                --}}
+
+                                {{!-- Complete Application Button --}}
+                                <div class=" btn-group center flex-vertical-center d-none" id="complete_application">
+                                    <form action="/CompleteApplication" class="" method="post">
+                                        <input type="hidden" name="applicationID" value="{{applicationData._id}}" />
+                                        <label for="">All requirements received.</label>
+                                        <button class="waves-effect waves-light btn" type="submit" id="complete_application_btn" >Complete Application</button>
+                                    </form>
+                                    
+                                </div>
+
+
+                            </div>
+
+                            <div class="col 12" id="notice_div" class=" ">
+                                {{!-- appended via js--}}
+
+                            </div>
+                        </div>
+                    </div>
+                    {{/ifEquals}}
+                    {{#ifEquals canSee false}}
+                        {{!-- only for applicants view --}}
+                        <div class="col s12 m6 card-content  vertical-center" div="">
+                            <div class="row">
+                                <p class="center small "><span class="PRF-info-label">Application Status: </span>
+                                    <span class="application_status badge">{{applicationData.status}}</span>
+                                </p>
+                            </div>
+                            <div class="row">
+                                {{#ifEquals applicationData.status "Pre-Employment Requirements Pending"}}
+                                    {{!-- partial for Pre-Employment Checklist Info Only (aka no checkbox and unedittable) --}}
+                                    {{> partials/applicationPage_partials/pre_emp_checklist_info_only}}
+                                {{/ifEquals}}
+                                {{#ifEquals applicationData.status "Pre-Employment Requirements Received"}}
+                                    {{!-- partial for Pre-Employment Checklist Info Only (aka no checkbox and unedittable) --}}
+                                    {{> partials/applicationPage_partials/pre_emp_checklist_info_only}}
+                                {{/ifEquals}}
+                            </div>
+                        </div>
+                    {{/ifEquals}}
+                </div>
+            </div>
+
+            {{!-- Partials for Approvals Progress Information  ./views/partials/applicationPage_partials/approvals_progress_info --}}
+            {{#ifEquals canSee true}}
+            <div class="row d-none" id="approvals-progress-div">
+                {{> partials/applicationPage_partials/approvals_progress_info}}
+            </div>
+            {{/ifEquals}}
+
+            
+
+
+            {{!-- Partials for Interview Feedbacks  ./views/partials/applicationPage_partials/interview_feedbacks --}}
+            <div class="row " id="interview-feedback-info-div">
+                {{#ifEquals canSee true}}
+                <div class=" col s12 vertical-center">
+                    {{> partials/applicationPage_partials/interview_feedbacks}}
+                </div>
+                {{/ifEquals}}
+            </div>
+
+            {{!-- Partials for Applicant's Personal Information  ./views/partials/applicationPage_partials/interview_feedbacks --}}
+            <div class="row">
+                <div class="col s12" id="personal-information-card">
+                    {{> partials/applicationPage_partials/personal_information}}
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    </div>
+
+
+    <!-- EvaluationModal Modal Structure -->
+    <div id="EvaluationModal" class="modal modal-fixed-footer ">
+        <div class="modal-content eval-modal-content ">
+
+            {{!-- loaded via js --}}
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action 
+                    modal-close btn btn-flat ">
+                Close
+            </a>
+        </div>
+    </div>
+
+    <!-- EmployeeActionFormModal Modal Structure -->
+    <div id="EmployeeActionFormModal" class="modal modal-fixed-footer" style="width: 80vw; color: black !important;">
+        <div class="modal-content EAF-modal-content">
+            {{!-- loaded via js --}}
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action 
+                    modal-close btn btn-flat ">
+                Close
+            </a>
+        </div>
+    </div>
+
+    <!-- ForFinalApproval Modal Structure -->
+    <div id="SubmitForFinalApprovalModal" class="modal modal-fixed-footer " style=" height: 70vh !important; color: black !important;">
+        <div class="modal-content ffa-modal-content">
+            <div class="row ">
+                <div class="col s12 m6 card vh50 " style="right: 0px;">
+                    <div id="final-approver-modal-info" class="">
+                        <div class="card-content ">
+                            <div class="card-title">
+                                <span class="">Final Approver Information </span>
+                            </div>
+                            <div class="row p-5 ffa-content">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="PRF-info-label">Name</td>
+                                            <td class="ffa-name">
+                                                {{applicationData.DHeadInformation.firstName}}{{applicationData.DHeadInformation.lastName}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Email</td>
+                                            <td class="ffa-name">{{applicationData.DHeadInformation.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Business Unit</td>
+                                            <td class="ffa-businessunit">
+                                                {{applicationData.DHeadInformation.businessUnit}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Department</td>
+                                            <td class="ffa-department">{{applicationData.DHeadInformation.department}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Position</td>
+                                            <td class="ffa-position">{{applicationData.DHeadInformation.position}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 card vh50 ">
+                    <div class="card-content">
+                        <div class="card-title center-align">
+                            Submit for final approval
+                        </div>
+
+                        <div class="notice-about-interviews row p-5">
+                            <br>
+                            <p class="">You are about to submit this application to the department head for final
+                                approval. </p>
+                            <p class="small">Once submitted, the other interviews will be skipped and you
+                                can no longer schedule for interviews. </p>
+
+                        </div>
+                        <form action="/submitForFinalApproval" method="post">
+                            <input type="hidden" name="applicationID" value="{{applicationData._id}}">
+                            <center>
+                                <button class="waves-effect waves-light btn" id="submit-ffa" type="submit">
+                                    Submit For Final Approval
+                                </button>
+                            </center>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close btn btn-flat ">
+                Cancel
+            </a>
+        </div>
+    </div>
+
+    <!-- EmployeeActionFormModal Modal Structure -->
+    <div id="ScheduleInterviewModal" class="modal modal-fixed-footer" style="width: 80vw; color: black !important;">
+        <div class="modal-content ScheduleInterviewModal-content ">
+            {{!-- updated via js --}}
+
+            <form class="containter-fluid p-5 " id="schedule_interview_form" method="post"
+                action="/ScheduleInterviewFromApplication">
+                {{!-- <div class="row">
+                    <center>
+                        <h3 class="schedule_interview_form_title">Schedule Interview <h3>
+                    </center>
+                </div> --}}
+                <div class="row">
+                    <div class="col s12 m6 card vh60">
+                        <div class="card-content">
+                            <div class="card-title center-align">
+                                Schedule Interview
+                            </div>
+                            <div class="form-group">
+                                <label for="interview_stage">Interview Stage</label>
+                                <select type="text" class="interview_stage" id="interview_stage" name="interview_stage"
+                                    required>
+                                    {{!-- options loaded via js ApplicantApprovalPage > showScheduleInterviewForm() --}}
+                                    <option value="" disabled selected>Select Interview Stage</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="interviewer_temp">
+                                <label for="interviewer_input">Interviewer</label>
+                                <select type="text" class="interviewer_input" id="interviewer_input"
+                                    name="interviewer_input" required>
+                                    {{!-- options loaded via js ApplicantApprovalPage > showScheduleInterviewForm() --}}
+                                    <option value="" disabled selected>Select Interviewer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="interview_datetime">Date and Time</label>
+                                <input id="interview_datetime" type="datetime-local" class="validate"
+                                    name="interview_datetime" required>
+                            </div>
+
+                            {{!-- discreetly sends application_id in the form hehe --}}
+                            <input type="hidden" class="application_id" name="application_id"
+                                value="{{applicationData._id}}">
+
+                            <center><button class="waves-effect waves-light btn" id="schedule_interview"
+                                    type="submit">Submit Schedule</button></center>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6 card vh60">
+                        <div id="interviewer_option_info" class="">
+
+                            <div class="card-content ">
+                                <div class="card-title">
+                                    <span class="">Interviewer Information </span>
+                                </div>
+                                <div class="row p-5 ioi-buffer">
+                                    <p>No selected interviewer.</p>
+                                </div>
+                                <div class="row p-5 ioi-content d-none">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="PRF-info-label">Name</td>
+                                                <td class="ioi-name"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Business Unit</td>
+                                                <td class="ioi-businessunit"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Department</td>
+                                                <td class="ioi-department"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Position</td>
+                                                <td class="ioi-position"> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action 
+                    modal-close btn btn-flat ">
+                Close
+            </a>
+        </div>
+    </div>
+
+    <!-- Update Pre-Employment Requirements Modal Structure -->
+    {{!-- DEPRECIATED. Don't remove bec it affects the progress bars for this --}}
+    <div id="PreEmpModal" class="modal modal-fixed-footer vh-60">
+        <div class="modal-content pre-emp-modal-content ">
+            <div class="col s12 m6 card " style="right: 0px;">
+                <div id="PreEmp-modal-info" class="">
+                    <div class="card-content ">
+                        <div class="card-title">
+                            <span class="">Pre-Employment Requirements Checklist </span>
+                        </div>
+                        {{!-- partial for Pre-Employment Checklist for HR (aka may checkboxes) --}}
+                        {{> partials/applicationPage_partials/pre_emp_checklist_editable}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action 
+                    modal-close btn btn-flat ">
+                Close
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+    {{> partials/endOfBodyJSScripts}}
+</body>
+
+</html>

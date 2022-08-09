@@ -1,0 +1,35 @@
+<div class="col s6 m6 l3 " id="position-info-div">
+    <div class="card-content">
+        <p class="h4 ">Applicant</p><br>
+        <p><span class="PRF-info-label">Name: </span>{{applicationData.fName}} {{applicationData.lastName}}</p>
+        <p><span class="PRF-info-label">Email: </span>{{applicationData.personalEmail}}</p>
+        <p><span class="PRF-info-label">Mobile: </span>{{applicationData.personalInformation.mobileNum}}</p>
+    </div>
+</div>
+<div class="col s6 m6 l3 " id="position-info-div">
+    <div class="card-content">
+        <p class="h4 ">Applying For</p><br>
+        <p><span class="PRF-info-label">Position: </span>{{applicationData.requisition.positionTitle}}</p>
+        <p><span class="PRF-info-label">Department: </span>{{applicationData.requisition.department}}</p>
+        <p><span class="PRF-info-label">Business Unit: </span>{{applicationData.requisition.businessUnit}}</p>
+    </div>
+</div>
+<div class="col s6 m6 l3" id="position-info-div">
+    <div class="card-content">
+        <p class="h4 ">Hiring Manager</p><br>
+        <p><span class="PRF-info-label">Name: </span>{{applicationData.requisition.createdBy.name}}</p>
+        <p ><span class="PRF-info-label">Email: </span>{{applicationData.requisition.createdBy.email}}</p>
+        <p><span class="PRF-info-label">Position: </span>{{applicationData.requisition.createdBy.position}}</p>
+    </div>
+</div>
+<div class="col s6 m6 l3" id="position-info-div">
+    {{#ifEquals canSee true}}
+    <div class="card-content" >
+        <p class="h4 ">HR Partner Assigned</p><br>
+        <p><span class="PRF-info-label">Name: </span>{{applicationData.HRPartnerInformation.firstName}}
+                {{applicationData.HRPartnerInformation.lastName}}</p>
+        <p ><span class="PRF-info-label">Email: </span>{{applicationData.HRPartnerInformation.email}}</p>
+        <p ><span class="PRF-info-label">Position: </span><span class="HRPartnerPosition">{{applicationData.HRPartnerInformation.position}}</p></span> 
+    </div>
+    {{/ifEquals}}
+</div>

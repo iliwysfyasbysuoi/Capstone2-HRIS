@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clearance Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+    <script src="/js/OF.js" type="text/javascript" defer> </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Clearance Form 
+                </h1>
+            </div>
+            <div id="page-inner">
+                
+                 {{> forms/ClearanceForm }}
+
+                 <!-- EmployeeActionFormModal Modal Structure -->
+                 <a class=" modal-trigger" id="notice_modal_btn" href="#NoticeModal" hidden>Notice Modal</a>
+                <div id="NoticeModal" 
+                    class="modal modal-fixed-footer" style="width: 50vw; color: ; black !important;">
+                    <div class="modal-content NoticeModal-content">
+                        {{!-- loaded via js --}}
+                    
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action 
+                            modal-close btn btn-flat ">
+                            Close
+                        </a>
+                    </div>
+                </div>
+
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+
+
+</body>
+
+</html>

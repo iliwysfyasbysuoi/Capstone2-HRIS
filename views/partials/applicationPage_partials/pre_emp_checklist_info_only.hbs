@@ -1,0 +1,71 @@
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header">
+            <span class=""><i class="material-icons">dns</i>Pre-Employment Requirements Checklist </span>
+            <div class="">
+                <div class="" id="pre-emp-reqs-progress-line">
+                    <p class=" text-center "></p>
+                    <div class="progress ">
+                        <div class="progress-bar teal submitted-bar white-text">
+                            <span class="submitted-bar-label"> </span> Submitted
+                        </div>
+                        <div class="progress-bar orange white-text darken-2 not-submitted-bar ">
+                            <span class="not-submitted-bar-label"> </span> Pending
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class=""><i class="material-icons">arrow_drop_down</i>Click to more details</span>
+        </div>
+        <div class="collapsible-body">
+            <div class="row p-5 pre-emp-content ">
+                <table class="table center">
+                    <thead>
+                        <tr>
+                            <th class="">Requirement</th>
+                            <th class="">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="">Background Investigation</td>
+                            <td class="">
+                                {{#ifEquals applicationData.pre_employment_reqs.background_investigation true}} <span
+                                    class="badge teal">Submitted</span> {{/ifEquals}}
+                                {{#ifEquals applicationData.pre_employment_reqs.background_investigation false}} <span
+                                    class="badge orange darken-2">Pending</span>{{/ifEquals}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="">Job Offer Accepted</td>
+                            <td class="">
+                                {{#ifEquals applicationData.pre_employment_reqs.job_offer_accepted true}} <span
+                                    class="badge teal">Submitted</span> {{/ifEquals}}
+                                {{#ifEquals applicationData.pre_employment_reqs.job_offer_accepted false}} <span
+                                    class="badge orange darken-2">Pending</span>{{/ifEquals}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="">Pre-Employment forms</td>
+                            <td class="">
+                                {{#ifEquals applicationData.pre_employment_reqs.pre_employment_forms true}} <span
+                                    class="badge teal">Submitted</span> {{/ifEquals}}
+                                {{#ifEquals applicationData.pre_employment_reqs.pre_employment_forms false}} <span
+                                    class="badge orange darken-2">Pending</span>{{/ifEquals}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="">Pre-Employment Medical</td>
+                            <td class="">
+                                {{#ifEquals applicationData.pre_employment_reqs.pre_employment_medical true}} <span
+                                    class="badge teal">Submitted</span> {{/ifEquals}}
+                                {{#ifEquals applicationData.pre_employment_reqs.pre_employment_medical false}} <span
+                                    class="badge orange darken-2">Pending</span>{{/ifEquals}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </li>
+</ul>

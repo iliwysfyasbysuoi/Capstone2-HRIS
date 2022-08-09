@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.notifications"}],"uuid":"88fb916826c148738c8fa363e697bb6f","collectionName":"notifications","type":"collection"}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainings Prescription</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    <script src="/js/Training/Goal_Cycle.js" type="text/javascript" defer> </script>
+    <script src="/js/Training/TrainingPrescription.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Trainings Prescription
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="card" style="padding:20px;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="bu_select">Business Unit</label>
+                            <select id="bu_select">
+                                <option value="" disabled selected>Select a Business Unit</option>
+                                <option value="Circle Corporation Inc.">Circle Corporation Inc.</option>
+                                <option value="LNL Archipelago Minerals">LNL Archipelago Minerals</option>
+                                <option value="Leonio Land">Leonio Land</option>
+                                <option value="Petrolift">Petrolift</option>
+                            </select>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="dept_select">Department</label>
+                            <select id="dept_select">
+                                <option value="" disabled selected>Select a Department</option>
+                            </select>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="pos_select">Position</label>
+                            <select id="pos_select">
+                                <option value="" disabled selected>Select a Position</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label 
+                              for="spec_select" title="This will determine how the trainings will be recommended.">
+                                Recommender Algorithm
+                            </label>
+                            <select id="spec_select">
+                                <option value="" disabled selected>Select an Algorithm</option>
+                                <option value="Mean">Mean</option> 
+                                <option value="Median">Median</option> 
+                                <option value="Mode">Mode</option> 
+                                <option value="Exponential Smoothing">Exponential Smoothing</option> 
+                                <option value="Regression Line">Regression Line</option> 
+                                <option value="Mann-Kendall Trend Test">Mann-Kendall Trend Test</option> 
+                            </select>
+                        </div> 
+                        <div class="col-md-4">
+                            <label for="kpi_select">KPI</label>
+                            <select id="kpi_select"> 
+                                {{!-- populated by js  --}} 
+                            </select>
+                        </div> 
+                        <div class="col-md-3">
+                            <label for="filt_opt_select">Filter Option</label>
+                            <select id="filt_opt_select">
+                                <option value="" selected disabled>Select a Filter Option</option> 
+                                <option value="Equal or Below the Rating">Equal or Below the Rating</option> 
+                                <option value="Below Percentile">Below Percentile</option> 
+                                <option value="Poor Performance">Poor Performance</option> 
+                            </select>
+                        </div> 
+                       <div class="col-md-2">
+                            <label for="value_select" id="value_select_label"></label>
+                            <span id="error_msg_for_value_select" class="materialize-red-text" style="font-weight:bold;margin-left:5px;display:none;">Input 
+                                <span id="error_msg_value_for_value_select">{{!-- populated by js  --}}</span> only</span>
+                            <div class="col-12">
+                                <input type="number" id="value_select"/>
+                            </div>
+                        </div> 
+                    </div> 
+                    <div class="row" id="a_value_div" style="display:none;">
+                        <div class="col-md-3">
+                            <label 
+                              for="a_value" title="This will be the α used in computing the Smoothing.">
+                                α value
+                            </label>
+                            <span id="error_msg_for_a_value" class="materialize-red-text" style="font-weight:bold;margin-left:5px;display:none;">Input 
+                            <span id="error_msg_value_for_a_value">{{!-- populated by js  --}}</span> only</span>
+                            <input type="number" id="a_value"/>
+                        </div>  
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Trainings
+                            </div>
+                            
+                            {{!-- <input id="skillID" hidden value={{skillID}}/> --}}
+                            <div class="table-responsive">
+                                {{!-- <div class='col-12 p-5' style="display:flex; justify-content:space-between;">
+                                    <h1 >Training</h1>
+                                    <a class="green-button" href="/training-nomination-form/${skill}/${skillID}">Create Training</a>  
+                                </div> --}}
+                                <table class="table table-hover pointer green-thead mb-5" id="recommended_table">
+                                    <thead>
+                                        <tr>  
+                                            <th>Recommended Training</th>
+                                            <th>KPI Covered</th>
+                                            <th>Employees</th>
+                                            <th style="width:150px;"></th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{!-- sample  --}}
+                                        {{!-- <tr> 
+                                            <td rowspan="4">Machine Maintanance Training</td> 
+                                            <td >Employee 1</td>   
+                                            <td rowspan="4"> <button class="green-button" style="border:none;">Create Training</button></td> 
+                                        </tr>
+                                        <tr>
+                                            <td >Employee 2</td>  
+                                        </tr>
+                                        <tr>
+                                            <td >Employee 3</td>  
+                                        </tr>
+                                        <tr>
+                                            <td >Employee 4</td>  
+                                        </tr> --}}
+                                        
+                                        {{!-- end sample  --}}
+                                        <tr>
+                                            <td colspan="3" class="center">No Data</td>
+                                        </tr>
+                                        {{!-- ${rows} --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}  
+</body>
+
+</html>

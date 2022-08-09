@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Openings</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Job Openings
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Job Openings</li>
+                </ol>
+
+            </div>
+
+            <div id="page-inner">
+
+                <div class="row">
+                    {{#each JobListingList}}
+                    <div class="col-md-4 col-sm-4">
+                        <div class="card white">
+                            <div class="card-content black-text">
+                                <span class="card-title">{{positionTitle}}</span>
+                                <div><i class="material-icons dp48">work</i><span> {{employmentType}}</span></div>
+                                <div><i class="material-icons dp48">business</i><span> {{department}},
+                                        {{businessUnit}}</span></div>
+                                <div><i class="material-icons dp48">location_on</i><span> {{location}}</span></div>
+                            </div>
+                            <div class="card-action">
+                                <a href="/JobDetails/{{requisitionID}}">See More Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <!-- /. ROW  -->
+                <footer>
+                </footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+
+    <!-- JS Scripts-->
+    {{> partials/endOfBodyJSScripts}}
+
+</body>
+
+</html>

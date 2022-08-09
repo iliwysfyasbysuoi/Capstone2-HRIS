@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Evaluation</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+  <script src="/js/DisplayPositions.js" type="text/javascript" defer> </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Evaluation
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Training Evaluation
+                            </div>
+                            <div class="card-content">
+                                
+                                <div class="row">
+                                    <div class="input-group col filter-select ">
+                                        <!--TODO: filter must be by training program title--> 
+                                        <label>Filter Position</label>
+                                        <select class="filter-table positions-dropdown">
+                                            <option value="none" selected>none</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Training Evaluation #</th>
+                                            <th>Training Program Title</th>
+                                            <th>Participant</th>
+                                            <th>Position Title</th>
+                                            <th>Department</th>
+                                            <th>Date Submitted</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if result}}
+                                        {{#each result}}
+                                        <tr onclick="window.location.href = '/GetIndividualEvaluationForm/{{_id}}';">
+                                            <td>{{trainingDetails.trainingID}}</td>
+                                            <td>{{trainingDetails.trainingTitle}}</td>
+                                            <td>{{employeeDetails.name}}</td>
+                                            <td class="position">{{employeeDetails.position}}</td>
+                                            <td>{{employeeDetails.department}}</td>
+                                            <td>{{formatDateAndTime createdDate}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{/if}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <script>
+            function search_table(value) {
+                    $(".position").each(function () {
+                        var found = 'false';
+                        $(this).each(function () {
+                            if ($(this).text().toLowerCase() == value.toLowerCase()) {
+                                found = 'true';
+                            }
+
+                            if (found == 'true') {
+                                $(this).parent().show();
+                            }
+                            else {
+                                $(this).parent().hide();
+                            }
+                        })
+                    })
+                }
+
+                $('.filter-table').change(function () {
+                    if ($('.filter-table').val() == "none") {
+                        window.location.href = "/GetEvaluationForms";
+                    } else {
+                        search_table($(this).val());
+                    }
+                })
+
+            
+
+        </script>
+
+</body>
+</html>

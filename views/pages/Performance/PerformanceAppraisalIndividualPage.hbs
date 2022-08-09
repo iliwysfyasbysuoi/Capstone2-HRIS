@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance Review</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Performance Review
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content">
+
+                                <div class="row">
+                                    <table class=" col s12 ">
+                                        <tbody>
+                                            <tr></tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Employee Name</td>
+                                                <td class="employeeName">{{user.firstName}} {{user.lastName}}</td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Position Title</td>
+                                                <td class="employeePosition">{{user.position}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Division/Department</td>
+                                                <td class="employeeDepartment">{{user.department}}</td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Business Unit</td>
+                                                <td class="employeeDepartment">{{user.businessUnit}}</td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="10" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Rating Scale</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Exceeds all targets and expectations by more than 50%
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Met 100% of the targets and expectations and exceeded
+                                                                them by at least 10%.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>All targets and expectations met</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Most targets and expectations met by at least 75%.
+                                                                Performance at this level is marginally below required
+                                                                levels</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5</td>
+                                                            <td>Employee did not meet the objective of the project/
+                                                                showed negative or adverse influence</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </tr>
+                                            <!--Assessment of the Elements of Job Description-->
+                                            <tr>
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Key Results Areas and Description of Accountabilities
+                                                            </th>
+                                                            <th>Performance Indicators/Measures</th>
+                                                            <th>Rating</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!--For each KPI set-->
+                                                        {{#each data.kpiRating}}
+                                                        <tr>
+                                                            <td>{{keyResAreas}}
+                                                                <p style="color:gray;"><i>{{description}}</i></p>
+                                                            </td>
+                                                            <td class="programUsefullness">{{perfoIndicator}}</td>
+                                                            <td>
+                                                                <select name="kpiRating" id="kpiRating"
+                                                                    labelledby="Rating" required disabled>
+                                                                    <option value="{{rating}}" selected>{{rating}}</option>
+                                                                </select>
+                                                            </td>
+
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </tr>
+                                            <table>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="PRF-info-label">Things that had been helpful in
+                                                        completing the assigned tasks during the previous cycle</td>
+
+
+                                                    <td class="completionHelp">{{appraisalData.helpfulThingsText}}</td>
+
+                                                    <td> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="10" class="PRF-info-divider"> &nbsp; </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                </tr>
+                                                <!--Special Projects/Milestones-->
+                                                <tr>
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Additional/Special Tasks</th>
+                                                                <th>Outcomes/Results</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each appraisalData.listOfAddTasks}}
+                                                            <tr>
+                                                                <td class="taskName">{{description}}</td>
+                                                                <td class="taskOutcome">{{results}}</td>
+                                                            </tr>
+                                                            {{/each}}
+
+                                                        </tbody>
+                                                    </table>
+                                                </tr>
+                                                <table>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td class="PRF-info-label">Key Actions agreed to work on in the
+                                                            next performance cycle</td>
+
+                                                        <td class="keyActions">{{appraisalData.agreedKeyActsNextCycText}}</td>
+
+                                                        <td> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="10" class="PRF-info-divider"> &nbsp; </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                    <!--Competencies-->
+                                                    <table>
+                                                        <tr>
+                                                            <table
+                                                                class="table table-striped table-bordered table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Functional Skills/Leadership Competencies
+                                                                        </th>
+                                                                        <th>
+                                                                            Critical Incidents Where this
+                                                                            Skill/Competency was Displayed
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {{#each data.skillsCompetencies}}
+                                                                    <tr>
+                                                                        <td class="competencyIncident">{{skill}}</td>
+                                                                        <td>{{displayedWhere}}</td>
+                                                                    </tr>
+                                                                    {{/each}}
+                                                                </tbody>
+                                                            </table>
+                                                        </tr>
+                                                        <table>
+                                                            <!--Core Values-->
+                                                            <tr>
+                                                                <table
+                                                                    class="table table-striped table-bordered table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Core Values</th>
+                                                                            <th>Behavioral Indicators/Example of
+                                                                                Behaviors Displayed</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="employeeTrainingList"
+                                                                        class="employeeTrainingList">
+                                                                        <tr>
+                                                                            <td>Entrepreneurial Spirit</td>
+                                                                            <td class="entrepSpirit">
+                                                                                {{data.entrepSpirit}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Customer Focus</td>
+                                                                            <td class="customerFocus">
+                                                                                {{data.customerFocus}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Passion For Excellence</td>
+                                                                            <td class="passionExcellence">
+                                                                                {{data.passionExcellence}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>People Development</td>
+                                                                            <td class="peopleDevelopment">
+                                                                                {{data.peopleDevelopment}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Commitment To Stakeholders Relationship
+                                                                            </td>
+                                                                            <td class="stakeholderCommitment">
+                                                                                {{data.stakeholderCommitment}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </tr>
+                                                            <table>
+                                                                <tr>
+                                                                    <td colspan="10" class="PRF-info-divider"> &nbsp;
+                                                                    </td>
+                                                                </tr>
+                                                                <!--Performance Summary and Agreements-->
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td class="PRF-info-label">Other work-related items
+                                                                        that should be noted about the employee</td>
+                                                                    <td class="workRelatedItems">
+                                                                        {{data.workRelatedItems}}</td>
+                                                                    <td> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td class="PRF-info-label">Other Comments about the
+                                                                        employee’s performance</td>
+                                                                    <td class="otherComments">{{data.otherComments}}
+                                                                    </td>
+                                                                    <td> </td>
+                                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <!-- TODO: Add script for filter -->
+
+</body>
+
+</html>

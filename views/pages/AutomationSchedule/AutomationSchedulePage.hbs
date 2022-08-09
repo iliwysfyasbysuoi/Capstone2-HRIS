@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automation Schedule</title>
+
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+    <link href="/css/AutomationSchedulePage.css" rel="stylesheet" />
+    <script src="/js/Automation_Schedule/AutomationSchedule.js" defer></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Automation Schedule
+                </h1>
+
+
+            </div>
+            <div id="page-inner">
+
+                <div class="card">
+                    <div class="card-content">
+                        <table class="table table-responsive table-hover  schedule-table">
+                            <thead class="">
+                                <th class="">Automated Job</th>
+                                <th colspan="2" class="center-align">Schedule</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                {{#each schedules as |job|}}
+                                <tr class="job-group">
+                                    <td>
+                                        <p class="job-pretty-name bold">
+                                            {{job.jobPrettyName}}
+                                            <span>
+                                                <button href="" class="btn-flat tooltipped toggle-information"
+                                                    data-position="bottom" data-tooltip="Toggle more information">
+                                                    <i class="fa fa-info "></i>
+                                                </button>
+                                            </span>
+                                        </p>
+                                        <div class="job-description d-none">
+                                            <p class="">
+                                                {{job.description}}
+                                            </p>
+                                            {{#if job.conditions}}
+                                            <p>Conditions for deletion:</p>
+                                            <ol style="list-style-type:disc">
+                                                {{#each job.conditions as |conditions|}}
+                                                <li>{{conditions}}</li>
+                                                {{/each}}
+                                            </ol>
+                                            {{/if}}
+                                            {{#if job.dataDeleted}}
+                                            <p>Data deleted:</p>
+                                            <ol style="list-style-type:disc">
+                                                {{#each job.dataDeleted as |dataDeletedItem|}}
+                                                <li>{{dataDeletedItem}}</li>
+                                                {{/each}}
+                                            </ol>
+                                            {{/if}}
+                                            <p class="small">Job Function Name: {{job.jobFunctionName}}</p>
+
+                                        </div>
+
+                                    </td>
+                                    {{#ifEquals job.contextFirst false}}
+                                    <td>
+                                        <input type="text" class="job-schedule-input" style="display:block;"
+                                            value="{{job.schedule}}" readonly="readonly">
+                                        <input type="hidden" name="job_schedule_id" class="job-schedule-id"
+                                            value="{{job._id}}">
+                                        <input type="hidden" class="original-schedule" value="{{job.schedule}}">
+                                        <p class="job-schedule-error d-none">Invalid schedule format.</p>
+                                    </td>
+                                    <td class="">
+                                        <p class="job-schedule-type">{{job.scheduleContext}}</p>
+                                    </td>
+                                    {{/ifEquals}}
+                                    {{#ifEquals job.contextFirst true}}
+                                    <td class="">
+                                        <p class="job-schedule-type">{{job.scheduleContext}}</p>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="job-schedule-input" style="display:block;"
+                                            value="{{job.schedule}}" readonly="readonly">
+                                        <input type="hidden" name="job-schedule-id" class="job-schedule-id"
+                                            value="{{job._id}}">
+                                        <input type="hidden" class="original-schedule" value="{{job.schedule}}">
+                                        <p class="job-schedule-error d-none">Invalid schedule format.</p>
+                                    </td>
+                                    {{/ifEquals}}
+                                    <td>
+                                        <div class="schedule-button-group">
+                                            <button class="btn edit-btn ">Edit</button>
+                                            <button class="btn save-btn d-none">Save</button>
+                                            <button class="btn cancel-btn lighten-1 grey d-none">Cancel</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+
+                        <footer>
+
+                        </footer>
+                    </div>
+
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        {{!-- note::start - for testing only, delete for production --}}
+                          <p class="bold">Shortcut for triggering the scheduling of job. <br>For testing purposes, REMOVE FOR PRODUCTION</p>  <br><br>
+                        {{!-- note::end --}}
+
+                        <table class="table table-responsive table-hover  schedule-table">
+                            <thead class="">
+                                <th class="">Automated Job</th>
+                                <th  class="center-align">Defaults/Description</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Test</td>
+                                    <td>
+                                        Creates a test-collection record after a certain period.
+                                    </td>
+                                    <td>
+                                        <button class ="btn test_btn"> Trigger</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Deletion for Inactive Applicants </td>
+                                    <td>
+                                        <p>Default target is <a href="/JobDetails/1">PRF 1</a>. This triggers the scheduling of job without actually closing PRF 1. </p>
+                                    </td>
+                                    <td>
+                                        <button class ="btn data_deletion_for_inactive_applicants_btn"> Trigger</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Data Deletion for Offboarding Employee</td>
+                                    <td>
+                                        Default target is lia.roces@leoniogroup.com. This triggers the scheduling of job without actually submitting the EAF.
+                                    </td>
+                                    <td>
+                                        <button class ="btn data_deletion_for_offboarding_employee_btn"> Trigger</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- /. PAGE INNER  -->
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+            <script type="text/javascript">
+                $(document).on("click", ".test_btn", function () {
+                    $.get("/Test-agenda-js/test", {description: "werk"}, function(data, result){
+                        // alert(data);
+                    })
+                });
+
+                $(document).on("click", ".data_deletion_for_inactive_applicants_btn", function () {
+                    $.get("/Test-agenda-js/delete_applicants_data_after_6_months", {requisitionID: 1}, function(data, result){
+                        // alert(data);
+                    })
+                });
+
+                $(document).on("click", ".data_deletion_for_offboarding_employee_btn", function () {
+                    $.get("/Test-agenda-js/TEST_data_deletion_for_offboarding_employee", function(data, result){
+                        // alert(data);
+                    })
+                });
+            </script>
+
+
+
+</body>
+
+</html>

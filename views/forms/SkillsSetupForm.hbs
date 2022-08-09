@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-lg-12">
+        <form class="card" method="POST" action="/SubmitSkillSetUp">
+            <div class="card-action"> 
+                <div class="col s12">
+                    <div class="row">
+                        <div class="form-group col s4">
+                            <label for="skillID">Form #</label>
+                            <p class="skillID"> </p>
+                            {{!-- <input id="requisitionID" name="requisitionID" type="text" class="validate" value="1" required> --}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col s4">
+                            <label for="skillBusinessUnit">Business Unit</label>
+                            <select class="skillBusinessUnit" id="skillBusinessUnit" name="skillBusinessUnit"  required>
+                            </select>
+                        </div>    
+                        <div class="form-group col s4">
+                            <label for="skillDepartment">Department</label>
+                            <select class="skillDepartment" id="skillDepartment" name="skillDepartment"  required>
+                            </select>
+                        </div>    
+                        <div class="form-group col s4">
+                            <label for="skillPositionTitle">Position Title</label>
+                            <select class="skillPositionTitle" id="skillPositionTitle" name="skillPositionTitle"  required>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="row" style = "margin-bottom: 0px !important;">
+                        <div class="form-group col s4">       
+                            <label>Start Date</label>
+
+                            <input type="date" class="startDate" name="startDate" required/>
+                        </div>  
+                        <div class="form-group col s4">       
+                            <label># of Cycles</label>
+
+                            <input type="number" name="cycleNum" min="1" max="100" required/>
+                        </div>  
+                        <div class="form-group col s4">
+                            <label for="reviewCycle">Review Cycle</label>
+                            <select class="reviewCycle" id="reviewCycle" name="reviewCycle"  required>
+                                <option value=""  disabled> Select Cycle</option>
+                                <option value="Annual" selected>Annual</option>
+                                <option value="Bi-Annual">Bi-Annual</option>
+                                <option value="Quarterly">Quarterly</option>
+                            </select>
+                        </div>    
+                    </div>
+                    <div class="card alert" id="alert_div"  hidden>
+                        <p id="alert_text"></p>
+                        <br>
+                        <a class=" modal-trigger dark btn" id="view_active_skills_setup_btn" href="#NoticeModal" target="_blank">View Active Skills Setup</a>
+                    </div>
+                    <!-- Add and remove skills -->
+                    <div class="row col s12">
+                        <div class="form-group col s9">
+                            <label for="targetSkills">Target Skill</label>
+                        </div>
+                    </div>
+                    <div class="row col s12">
+                        <div class="form-group col s9" id="tools">
+                            <div class="toolsOfTrade">
+                                <div class="toolpair col s12">
+                                    <div class="form-group col s9">
+                                        {{!-- <input placeholder="Skill Name" id="targetSkills" name="targetSkills" type="text" class="targetSkills"  required> --}}
+                                        <select class="targetSkills" id="targetSkills" name="targetSkills"  required>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 2px;">
+                            <a class="waves-effect waves-light btn addSkill"><i class="material-icons left">add</i>Add more skill</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            <div class="clearBoth"></div>
+
+            <div class="card-action">
+                <div class="row">
+                    <center>
+                        <center><button class="waves-effect waves-light btn" type="submit" id="submitBtn">Submit</button></center>
+                    </center>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

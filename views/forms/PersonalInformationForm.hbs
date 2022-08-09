@@ -1,0 +1,40 @@
+<div class="card">
+<div class="row">
+    <form class="card" method = "post" id= "form_PIF" action="/postPersonalInformationForm">
+    <div class="col-lg-12">
+        
+                {{!-- <div class="container pd1-tab"> --}}
+                <div class="card-action card-title center">
+                    I. PERSONAL DATA
+                </div>
+                <div class="card-action">
+                    {{!-- START Personal Details Pt. 1 --}}
+                    {{> appForm/part1}}
+                    {{!-- perso data 2 --}}
+                    {{> appForm/part2}}
+                    {{!-- </div> --}}
+                    {{!-- EDUCATIONAL BACKGROUND --}}
+                    {{> appForm/part3}}
+                    {{!-- III. EMPLOYMENT RECORD --}}
+                    {{> appForm/part4}}
+                    {{!-- IV. MEMBERSHIP/S IN A PROFESSIONAL OR CIVIC ORGANIZATION --}}
+                    {{> appForm/part5}}
+                    {{!-- V. CONTACT INFORMATION (In Case of Emergency) --}}
+                    {{> appForm/part6}}
+                    {{!--SUBMIT BTN  --}}
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="card-action">
+                                <button class="waves-effect waves-light btn submit-btn" id="submit_PIF" type="submit" disabled >Submit</button>
+                                <button class="waves-effect waves-light btn d-none" id="save_PIF" type="submit" disabled>Save</button>
+                                <button class="waves-effect waves-light btn btn-flat d-none" id="cancel_PIF" >Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearBoth"></div>
+                </div>   
+                </div>        
+        </form>    
+    
+</div>
+</div>

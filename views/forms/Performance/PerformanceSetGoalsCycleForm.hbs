@@ -1,0 +1,104 @@
+<div class="row">
+    <form class="card col-lg-12" action="/submit-goals-cycle" method="post">
+        <div class="col s12">
+            <div class="clearBoth"></div>
+            <!-- Goals/KPI -->
+            <div class="card-action">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="form-group col-12 s9">
+                            <label for="skillDepartment">For the Position</label>
+                            <select class="positions" name="position" required>
+                                {{!-- <option value="" disabled selected>Select a Position</option> --}}
+                                {{!-- test --}}
+                                <option value="" selected>-</option>
+                                {{!-- {{#if position}} --}}
+                                   {{!-- {{#each position}}
+                                <option value="{{position}}" label="{{position}}" />
+                                {{/each}}
+                                {{/if}} --}}
+                                {{#if positions}}
+                                    {{#each positions}}
+                                        <option value="{{this}}" label="{{this}}" />
+                                    {{/each}}
+                                {{/if}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a class="waves-effect waves-light btn addEmployee" style="float: right;" id="submit">Add Key
+                            Result Area</a>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Key Results Areas</th>
+                                    <th>Description</th>
+                                    <th>Performance Indicators/Measures</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTrainingList" class="employeeTrainingList">
+                                <tr>
+                                    <td>
+                                        <textarea class="form-control" id="KPI" class="KPI" rows="3" required
+                                            name="KPI"></textarea>
+                                    <td>
+                                        <textarea class="form-control" id="description" class="description" rows="3"
+                                            required name="description"></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" id="performanceIndicator"
+                                            class="performanceIndicator" rows="3"
+                                            name="performanceIndicator"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="clearBoth"></div>
+            <div class="card-action">
+                <div class="col s4">
+                    <label for="startDate">Start Date</label>
+                    {{!-- test value 2022-01-06 --}}
+                    <input placeholder="" type="date" class="validate" name="startDate" id="startDate" required>
+                </div>
+                <div class="col s4">
+                    <label for="numberCycle">Number of Cycles</label>
+                    <input placeholder="" type="number" min="1" max="100" class="validate" name="numberCycle"
+                        id="numberCycle" required>
+                </div>
+                <div class="col s4">
+                    <label for="reviewCycle">Review Cycle</label>
+                    <select class="reviewCycle" id="reviewCycle" name="reviewCycle" required>
+                        <option disabled selected> Select Cycle</option>
+                        <option value="Annual">Annual</option>
+                        <option value="Bi-Annual">Bi-Annual</option>
+                        <option value="Quarterly">Quarterly</option>
+                    </select>
+                </div>
+            </div>
+            
+            
+            <div class="clearBoth"></div>
+            <div class="card-action">
+                <div class="row">
+                    <div class="card alert" id="alert_div"  hidden>
+                        <p id="alert_text"></p>
+                        <br>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <center>
+                        <button class="waves-effect waves-light btn" id="submitBtn" class="submitBtn" type="submit">Submit</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="clearBoth"></div>
+    </form>
+</div>

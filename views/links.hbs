@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeonioLand</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head> 
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Links <small>For quick reference.</small>
+                </h1>
+
+            </div>
+            <div id="page-inner">
+
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+
+                        {{!-- forms links --}}
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Note</span>
+                                    <p>
+                                        hey guys, i moved the links here so that the sidebar doesnt get too messy. You may edit and access this in views/links.hbs 
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Opening a Job Position links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Opening a Job Position</span>
+                                    <li>
+                                        <a href="/form/PersonnelRequisitionForm">Personnel Requisition Form</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/PRFTracker">
+                                            PRF Tracker</a>
+                                    </li>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Opening a Job Position links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Auth</span>
+                                    <li>
+                                        <a href="/register">Register Page</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/login">
+                                            Login</a>
+                                    </li>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Opening a Job Position links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">External Recruitment</span>
+                                    <li>
+                                        <a href="JobListing">Job Listings</a>
+                                    </li>
+                                    <li>
+                                        <a href="form/PersonalInformationForm">Personal Information Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="ApplicantApproval">Applicant Approval Page</a>
+                                    </li>
+                                    <li>
+                                        <a href="SummaryofApplication">Summary of Application Page</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Offboarding links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Offboarding</span>
+                                    <li>
+                                        <a href="/form/ClearanceForm">Clearance Form</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/OffboardingTracker">Offboarding Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/ClearanceAccountabilityTracker">Accountability Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/ClearanceAccountabilityForm">Accountability Form</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/InterviewTracker">Interview Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/EmployeeExitSurveyForm">Exit Survey Form</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/ExitSurveyTracker">Exit Survey Form Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a href="/ExitSurveyIndividual">Exit Survey Form Individual View</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/EmployeeActionForm">Employee Action Form</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/EmployeeActionTracker">Employee Action Form Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a href="/EmployeeActionApproval">Employee Action Approval</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Schedule Training links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Schedule Trainings</span>
+                                    <li>
+                                        <a href="/form/TrainingNominationForm">Training Nomination Form (HR Specialist)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TrainingNominationTracker">Training Nomination Tracker (HR Specialist, Dept Head, BU Head, CHROD Director)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TrainingNominationApproval">Training Nomination Approval Page (HR Specialist, Dept Head, BU Head, CHROD Director)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/TrainingEvaluationForm">Training Evaluation Form (Employee)</a>
+                                    </li>
+                                    <li>
+                                         <a href="/GetEvaluationForms">Training Evaluation Tracker (HR Specialist)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/TrainingEvaluationIndividual">Training Evaluation Individual View (HR Specialist)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/GetApprovedNominations">Training Tracker (HR Specialist)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/ConfirmAttendance">Confirm Attendance (HR Specialist)</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Skills Inventory links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Skills Inventory</span>
+                                    <li>
+                                        <a href="/form/SkillsSetupForm">Skills Set-Up Form (HR Specialist)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/SkillAssessmentForm">Skills Assessment Form (Employee)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/SkillAssessmentTracker">Skills Assessment Tracker (HR Specialist)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/SkillsAssessmentIndividual">Skills Assessment Form Individual View (HR Specialist)</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        {{!-- Performance Goals links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Performance Goals</span>
+                                    <li>
+                                        <a href="/PerformanceSetGoalsCycleForm">Set Cycle and Goals Form (Department Head)</a>
+                                    </li>
+                                     <li>
+                                        <a href="/PerformanceIndividualGoalsCycle">View Individual Cycle and Goals (Department Head)</a>
+                                    </li>
+                                    <li>
+                                       <a href="/form/PerformanceReviewForm">Performance Review Form (Department Head)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/PerformanceAppraisalForm">Performance Appraisal Form (Employee)</a>
+                                    </li>
+                                    <li>
+                                       <a href="/PerformanceAppraisalTracker">Performance Appraisal Form Tracker (Employee, Department Head, HR Assistant Manager)</a>
+                                    </li>
+                                                                        <li>
+                                       <a href="/PerformanceReviewTracker">Performance Review Form Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a href="/PerformanceAppraisalIndividual">Performance Appraisal Form Individual View (Employee, Department Head)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/PerformanceSatisfactionIndividual">Performance Satisfaction Form Individual View (HR Assistant Manager)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/PerformanceSatisfactionTracker">Performance Satisfaction Form Tracker (HR Assistant Manager)</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- Dashboards and Reports links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Dashboards</span>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="/Dashboard/recruitment-retention">
+                                            Recruitment & Retention Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="/Dashboard/training-development">
+                                            Training & Development Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="/Dashboard/performance-management">
+                                            Performance Management Dashboard</a>
+                                    </li>
+                                    <br>
+                                    <span class="card-title">Reports</span>
+                                    <li>
+                                        <a href="/form/RRReportForm">Recruitment & Retention Report Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/TNDReportForm">Training & Development Report Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/PMReportForm">Performance Management Report Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/ReportTracker">Reports Tracker</a>
+                                    </li>
+                                    <li>
+                                        Report Individual View
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+
+ 
+                         {{!-- pages links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Pages</span>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/Home">Home Page</a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="/Dashboard/recruitment-retention">
+                                            Recruitment & Retention Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="/Dashboard/training-development">
+                                            Training & Development Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="/Dashboard/performance-management">
+                                            Performance Management Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/PRFTracker">
+                                            PRF Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/InterviewTracker">
+                                            Interview Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/SummaryofApplicationTracker">
+                                            Summary of Application Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/OffboardingTracker">
+                                            Offboarding Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/EmployeeClearance">
+                                            Employee Clearance</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/ClearanceAccountabilityTracker">
+                                            Clearance Accountability Tracker</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/ApproveClearance">
+                                            Approve Clearance</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/Profile">
+                                            Profile Page</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/TrainingNominationTracker">
+                                            Training Nomination Tracker Page</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/EmployeeActionTracker">
+                                            Employee Action Tracker Page</a>
+                                    </li>
+                                    {{!-- <li>
+                                        <a class=" waves-effect waves-dark" href="/TaskTracker">
+                                            Task Tracker</a>
+                                    </li> --}}
+                                    {{!-- <li>
+                                        <a class=" waves-effect waves-dark" href="/JobListing">
+                                            Job Listing</a>
+                                    </li>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/JobDetails">
+                                            Job Details</a>
+                                    </li> --}}
+                                    {{!-- <li>
+                                        <a class=" waves-effect waves-dark" href="/login">
+                                            Login Page</a>
+                                    </li> --}}
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- forms links --}}
+                        <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Forms</span>
+                                    <li>
+                                        <a href="/form/PersonnelRequisitionForm">Personnel Requisition Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/ClearanceForm">Clearance Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/ClearanceAccountabilityForm">Clearance Accountability Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/ExitInterviewForm">Schedule Exit Interview Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/EmployeeExitSurveyForm">Employee Exit Survey Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="form/PersonalInformationForm">Personal Information Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/InitialInterviewForm">Initial Interview Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/FunctionalInterviewForm">Functional In-Depth Interview Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/FinalInterviewForm">Final Interview Interview Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/TNDNeedsForm">Training and Development Needs Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/EmployeeActionForm">Employee Action Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/TrainingEvaluationForm">Training Evaluation Form</a>
+                                    </li>
+                                    <li>
+                                        <a href="/form/TrainingNominationForm">Training Nomination Form</a>
+                                    </li>
+                                    {{!-- <li>
+                                        <a href="/form/PersonalInformationForm">Personal Information Form</a>
+                                    </li> --}}
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                        
+
+                        {{!-- templates link --}}
+                        {{!-- <div class="col-md-4 col-sm-4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">Templates</span>
+                                    <li>
+                                        <a class=" waves-effect waves-dark" href="/template/dashboard">
+                                            Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="/template/ui-elements" class="waves-effect waves-dark"> UI
+                                            Elements</a>
+                                    </li>
+                                    <li>
+                                        <a href="/template/chart" class="waves-effect waves-dark">
+                                            Charts</a>
+                                    </li>
+                                    <li>
+                                        <a href="/template/tab-panel" class="waves-effect waves-dark">Tabs &
+                                            Panels</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/template/table" class="waves-effect waves-dark"> Responsive
+                                            Tables</a>
+                                    </li>
+                                    <li>
+                                        <a href="/template/form" class="waves-effect waves-dark">Forms </a>
+                                    </li>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">This is a link</a>
+                                    <a href="#">This is a link</a>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        
+
+
+
+
+                        {{!-- <footer>
+
+                        </footer> --}}
+                    </div>
+                    <!-- /. PAGE INNER  -->
+                </div>
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+
+
+</body>
+
+</html>

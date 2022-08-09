@@ -1,0 +1,243 @@
+<div class="row">
+    <div class="col-lg-12">
+        <form class="card" action="/submitPRF" method="POST">
+            <div class="card-action card-title center">
+                Personnel Requisition Form
+            </div>
+
+            <div class="card-action">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="card-action generalDetails ">
+                            General Details
+                        </div>
+                        <div class="form-group col s4">
+                            <label for="requisitionID">Requisition #</label>
+                            <p class="requisitionID " > </p>
+                            {{!-- <input id="requisitionID" name="requisitionID" type="text" class="validate" value="1" required> --}}
+                        </div>
+                        <div class="form-group col s8">
+                        </div>
+                        
+                    </div>
+
+                    <div class="row purposeDiv" id="topSection">
+                        {{!-- <div class="row"> --}}
+                            <div class="input-group col  s4">
+                                <label for="purposeOfRequest">Purpose of Request</label>
+                                <select class="purposeOfRequest" id="purposeOfRequest" name="purposeOfRequest" required>
+                                    <option value=""  selected disabled> Select Purpose</option>
+                                    <option value="Additional" >Additional</option>
+                                    <option value="Replacement">Replacement</option>
+                                    <option value="New Position">New Position</option>
+                                </select>
+                            </div>
+                            <div class="form-group col s8">
+                                <label for="details" class="form-control-label ">Details</label>
+                                <textarea placeholder="" id="details" type="text"
+                                    class="validate materialize-textarea" name="details"></textarea>
+                            {{!-- </div> --}}
+                        </div>
+                    </div>
+                    <div id="midSection" class="d-none">
+                        <div class="row">
+                            <div class="form-group col s4">
+                                <label for="businessUnit">Business Unit/Company</label>
+                                <select class="businessUnit" id="businessUnit" name="businessUnit"  required>
+                                    <option value=""  selected disabled> Select Business Unit</option>
+                                    <option value="Circle Corporation Inc." >Circle Corporation Inc.</option>
+                                    <option value="LNL Archipelago Minerals">LNL Archipelago Minerals</option>
+                                    <option value="Leonio Land">Leonio Land</option>
+                                    <option value="Petrolift">Petrolift</option>
+                                </select>
+                                
+                            </div>
+                            <div class="form-group col s4 div_department" >
+                                <label for="department">Department</label>
+                                <select class="department" id="department" name="department" required disabled>
+                                    <option value=""  selected disabled> Select Department</option>
+                                </select>
+                            </div>
+                            <div class="form-group col s4  div_position">
+                                {{!-- <label for="inTO">in T.O.?</label>
+                                <select class="inTO" name="inTO" id="inTO" required>
+                                    <option value="" selected disabled> Select</option>
+                                    <option value="Yes" > Yes</option>
+                                    <option value="No">No</option>
+                                </select> --}}
+                                
+
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div id="endSection" class="d-none" >
+                        <div class="row">
+                            <div class="form-group col s4">
+                                <label for="positionLevel">Position Level</label>
+                                <select class="positionLevel" name="positionLevel" id="positionLevel" required>
+                                    <option value="" selected disabled> Select Position Level</option>
+                                    <option value="Professional" > Professional</option>
+                                    <option value="Operational/Technical">Operational/Technical</option>
+                                    <option value="Supervisory/Management">Supervisory/Management</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col s4">
+                                <label for="jobCode">Job Code/Level</label>
+                                <select class="jobCode" name="jobCode" id="jobCode" required disabled>
+                                    <option value="" selected disabled> Select Job Code/Level</option>
+                                </select>
+                            </div>
+                            {{!-- <div class="form-group col s4">
+                                <label for="headcount">Headcount</label>
+                                <input id="headcount" type="number" name="headcount" class="validate" value="" required>
+                            </div> --}}
+                        </div>
+                        <div class="row">
+                            <div class="form-group col s4">
+                                <label for="billToCompany" class="form-control-label">Bill To (Company)</label>
+                                <select class="billToCompany" id="billToCompany" name="billToCompany" required >
+                                    <option value=""  selected disabled> Select Business Unit</option>
+                                    <option value="Circle Corporation Inc." >Circle Corporation Inc.</option>
+                                    <option value="LNL Archipelago Minerals">LNL Archipelago Minerals</option>
+                                    <option value="Leonio Land">Leonio Land</option>
+                                    <option value="Petrolift">Petrolift</option>
+                                </select>
+                            </div>
+                            <div class="form-group col s4">
+                                <label for="location" class="form-control-label" >Location</label>
+                                <input placeholder="" id="location" type="text" name="location" class="validate" value=""required>
+
+                            </div>
+                            {{!-- <div class="form-group col s4">
+                                <label for="targetStartDate" class="form-control-label">Target Start Date</label>
+                                <input id="targetStartDate" class="form-control-label" name="targetStartDate" type="date" value="" required>
+                            </div> --}}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="card-action  ">
+                                <div class="form-group col s12">
+                                    <label for="jobDescription" class="form-control-label">Job Desciption</label>
+                                    <textarea placeholder="" id="jobDescription" type="text" name="jobDescription"
+                                        class="validate materialize-textarea input-field" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-action  ">
+                                <div class="form-group col s12">
+                                    <label for="positionRequirements" class="form-control-label">Position
+                                        Requirements</label>
+                                    <textarea placeholder="" id="positionRequirements" type="text"
+                                        name="positionRequirements" class="validate materialize-textarea" required></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--Target Skills-->
+                        <div class="row">
+                            <div class="card-action" id="skillsRequired">
+                                <div class="skills_required">
+                                    <div class="skillName col s12">
+                                        <div class="form-group col s6" >
+                                            <label for="skillName" class="form-control-label">Required Skills </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-left: 40px;">
+                                <a class="waves-effect waves-light btn addSkill"><i class="material-icons left">add</i>Add a
+                                    Skill</a>
+                            </div>
+                        </div>
+                        
+
+                        <!--Type of Employment-->
+                        <div class="row">
+                            <div class="card-action  ">
+                                <div class="row">
+                                    <div class="input-group col  s4">
+                                        <label for="employmentType">Type of Employment</label>
+                                        <select class="employmentType" id="employmentType" name="employmentType"  required>
+                                            <option value=""  selected disabled> Select Type</option>
+                                            <option value="Full Time" >Full Time</option>
+                                            <option value="Contractual">Contractual</option>
+                                            <option value="Project Based">Project Based</option>
+                                            <option value="Probationary">Probationary</option>
+                                            <option value="OJT">OJT</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col s8 div_lengthOfAssessment">
+
+                                    </div>
+                                </div>
+                                
+
+                                <div class="row">
+                                    <div class="form-group col s4">
+                                        <label for="headcount">Headcount</label>
+                                        <input id="headcount" type="number" name="headcount" class="validate" value="" required>
+                                    </div>
+                                    <div class="form-group col s4">
+                                        <label for="targetStartDate" class="form-control-label">Target Start Date</label>
+                                        <input id="targetStartDate" class="form-control-label" name="targetStartDate" type="date" value="" required>
+                                    </div>
+                                </div>
+                                        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-action" id="tools">
+                                {{!-- <div class="form-group col s12">
+                                    <label for="toolsOfTrade" class="form-control-label">Tools of Trade</label>
+                                    <input placeholder="" id="positionRequirements" type="text" class="validate col s6">
+
+                                </div> --}}
+                                <div class="toolsOfTrade">
+                                    <div class="toolpair col s12">
+                                        <div class="form-group col s6">
+                                            <label for="tool" class="form-control-label">Tools of Trade / Space Requirement
+                                                / PPE Requirement </label>
+                                            <input placeholder="Leave blank if not applicable" id="tool" type="text"
+                                                name="tool" class="tool validate" value="">
+                                        </div>
+                                        <div class="col s4">
+                                            <label for="availability"> &nbsp;</label>
+                                            <select class="availability" id="availability" name="availability" required>
+                                                <option value="" selected disabled> Select Availability</option>
+                                                <option value="Available" > Available</option>
+                                                <option value="Unavailable">Unavailable</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-left: 40px;">
+                                <a class="waves-effect waves-light btn addTool"><i class="material-icons left">add</i>Add a
+                                    Tool</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card-action  ">
+
+                                <button class="waves-effect waves-light btn-large" style="float:right;" type="submit">Submit
+                                    for Approval</button>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="clearBoth"></div>
+            </div>
+        </forms>
+    </div>
+</div>

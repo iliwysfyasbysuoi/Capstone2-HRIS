@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance Appraisal Tracker</title>
+    {{!-- head stylesheets and js --}}
+    <script src="/js/AppraisalTracker.js" type="text/javascript" defer> </script>
+
+    {{> partials/headlinks}}
+</head>
+
+<body>
+    <div id="wrapper">
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Performance Appraisal Tracker
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Performance Appraisal
+                            </div>
+
+                            {{!-- unanswered appraisals only render for employees --}}
+                            {{!-- <div class="table-responsive">
+
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>For the Position</th>
+                                            <th>Start Date</th>
+                                            <th>Review Cycle</th>
+                                            <th>Current Cycle</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="unansAppraisals">
+                                    </tbody>
+                                </table>
+                            </div> --}}
+                            {{!-- {{#if userIsHR}} --}}
+                            <div class="card-content tableCard">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6"></div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="input-group col filter-select">
+                                            <label>Filter Position</label>
+                                            <select class="filter-table">
+                                                <option value="none">All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+                            </div>
+                            {{!-- {{/if}} --}}
+                            {{!-- answered appraisals --}}
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Department</th>
+                                            <th>Business Unit</th>
+                                            <th>Date Submitted</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{!-- {{#if PerformanceAppraisalData}} --}}
+                                        {{#each userList}}
+                                        <tr
+                                            onclick="window.location.href = '/PerformanceReviewIndividualPage/{{reviewData.id}}';">
+                                            <td>{{user.firstName}} {{user.lastName}}</td>
+                                            <td class="position">{{user.position}}</td>
+                                            <td>{{user.department}}</td>
+                                            <td>{{user.businessUnit}}</td>
+                                            <td>{{formatDateAndTime reviewData.date}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{!-- {{/if}} --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+                    <footer>
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <script>
+            function search_table(value) {
+                $(".position").each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase() === value.toLowerCase()) {
+                            found = 'true';
+                        }
+
+                        if (found == 'true') {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    })
+                })
+            }
+
+            $('.filter-table').change(function () {
+                if ($('.filter-table').val() == "none") {
+                    window.location.href = "/PerformanceAppraisalTracker";
+                } else {
+                    search_table($(this).val());
+                }
+            })
+
+
+
+        </script>
+
+</body>
+
+</html>

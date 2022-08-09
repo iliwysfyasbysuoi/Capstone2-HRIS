@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Job Applications</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    My Job Applications
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                
+                            </div>
+                            <div class="card-content">
+
+                                <div class="row">
+                                    <div class="input-group col filter-select ">
+                                        <label>Filter Status</label>
+                                        <select class="filter-table">
+                                            <option value="" selected>None</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Disapproved">Disapproved</option>
+                                            <option value="Employee Action For Approval">EAF for Approval</option>
+                                            <option value="Employee Action Fully Approved">EAF Fully Approved</option>
+                                            <option value="Employed">Employed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+
+
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Position Title</th>
+                                            <th>Business Unit</th>
+                                            <th>Department</th>
+                                            <th>Application Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if MyApplications}}
+                                            {{#each MyApplications}}
+                                            <tr onclick="window.location.href = '/ApplicantApproval/{{_id}}'">
+                                                <td>{{requisition.positionTitle}}</td>
+                                                <td>{{requisition.businessUnit}}</td>
+                                                <td>{{requisition.department}}</td>
+                                                <td>{{formatDate applicationDate}}</td>
+                                                <td>{{status}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        {{else}}
+                                            <tr >
+                                                <td colspan="5" style="text-align: center;">No job appplication record yet. <a href="/JobListing">View Job Listings</a></td>
+                                            </tr>
+                                        {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <script>
+            function search_table(value) {
+                    $(".table td").each(function () {
+                        var found = 'false';
+                        $(this).each(function () {
+                            if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                                found = 'true';
+                            }
+
+                            if (found == 'true') {
+                                $(this).parent().show();
+                            }
+                            else {
+                                $(this).parent().hide();
+                            }
+                        })
+                    })
+                }
+
+                $('.filter-table').change(function () {
+                    if ($('.filter-table').val() == "None") {
+                        window.location.href = "/PRFTracker";
+                    } else {
+                        search_table($(this).val());
+                    }
+                })
+
+            
+
+        </script>
+
+
+</body>
+
+
+
+</html>

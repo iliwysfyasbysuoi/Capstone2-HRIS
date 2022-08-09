@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    {{!-- begin:: scripts for Task Tracker Page --}}
+    {{!-- <script src="/js/Task_Tracker/TaskTracker.js" type="text/javascript" defer> </script> --}}
+    {{!-- end:: scripts for Task Tracker Page--}}
+
+    <style>
+    
+    .clock_div{
+        position: absolute;
+        float: right !important;
+        right: 10px !important;
+        top: 10px;
+    }
+
+    .clock {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+      background-color: #286132;
+      margin: auto;
+      padding: 10px 5px;
+    }
+    .welcome{
+        font-size: 20px;
+        color: #fff;
+        padding: 15px;
+    }
+
+    .time {
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      padding: 5px;
+    }
+
+    .date-time {
+      font-size: 14px;
+      color: #fff;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .time {
+        font-size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper" style="height: 100vh;">
+            <div class="header">
+                <div class="row">
+                    <div class="col s6">
+                        <h1 class="page-header">
+                            Task Tracker  
+                        </h1>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="page-inner">
+
+                <div class="row">
+                    <div class="card clock-card col s6 m3 clock_div">
+                        <div class="card-action">
+                            <div class="clock">
+                                <span class="time"></span> <span class="date-time"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card">
+                        <ul class="tabs tabs-fixed-width ">
+                            <li class="tab">
+                                <a href="#all_tasks_div" >All</a>
+                            </li>
+                            <li class="tab ">
+                                <a href="#not_started_tasks_div" class="active">Not Started</a>
+                            </li>
+                            <li class="tab">
+                                <a href="#completed_tasks_div">Completed</a>
+                            </li>
+                        </ul>
+                        
+                        <div class="card-content">
+                            <div class="row border-3">
+                                <div class=" col s6 m7" style="right:2px;">
+                                    <div class="input-field col s12 d-none">
+                                        <input id="search_input" type="text" name="search_input" class="validate">
+                                        <label for="search_input" data-error="Invalid Email" data-success="">Search</label>
+                                    </div>
+                                </div>
+                                <div class=" col s6 m5" style="left:0px;">
+                                    <div class="col s4">
+                                        <p>Filter by type</p>
+                                    </div>
+                                    <div class="input-field col s8">
+                                        <select name="filter_input" id="filter_input" class="">
+                                            <option value="" selected>No filter</option>
+                                            <option value="PRF">PRF</option>
+                                            <option value="Recruitment">Recruitment</option>
+                                            <option value="Offboarding">Offboarding</option>
+                                            <option value="Performance Management">Performance Management</option>
+                                            <option value="Training">Training</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tasks_main_body " class="table-responsive vh50">
+                                <div id="all_tasks_div">
+                                    <table class="table table-hover tableFixHead" id="all_tasks_table">
+                                        <thead class="grey">
+                                            <tr class="grey">
+                                                <th>Type</th>
+                                                <th>Task</th>
+                                                <th>Description</th>
+                                                <th>Expected Completion Date</th>
+                                                <th>Priority</th>
+                                                <th>Task Status</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each AllTasks as |task|}}
+                                            <tr>
+                                                <td class="task_type">{{task.type}}</td>
+                                                <td>{{task.task}}</td>
+                                                <td>{{task.description}}</td>
+                                                <td>{{task.deadline}}</td>
+                                                <td><span class="badge {{getClass_TaskPriorityBadge task.priority}}">{{task.priority}} </span></td>
+                                                <td>{{task.isCompleted}}</td>
+                                                <td> <a href="{{task.link}}" class="btn btn-small">Task <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> </td>
+                                            </tr>
+                                            {{/each}}
+                                            <tr>
+                                                <td colspan="7" class="center grey lighten-3">End of list</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="not_started_tasks_div" >
+                                    <table class="table table-hover tableFixHead" id="not_started_tasks_table">
+                                        <thead class="grey">
+                                            <tr class="grey">
+                                                <th>Type</th>
+                                                <th>Task</th>
+                                                <th>Description</th>
+                                                <th>Expected Completion Date</th>
+                                                <th>Priority</th>
+                                                <th>Task Status</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each NotStartedTasks as |task|}}
+                                            <tr>
+                                                <td class="task_type">{{task.type}}</td>
+                                                <td>{{task.task}}</td>
+                                                <td>{{task.description}}</td>
+                                                <td>{{task.deadline}}</td>
+                                                <td><span class="badge {{getClass_TaskPriorityBadge task.priority}}">{{task.priority}} </span></td>
+                                                <td>{{task.isCompleted}}</td>
+                                                <td> <a href="{{task.link}}" class="btn btn-small">Task <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> </td>
+                                            </tr>
+                                            {{/each}}
+                                            <tr>
+                                                <td colspan="7" class="center grey lighten-3">End of list</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="completed_tasks_div">
+                                    <table class="table table-hover tableFixHead" id="completed_tasks_table">
+                                        <thead class="grey">
+                                            <tr class="grey">
+                                                <th>Type</th>
+                                                <th>Task</th>
+                                                <th>Description</th>
+                                                <th>Expected Completion Date</th>
+                                                <th>Priority</th>
+                                                <th>Task Status</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each CompletedTasks as |task|}}
+                                            <tr>
+                                                <td class="task_type">{{task.type}}</td>
+                                                <td>{{task.task}}</td>
+                                                <td>{{task.description}}</td>
+                                                <td>{{task.deadline}}</td>
+                                                <td><span class="badge {{getClass_TaskPriorityBadge task.priority}}">{{task.priority}} </span></td>
+                                                <td>{{task.isCompleted}}</td>
+                                                <td> <a href="{{task.link}}" class="btn btn-small">Task <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> </td>
+                                            </tr>
+                                            {{/each}}
+                                            <tr>
+                                                <td colspan="7" class="center grey lighten-3">End of list</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- /. PAGE INNER  -->
+                </div>
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+            <script>
+                function filter_and_sort_table(filter_val, search_val) {
+
+                    if(filter_val !="" && search_val != ""){
+                        $("td.task_type").each(function () {
+                            var found = 'false';
+                            var search_found = 'false';
+                            $(this).each(function () {
+                                console.log($(this).text());
+                                if ($(this).text().toLowerCase().indexOf(filter_val.toLowerCase()) >= 0) {
+                                    found = 'true';
+                                }
+                                if ($(this).text().toLowerCase().indexOf(search_val.toLowerCase()) >= 0) {
+                                    search_found = 'true';
+                                }
+
+                                if (found == 'true' && search_found == 'true') {
+                                    $(this).parent().show();
+                                }
+                                else {
+                                    $(this).parent().hide();
+                                }
+                            })
+                        })
+                    }else if(filter_val !=""){
+                        $("td.task_type").each(function () {
+                            var found = 'false';
+                            $(this).each(function () {
+                                console.log($(this).text());
+                                if ($(this).text().toLowerCase().indexOf(filter_val.toLowerCase()) >= 0) {
+                                    found = 'true';
+                                }
+
+                                if (found == 'true') {
+                                    $(this).parent().show();
+                                }
+                                else {
+                                    $(this).parent().hide();
+                                }
+                            })
+                        })
+                    }else{
+                        $("td.task_type").each(function () {
+                            $(this).parent().show();
+                        })
+                    }
+                    
+                    
+                    
+                }
+
+                $('#filter_input').change(function () {
+                    var filter_val = $('#filter_input').val();
+                    var search_val = $('#search_input').val();
+
+                    filter_and_sort_table(filter_val, search_val);
+                })
+
+                $('#search_input').keyup(function () {
+                    var filter_val = $('#filter_input').val();
+                    var search_val = $('#search_input').val();
+
+                    filter_and_sort_table(filter_val, search_val);
+                })
+
+                
+
+            </script>
+
+            {{!-- script for the clock --}}
+            <script>
+                var time = document.querySelector('.time');
+                var dateTime = document.querySelector('.date-time');
+
+                function updateClock() {
+                // Get the current time, day , month and year
+                var now = new Date();
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+                var seconds = now.getSeconds();
+                var day = now.getDay();
+                var date = now.getDate();
+                var month = now.getMonth();
+                var year = now.getFullYear();
+
+                // store day and month name in an array
+                var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+                // format date and time
+                hours = hours % 12 || 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                date = date < 10 ? '0' + date : date;
+
+                // display date and time
+                var period = hours > 12 ? 'AM' : 'PM';
+                time.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + period;
+                dateTime.innerHTML = dayNames[day] + ', ' + monthNames[month] + ' ' + date + ', ' + year;
+                }
+
+                updateClock();
+                setInterval(updateClock, 1000);
+            </script>
+
+
+
+</body>
+
+</html>

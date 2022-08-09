@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.skillassessments"}],"uuid":"a1770512b635464eb9272d41391f0fdb","collectionName":"skillassessments","type":"collection"}

@@ -1,0 +1,127 @@
+<div class="col s12 step step-2">
+    {{!-- <div class="row">
+        <div class="card-action card-title center">
+            I. PERSONAL DATA (Part 2)
+        </div>
+    </div> --}}
+    <div class="row">
+        <div class="col s12">
+            <div class="form-group col s6">
+                <label for="spouse_name">Name of Spouse:</label>
+                <input id="spouse_name" type="text" class="validate" name="spouse_name" value= "" placeholder = "Name of Spouse (if applicable)" >
+            </div>
+            <div class="form-group col s6">
+                <label for="date_marriage">Date of Marriage (if applicable):</label>
+                <input id="date_marriage" type="date" class="form-control-label" name="date_marriage" placeholder = "" >
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="form-group col s6">
+                <label for="spouse_work">Occupation:</label>
+                <input id="spouse_work" type="text" class="validate" name="spouse_work" value= "" placeholder = "Spouse Occupation(if applicable)">
+            </div>
+            <div class="form-group col s6">
+                <label for="spouse_emp">Employer:</label>
+                <input id="spouse_emp" type="text" class="validate" name="spouse_emp" value= "" placeholder = "Spouse Employer(if applicable)">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col s6">
+            <label for="spouse_address">Present Address</label>
+            <input id="spouse_address" type="text" class="validate" name="spouse_address" value= "" placeholder = "Spouse Present Address(if applicable)">
+        </div>
+        <div class="form-group col s3">
+            <label for="spouse_tel_num">Tel. No.</label>
+            <input id="spouse_tel_num" type="text" class="format_tel_num validate" name="spouse_tel_num" value= ""  onkeypress="return isNumberKey(event)"maxlength="12" placeholder = "Tel. No (if applicable)">
+        </div>
+        <div class="form-group col s3">
+            <label for="spouse_cell_num">Mobile. No.</label>
+            <input id="spouse_cell_num" type="text" class="format_cell_num validate" name="spouse_cell_num" value= ""  onkeypress="return isNumberKey(event)"maxlength="13" placeholder = "Mobile No.(if applicable)">
+        </div>
+    </div>
+    {{!-- children table --}}
+    <div class="row children">
+        <table class="col s12" id="childrenSection">
+            <tr>
+                <th>Name of Child/ren</th>
+                <th>Date of Birth</th>
+                <th></th>
+            </tr>
+
+             {{!-- fields will be added here by clicking the button --}}
+
+        </table>
+        <br><br>
+        <a class="waves-effect waves-light btn addChild"><i class="material-icons left">add</i>Add a
+                                Child</a>
+    </div>
+    <div class="card-action">
+        {{!-- divider lang between children and parents --}}
+    </div>
+    <div class="row">
+        <div class="form-group col s6">
+            <label for="father_name">Name of Father</label>
+            <input id="father_name" type="text" class="validate" name="father_name" value= ""required>
+        </div>
+        <div class="form-group col s6">
+            <label for="mother_name">Name of Mother</label>
+            <input id="mother_name" type="text" class="validate" name="mother_name" value= ""required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col s6">
+            <label for="father_address">Father's Home Address</label>
+            <input id="father_address" type="text" class="validate" name="father_address" value= ""required>
+        </div>
+        <div class="form-group col s6">
+            <label for="mother_address">Mother's Home Address</label>
+            <input id="mother_address" type="text" class="validate" name="mother_address" value= ""required>
+    </div>
+    <div class="row">
+        <div class="form-group col s6">
+            <label for="father_occupation">Father's Occupation</label>
+            <input id="father_occupation" type="text" class="validate" name="father_occupation" value= ""required>
+        </div>
+        <div class="form-group col s6">
+            <label for="mother_occupation">Mother's Occupation</label>
+            <input id="mother_occupation" type="text" class="validate" name="mother_occupation" value= ""required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col s6">
+            <label for="father_company">Father's Company</label>
+            <input id="father_company" type="text" class="validate" name="father_company" value= ""required>
+        </div>
+        <div class="form-group col s6">
+            <label for="mother_company">Mother's Company</label>
+            <input id="mother_company" type="text" class="validate" name="mother_company" value= ""required>
+        </div>
+    </div>
+    <div class="card-action">
+        {{!-- divider lang between parents and siblings--}}
+    </div>
+
+    {{!-- sibling table --}}
+    <div class="row sibling">
+        <div class="col s12">
+        <table class="col s12" id = "siblingsSection">
+            <tr>
+                <th>Name of Sibling</th>
+                <th>Date of Birth</th>
+                <th>Civil Status</th>
+                <th></th>
+            </tr>
+
+             {{!-- fields will be added here by clicking the button --}}
+
+        </table>
+        <br><br>
+        <a class="waves-effect waves-light btn addSibling"><i class="material-icons left">add</i>Add a
+                                Sibling</a>
+        
+        </div>
+    </div>
+</div>

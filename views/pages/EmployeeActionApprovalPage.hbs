@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Action Approval</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    {{!--
+    <script src="/js/TrainingNominationApprovalPage.js" type="text/javascript" defer> </script>--}}
+    <script src="/js/EmployeeActionApprovalPage.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+
+
+    {{> partials/topnav}}
+    {{> partials/sidenav}}
+
+    <div id="page-wrapper">
+        <div class="header">
+            <h1 class="page-header">
+                Employee Action Form
+            </h1>
+        </div>
+        <div id="page-inner">
+            <div class="col-md-12" id="PRF-card">
+                <div class="card">
+                    <div class="card-content">
+                        <!--Personal information form -->
+                        <div class="Personal-Information">
+                            <param class="EAF_id" name="EAF_id" value="{{EmployeeActionData._id}}">
+                            {{#with EmployeeActionData.applicationID_reference as |applicationID| }}
+                                <param class="applicationID" name="applicationID" value="{{applicationID}}">
+                            {{/with}}
+
+                            <div class="row">
+                                <div class="col s6 p-5">
+                                    <strong>Employee Action Form</strong>
+                                </div>
+                                <div class="col s6 p-3 " style="display: flex;justify-content:flex-end;"> 
+                                    {{!-- {{#ifEquals EmployeeActionData.action "Termination"}} --}}
+                                        <a type="button" class ="button btn" href="/form/PersonnelRequisitionForm/{{EmployeeActionData.businessUnit}}/{{EmployeeActionData.department}}/{{EmployeeActionData.positionTitle}}"><i class="material-icons">add_box</i> Generate Personnel Requisition Form</a>
+                                    {{!-- {{/ifEquals}} --}}
+                                </div>
+                            </div>
+                            <table class="table col s12">
+                                <tbody>
+                                    <tr>
+                                        <td class="PRF-info-label">Employee Name</td>
+                                        <td class="employeeName" colspan="">{{EmployeeActionData.name}}</td>
+                                        <input type="text" value="{{EmployeeActionData.name}}" id="employeeName" name="employeeName" hidden />
+                                        <td class="PRF-info-label">EAF Status</td>
+                                        <td class="" colspan=""><span class="EAF_status badge green">{{EmployeeActionData.status}}</span></td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td class="PRF-info-label">Position Title</td>
+                                        <td class="employeePosition">{{EmployeeActionData.positionTitle}}</td>
+                                        {{!-- <td> </td> --}}
+                                        <td class="PRF-info-label">Action</td>
+                                        <td class="recommendedAction">{{EmployeeActionData.action}}</td>
+                                        {{!-- <td> </td> --}}
+                                        
+                                        {{!-- <td> </td> --}}
+                                    </tr>
+                                    {{#if EmployeeActionData.dateHired }}
+                                    <tr>
+                                        <td class="PRF-info-label hireDate-label">Date Hired</td>
+                                        <td class="hireDate">{{#with EmployeeActionData.dateHired}}{{formatDate
+                                            EmployeeActionData.dateHired}}{{/with}}</td>
+                                        {{!-- <td> </td> --}}
+                                        <td class="PRF-info-label positionMonths-label">Months In Current Position</td>
+                                        <td class="positionMonths">{{EmployeeActionData.monthsInCurrentPosition}}</td>
+                                        
+                                        {{!-- <td class="PRF-info-label">Immediate Supervisor</td>
+                                        <td class="employeeSupervisor">{{EmployeeActionData.name}}</td> --}}
+                                        
+                                    </tr>
+                                    {{/if }}
+
+                                    {{!-- <tr>
+                                        <td colspan="12" class="PRF-info-divider"> &nbsp; </td>
+                                    </tr> --}}
+                                    <tr>
+                                        <td class="PRF-info-label">Department</td>
+                                        <td class="employeeDepartment">{{EmployeeActionData.department}}</td>
+                                        
+                                        {{!-- <td> </td> --}}
+                                        <td class="PRF-info-label">Effective Date</td>
+                                        <td class="effectiveDate">{{formatDate EmployeeActionData.effectiveDate}}</td>
+                                        {{!-- <td> </td> --}}
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="PRF-info-label">Business Unit</td>
+                                        <td class="businessUnit">{{EmployeeActionData.businessUnit}}</td>
+                                    </tr>
+                                    <!--IF Transfer-->
+                                    <tr>
+                                        {{#ifEquals EmployeeActionData.action "Transfer"}}
+                                        <table class="table table-striped table-bordered table-hover"
+                                            id="programRequirements">
+                                            <thead>
+                                                <tr>
+                                                    <th>Transfer</th>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Department</td>
+                                                    <td class="fromDepartment">{{EmployeeActionData.departmentFrom}}
+                                                    </td>
+                                                    <td class="toDepartment">{{EmployeeActionData.departmentTo}}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>Position</td>
+                                                    <td class="fromPosition">{{EmployeeActionData.positionFrom}}</td>
+                                                    <td class="toPosition">{{EmployeeActionData.positionTo}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        {{/ifEquals}}
+
+
+
+                                    </tr>
+                                    <table>
+
+                                        <!-- IF Termination -->
+                                        {{#ifEquals EmployeeActionData.action "Termination"}}
+
+                                        <tr>
+                                            <td class="PRF-info-label terminationReason-label">Reason</td>
+                                            <td class="terminationReason">{{EmployeeActionData.terminationReason}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="12" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+                                        {{/ifEquals}}
+
+                                        <tr>
+                                            <td class="PRF-info-label actionJustification-label">Justification For The
+                                                Recommended Action</td>
+                                            <td class="actionJustification">{{EmployeeActionData.justification}}</td>
+                                            <td> </td>
+                                        </tr>
+
+                                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-md-3 approvalCard d-none" id="approvals-progress-card">
+                <div class="card">
+                    <div class="card-action">
+                        Approvals Progress
+                    </div>
+                    <div class="card-content">
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success approved-bar">
+                                <span class="approved-bar-label"> </span> Approved
+                            </div>
+                            <div class="progress-bar progress-bar-danger disapproved-bar">
+                                <span class="disapproved-bar-label"> </span> Disapproved
+                            </div>
+                            <div class="progress-bar info pending-bar">
+                                <span class="pending-bar-label"> </span> Pending
+                            </div>
+                        </div>
+                        <p class="center small"><span class="PRF-info-label">EAF Status: </span> <span
+                                class="EAF_status">{{EmployeeActionData.status}}</span></p>
+
+                        <div class="card-action buttons-card">
+                            {{!--
+                            Buttons for Approve, Disapprove, List Job Vacancy, and got to Job Listing Page will be
+                            here.
+                            The elements are added via PRFIndividualPage.js since appearance of buttons
+                            depends on the user and the status of the PRF.
+                            --}}
+
+                            <div id="approval_buttons_div">
+                                <!-- Approvals button-->
+                                {{!-- appended via js --}}
+
+                            </div>
+                            <div id="other_buttons_div">
+                                {{!-- appended via js --}}
+
+                            </div>
+
+
+                        </div>
+
+                        {{!-- HIDDEN APPROVALS --}}
+
+                        <div class="approvers" hidden>
+                            {{#ifEquals EmployeeActionData.status "Disapproved"}}
+                                <div class="center">This form has been disapproved.</div>
+                            {{/ifEquals}}
+
+                            {{#ifEquals EmployeeActionData.status "Pending"}}
+                            <table class="table table-responsive col s12">
+                                <thead>
+                                    <td colspan="3" class="center card-title"> Approvals </td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="PRF-info-label " style="width:100%;">Approver</td>
+                                        <td class="PRF-info-label center">Status</td>
+
+                                    </tr>
+
+                                    <!-- HR Supervisor -->
+                                    {{#ifEquals EmployeeActionData.approvalHRPartner.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalHRPartner.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalHRPartner.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">HR Partner </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalHRPartner.approver.firstName}} {{EmployeeActionData.approvalHRPartner.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit </span><span>{{EmployeeActionData.approvalHRPartner.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalHRPartner.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalHRPartner.approver.position}}
+                                            </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalhrSupervisor-status">{{EmployeeActionData.approvalHRPartner.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Department Head -->
+                                    {{#ifEquals EmployeeActionData.approvalDHead.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalDHead.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalDHead.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">Department Head </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalDHead.approver.firstName}}
+                                                {{EmployeeActionData.approvalDHead.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalDHead.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalDHead.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalDHead.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalDHead-status">{{EmployeeActionData.approvalDHead.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    {{#ifEquals EmployeeActionData.approvalBUHead.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalBUHead.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalBUHead.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">Business Unit Head </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalBUHead.approver.firstName}}
+                                                {{EmployeeActionData.approvalBUHead.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalBUHead.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalBUHead.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalBUHead.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalBUHead-status">{{EmployeeActionData.approvalBUHead.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    {{#ifEquals EmployeeActionData.approvalCHRODDirector.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalCHRODDirector.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalCHRODDirector.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">CHROD Director </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalCHRODDirector.approver.firstName}}
+                                                {{EmployeeActionData.approvalCHRODDirector.approver.lastName}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalCHRODDirector.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalCHRODDirector.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalCHRODDirector.approver.position}}
+                                            </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalCHROD-status">{{EmployeeActionData.approvalCHRODDirector.approval}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {{/ifEquals}}
+
+                            {{#ifEquals EmployeeActionData.status "Completed"}}
+                            <table class="table table-responsive col s12">
+                                <thead>
+                                    <td colspan="3" class="center card-title"> Approvals </td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="PRF-info-label " style="width:100%;">Approver</td>
+                                        <td class="PRF-info-label center">Status</td>
+
+                                    </tr>
+
+                                    <!-- HR Supervisor -->
+                                    {{#ifEquals EmployeeActionData.approvalHRPartner.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalHRPartner.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalHRPartner.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">HR Partner </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalHRPartner.approver.firstName}}
+                                                {{EmployeeActionData.approvalHRPartner.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalHRPartner.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalHRPartner.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalHRPartner.approver.position}}
+                                            </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalhrSupervisor-status">{{EmployeeActionData.approvalHRPartner.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Department Head -->
+                                    {{#ifEquals EmployeeActionData.approvalDHead.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalDHead.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalDHead.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">Department Head </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalDHead.approver.firstName}}
+                                                {{EmployeeActionData.approvalDHead.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalDHead.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalDHead.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalDHead.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalDHead-status">{{EmployeeActionData.approvalDHead.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    {{#ifEquals EmployeeActionData.approvalBUHead.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalBUHead.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalBUHead.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">Business Unit Head </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalBUHead.approver.firstName}}
+                                                {{EmployeeActionData.approvalBUHead.approver.lastName}}</span> <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalBUHead.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalBUHead.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalBUHead.approver.position}} </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalBUHead-status">{{EmployeeActionData.approvalBUHead.approval}}</span>
+                                        </td>
+                                    </tr>
+
+                                    {{#ifEquals EmployeeActionData.approvalCHRODDirector.approval "Approved"}}
+                                    <tr class="success">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalCHRODDirector.approval "Pending"}}
+                                    <tr class="info">
+                                        {{/ifEquals}}
+                                        {{#ifEquals EmployeeActionData.approvalCHRODDirector.approval "Disapproved"}}
+                                    <tr class="danger">
+                                        {{/ifEquals}}
+                                        <td class="">
+                                            <span class="PRF-info-label">CHROD Director </span> <br>
+                                            <span class="PRF-info-label">Name: </span>
+                                            <span>{{EmployeeActionData.approvalCHRODDirector.approver.firstName}}
+                                                {{EmployeeActionData.approvalCHRODDirector.approver.lastName}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Business Unit
+                                            </span><span>{{EmployeeActionData.approvalCHRODDirector.approver.businessUnit}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Department
+                                            </span><span>{{EmployeeActionData.approvalCHRODDirector.approver.department}}</span>
+                                            <br>
+                                            <span class="PRF-info-label">Position
+                                            </span><span>{{EmployeeActionData.approvalCHRODDirector.approver.position}}
+                                            </span>
+
+                                        </td>
+                                        <td class="vertical-align center"><span
+                                                class="approvalCHROD-status">{{EmployeeActionData.approvalCHRODDirector.approval}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {{/ifEquals}}
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+    </div>
+    <!-- JS Scripts-->
+
+    {{> partials/endOfBodyJSScripts}}
+</body>
+
+</html>

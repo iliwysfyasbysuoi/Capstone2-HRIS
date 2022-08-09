@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeonioLand Dashboard - Recruitment & Retention</title> 
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}  
+</head>
+
+<body>
+    <div id="wrapper"> 
+        {{> partials/topnav}}
+        {{> partials/sidenav}} 
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Dashboard - Recruitment & Retention 
+                </h1> 
+            </div>
+            <div id="page-inner">  
+                <div class="row"> 
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10" > 
+                        <form class="card" style="padding:2rem" action="submit-report/recret" method="post"  > 
+                            {{#each dashHTMLData}} 
+                                {{#each forData}}
+                                    <input type="text" name="DataArray{{this.dataName}}" id="{{this.dataId}}" hidden>
+                                {{/each}}
+                                <div style="padding-bottom:{{#if hr}}50px{{else}}25px{{/if}}; padding-top:25px"> 
+                                    {{#if minDate}} 
+                                      Recuritment Success Rate & Progress Rate Date Range  
+                                        <div class="col-12 row" style="margin-top: 10px;"> 
+                                            <input type="text" name="realStartDate" id="realStartDate" hidden>
+                                            <input type="text" name="realEndDate" id="realEndDate" hidden> 
+                                            <div class="col-md-4"><i>From</i><input type="date" min="{{minDate}}" max="{{maxDate}}" id="{{dateId}}startDate" name="{{dateId}}startDate" value="" required/></div>
+                                             <div class="col-md-4"><i>to</i><input type="date" min="{{minDate}}" max="{{maxDate}}" id="{{dateId}}endDate" name="{{dateId}}endDate" value="" required/></div>
+                                            <button type='button' class="col-md-4 btn" id="recDateRange">Apply Date Range</button>
+                                        </div>
+                                    {{/if}} 
+                                    <h5>{{title}}</h5>
+                                    <div class="col-12">
+                                        <canvas id="{{chartId}}" width="400" height="400" style="max-height: 45vh "></canvas> 
+                                    </div>   
+                                    <h6>Chart Description</h6>
+                                    {{!-- <button type="button" id='{{chartId}}-test'>test</button> --}} 
+                                    <textarea class="form-control" id="{{chartId}}-ta"
+                                        name="{{chartId}}-ta-name" rows="10"  required></textarea>  
+                                </div>
+                                {{#if hr}}   <hr/>  {{/if}}
+                            {{/each}} 
+                            <center><button id="btn" class=" btn btn-outline-primary"
+                                     type="submit"   style="margin:10px">Submit Report</button></center>
+                   
+                        </form>  
+                                
+                    </div>    
+                    <div class="col-md-1"></div>  
+                </div>
+            </div> 
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  --> 
+    <!-- JS Scripts-->
+   
+    {{> partials/endOfBodyJSScripts}}    
+  <script src="/js/Dashboard/charts.js" type="text/javascript" defer> </script>
+  <script src="/js/Dashboard/recret.js" type="text/javascript" defer> </script>
+</body> 
+</html>

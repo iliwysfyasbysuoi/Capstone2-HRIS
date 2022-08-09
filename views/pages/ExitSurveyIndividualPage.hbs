@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exit Survey Form</title>
+    <script src="/js/exitSurvey.js" type="text/javascript" defer> </script>
+
+    {{!-- head stylesheets and js --}} 
+    {{> partials/headlinks}}
+ 
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Exit Survey Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+                    <input type="hidden" id="surveyId" value={{ExitSurveyData._id}}  />
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content">
+
+                                <div class="row">
+                                    <table class=" col s12 ">
+                                        <tbody>
+                                            <tr></tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Employee Name</td>
+                                                <td class="employeeName">{{ExitSurveyData.employee.name}}</td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Position Title</td>
+                                                <td class="employeePosition">{{ExitSurveyData.employee.position}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Division/Department</td>
+                                                <td class="employeeDepartment">{{ExitSurveyData.employee.department}}
+                                                </td>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Business Unit</td>
+                                                <td class="employeeDepartment">{{ExitSurveyData.employee.businessUnit}}
+                                                </td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Forwarding Address</td>
+                                                <td class="forwardAddress">{{ExitSurveyData.forwardAddress}}</td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Personal E-Mail Address</td>
+                                                <td class="personalEmail">{{ExitSurveyData.personalEmail}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Personal Mobile Number</td>
+                                                <td class="personalMobileNum">{{ExitSurveyData.mobileNum}}</td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="10" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+
+
+                                <!--Survey Questions-->
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label class="form-control-label">Why are you leaving your current
+                                            position?</label>
+                                    </div>
+                                    <div class="reason">
+
+                                    </div>
+
+                                </div>
+                                <div class="row otherInput">
+                                    <div class="form-group col s4">
+                                        <input placeholder="Other Reason" id="others_specified" class="validate"
+                                            type="text" name="natureOfSeparation" id="others" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label for="exit-other-reasons">Please elaborate your reason/s for
+                                            leaving</label>
+                                        <textarea class="form-control" id="exit-other-reasons"
+                                            class="exit-other-reasons" rows="3" disabled>{{ExitSurveyData.otherReasons}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label>At the time of your onboarding, were your roles and responsibilities made
+                                            clear to you?</label>
+                                    </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="Yes" class="satiscationRoles" name="satiscationRoles"
+                                            checked value="Yes" disabled>
+                                        <label for="Yes">{{ExitSurveyData.satiscationRoles}}</label><br>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>Did you have enough opportunities to explore your skills within our
+                                                organization?</label>
+                                        </div>
+                                        <div class="form-group col s2">
+                                            <input type="radio" id="satiscationOpportunitiesYes"
+                                                class="satiscationOpportunities" name="satiscationOpportunities" checked
+                                                value="Yes" disabled>
+                                            <label
+                                                for="satiscationOpportunitiesYes">{{ExitSurveyData.satiscationOpportunities}}</label><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>What recommendations would you make to improve the job you are
+                                                currently in?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="satiscationRecommendation"
+                                                class="satiscationRecommendation" rows="3"
+                                                disabled>{{ExitSurveyData.satiscationRecommendation}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>Which part of your job gave you the most satisfaction or
+                                                enjoyment?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="satiscationEnjoyment"
+                                                class="satiscationEnjoyment" rows="3"
+                                                disabled>{{ExitSurveyData.satiscationRecommendation}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>Which part of your job frustrated you the most?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="satiscationFrustrate"
+                                                class="satiscationFrustrate" rows="3"
+                                                disabled>{{ExitSurveyData.satiscationEnjoyment}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>How fairly where you treated?</label>
+                                        </div>
+                                        <div class="form-group col s2">
+                                            <input type="radio" id="Extremely Fair" class="satiscationTreatment" checked
+                                                name="satiscationTreatment" value="Extremely Fair" disabled>
+                                            <label
+                                                for="Extremely Fair">{{ExitSurveyData.satiscationTreatment}}</label><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>How often did you feel your contributions were recognized?</label>
+                                        </div>
+                                        <div class="form-group col s2">
+                                            <input type="radio" id="Always" class="satiscationContribution" checked
+                                                name="satiscationContribution" value="Always" disabled>
+                                            <label for="Always">{{ExitSurveyData.satiscationContribution}}</label><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>How easy was it for you to maintain a work-life balance?</label>
+                                        </div>
+                                        <div class="form-group col s2">
+                                            <input type="radio" id="Extremely Easy" class="satiscationWorklikeBalance"
+                                                checked name="satiscationWorklikeBalance" value="Extremely Easy"
+                                                disabled>
+                                            <label
+                                                for="Extremely Easy">{{ExitSurveyData.satiscationWorklikeBalance}}</label><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>Do you think your supervisor/manager gave you enough opportunities to
+                                                use your skills and
+                                                talents based on which you were hired?</label>
+                                        </div>
+                                        <div class="form-group col s2">
+                                            <input type="radio" id="satiscationTalentsYes" class="satiscationTalents"
+                                                checked name="satiscationTalents" value="Yes" disabled>
+                                            <label
+                                                for="satiscationTalentsYes">{{ExitSurveyData.satiscationTalents}}</label><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>How would you describe your relationship with your
+                                                supervisor/manager?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="satiscationManagerRelationship"
+                                                class="satiscationManagerRelationship" rows="3"
+                                                disabled>{{ExitSurveyData.satiscationManagerRelationship}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>How well did the members of your team work together?</label>
+                                        </div>
+                                        <div class="form-group col s2">
+                                            <input type="radio" id="Extremely Well" class="satiscationTeamWork" checked
+                                                name="satiscationTeamWork" value="Extremely Well" disabled>
+                                            <label
+                                                for="Extremely Well">{{ExitSurveyData.satiscationTeamWork}}</label><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>How would you describe your relationship with the members of your
+                                                team?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="satiscationTeamRelationship"
+                                                class="satiscationTeamRelationship" rows="3"
+                                                disabled>{{ExitSurveyData.satiscationTeamRelationship}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>In your opinion, what is the most positive aspect of the
+                                                company?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="companyPositive" class="companyPositive"
+                                                rows="3" disabled>{{ExitSurveyData.companyPositive}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>What would you say is the most negative aspect of the
+                                                company?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="companyNegative" class="companyNegative"
+                                                rows="3" disabled>{{ExitSurveyData.companyNegative}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>If an opportunity arise in the future for you to return to Leonio
+                                                Group, how would you feel about working for us again?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="returnFuture" class="returnFuture"
+                                                rows="3" disabled>{{ExitSurveyData.returnFuture}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col s12">
+                                            <label>Do you have any general comments about your employment with Leonio
+                                                Group that you'd like to make for the record?</label>
+                                        </div>
+                                        <div class="form-group col s12">
+                                            <textarea class="form-control" id="generalComments" class="generalComments"
+                                                rows="3" disabled>{{ExitSurveyData.generalComments}}</textarea>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End  Hover Rows  -->
+
+
+                        <footer>
+
+                        </footer>
+                    </div>
+                    <!-- /. PAGE INNER  -->
+                </div>
+
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+            <!-- TODO: Add script for filter -->
+
+</body>
+
+</html>

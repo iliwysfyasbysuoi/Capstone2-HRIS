@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> {{page_title}} </title> 
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}     
+</head>
+
+<body>
+    <div id="wrapper"> 
+        {{> partials/topnav}}
+        {{> partials/sidenav}} 
+        <div id="page-wrapper">
+            <div class="header" style="display:flex; justify-content:space-between">
+                <h1 class="page-header" id="title">Annual Training Report</h1> 
+                <button type="button" id="exportToPDF" class="green-button" style="border: none; flex-grow:0; margin:32px 22px 10px 28px;">Export to PDF</button>
+            </div>  
+            <div id="page-inner">   
+                <div class="row"> 
+                    <div class="col s12 card">
+                        <div id="ReportHeader" class ="flex-vertical-center">
+                            <div class="col s6 center">
+                                <label for="businessUnit" class="center">Company Name</label>
+                                <select name="businessUnit" id="businessUnit" class="center">
+                                    <option value="" selected disabled>Select a Business Unit</option>
+                                    <option value="Circle Corporation Inc.">Circle Corporation Inc.</option>
+                                    <option value="LNL Archipelago Minerals">LNL Archipelago Minerals</option>
+                                    <option value="Leonio Land">Leonio Land</option>
+                                    <option value="Petrolift">Petrolift</option>
+                                </select> <hr/>
+                                Date Range <br/>
+                                <div class="row">
+                                    <span class="col s1"></span>
+                                    <input type="date" min="2000-01-01" value="" name="s_date" id="s_date" class="col s5"/>
+                                    <span class="col s1">-</span>	
+                                    <input type="date" value="" name="e_date" id="e_date" class="col s5"/>   
+                                </div> 
+                            </div> 
+                        </div>
+                        
+                        <table class="table table-hover table-striped d-none" id="ReportTable">
+                            <thead>
+                                <th>Training Program Title</th>  
+                                <th>Department</th> 
+                                <th>Position</th> 
+                                <th>Number of Participants</th> 
+                                <th>Venue</th> 
+                                <th>Sponsor</th> 
+                                <th>Training Fee</th> 
+
+                                <th>Program Usefulness</th> 
+                                <th>Program Content Adequacy</th> 
+                                <th>Skills Practice</th> 
+                                <th>Instructor Effectiveness (Knowledge)</th> 
+                                <th>Instructor Effectiveness (Delivery)</th> 
+                                <th>Classroom Facility</th> 
+                                <th>Audio Visual Support</th> 
+                                <th>Quality of Lecture Notes</th> 
+                                <th>Program Duration (Days)</th>  		 
+                            </thead>
+                            <tbody>
+                                {{!-- added via javascript /js/Reports/AnnualTrainingBUReport.js --}} 
+                            </tbody>
+                            <tfoot>
+                                {{!-- added via javascript /js/Reports/AnnualTrainingBUReport.js --}} 
+                            </tfoot>
+                        </table>
+                    </div>
+                   
+                </div>
+            </div> 
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  --> 
+
+     <!-- JS Scripts-->
+    {{> partials/endOfBodyJSScripts}}
+    <script defer src="/js/utils/jspdf.umd.js"></script>
+    <script defer src="/js/utils/jspdf.plugin.autotable.js"></script>
+    <script defer src="/js/Reports/AnnualTrainingBUReport.js"> </script>
+</body> 
+</html>

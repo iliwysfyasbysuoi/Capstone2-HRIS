@@ -1,0 +1,292 @@
+<div class="col-md-9" id="PRF-card">
+    <div class="card">
+        <div class="card-action">
+            Interview Feedback
+        </div>
+        <div class="card-content">
+            <!-- Interview form -->
+            <div class="Summary-info ">
+                <param class="applicationID" name="applicationID" value="{{ApplicationData._id}}">
+                <table class=" col s12 ">
+                    <tbody>
+                        <tr></tr>
+                        <tr>
+                            <td class="PRF-info-label">Application #</td>
+                            <td class="applicationID">{{ApplicationData._id}}</td>
+                            <td> </td>
+                            <td class="PRF-info-label">Status</td>
+                            <td class="PRFStatus">{{ApplicationData.status}}</td>
+                            <td> </td>
+                            {{!-- <td class="PRF-info-label approvedDate-label">{{#if
+                                ApplicationData.requisition.approvedDate}}Approved
+                                Date{{/if}}</td>
+                            <td class="optional-button approvedDate">{{#if
+                                PRF.approvedDate}}{{PRF.approvedDateString}}{{/if}}</td> --}}
+                        </tr>
+                        <tr>
+                            <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                        </tr>
+
+                        <tr>
+                            <td class="PRF-info-label">First Name</td>
+                            <td class="first_name">{{ApplicationData.user.firstName}}</td>
+                            <td> </td>
+                            <td class="PRF-info-label">Middle Name</td>
+                            <td class="middle_name">{{ApplicationData.user.middleName}}</td>
+                            <td> </td>
+                            <td class="PRF-info-label">Last Name</td>
+                            <td class="last_name">{{ApplicationData.user.lastName}}</td>
+                            <td> </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="PRF-info-label">Position Title</td>
+                            <td class="position_title">{{ApplicationData.requisition.positionTitle}}</td>
+                            <td> </td>
+                            <td class="PRF-info-label">Department</td>
+                            <td class="department">{{ApplicationData.requisition.department}}</td>
+                            <td> </td>
+                            <td class="PRF-info-label">Business Unit</td>
+                            <td class="business_unit">{{ApplicationData.requisition.businessUnit}}</td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td class="PRF-info-label">Target Start Date</td>
+                            <td class="target_startDate">{{ formatDate ApplicationData.requisition.targetStartDate}}
+                            </td>
+                            <td> </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                        </tr>
+                        <!--Initial Interview Details -->
+                        <tr>
+                            <td class="PRF-info-label">Initial Interview</td>
+                        </tr>
+                        <tr>
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Competency</th>
+                                        <th>Rating</th>
+                                        <th>Comments</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Personal Background and Academic Preparations</td>
+                                        <td class="pbac_rating">{{ApplicationData.initialInterviewFeedback.pbac}}</td>
+                                        <td class="pbac_comments">
+                                            {{ApplicationData.initialInterviewFeedback.pbac_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Interpersonal/Communication Skills</td>
+                                        <td class="ic_skills_rating">
+                                            {{ApplicationData.initialInterviewFeedback.ic_skills}}</td>
+                                        <td class="ic_skills_comments">
+                                            {{ApplicationData.initialInterviewFeedback.ic_skills_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Work Experience/Work History</td>
+                                        <td class="work_history_rating">
+                                            {{ApplicationData.initialInterviewFeedback.work_history}}</td>
+                                        <td class="work_history_comments">
+                                            {{ApplicationData.initialInterviewFeedback.work_history_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Functional Skills</td>
+                                        <td class="functional_skills_rating">
+                                            {{ApplicationData.initialInterviewFeedback.functional_skills}}</td>
+                                        <td class="functional_skills_comments">
+                                            {{ApplicationData.initialInterviewFeedback.functional_skills_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Personality/Personal Impact</td>
+                                        <td class="personality_rating">
+                                            {{ApplicationData.initialInterviewFeedback.personality}}</td>
+                                        <td class="personality_comments">
+                                            {{ApplicationData.initialInterviewFeedback.personality_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overall Impression</td>
+                                        <td class="initial_impression_rating">
+                                            {{ApplicationData.initialInterviewFeedback.impression}}</td>
+                                        <td class="initial_impression_comments">
+                                            {{ApplicationData.initialInterviewFeedback.impression_comments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Total Rating</b></td>
+                                        <td class="initial_total_rating">
+                                            {{ApplicationData.initialInterviewFeedback.totalRating}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </tr>
+                        <table>
+                            <tr>
+                                <td class="PRF-info-label">Other Comments/Areas For Improvement and Recommendation</td>
+                                <td class="initial_other_comments">
+                                    {{ApplicationData.initialInterviewFeedback.other_comments}}</td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                            </tr>
+
+                            <!-- Second interview details-->
+                            <tr>
+                                <td class="PRF-info-label">Functional In-Depth Interview</td>
+                            </tr>
+                            <tr>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Competency</th>
+                                            <th>Rating</th>
+                                            <th>Comments</th>
+                                        </tr>
+                                    </thead>
+                                    {{#with ApplicationData.functionalInterviewFeedback as |functional| }}
+                                    <tbody>
+                                        <tr>
+                                            <td>Practical Experience</td>
+                                            <td class="practical_experience_rating">{{functional.practical_experience}}
+                                            </td>
+                                            <td class="practical_experience_comments">
+                                                {{functional.practical_experience_comments}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Functional Expertise/Job Mastery</td>
+                                            <td class="functional_expertise_rating">{{functional.functional_expertise}}
+                                            </td>
+                                            <td class="functional_expertise_comments">
+                                                {{functional.functional_expertise_comments}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Management Skills</td>
+                                            <td class="management_skills_rating">{{functional.management_skills}}</td>
+                                            <td class="management_skills_comments">
+                                                {{functional.management_skills_comments}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Responsibility and Resourcefulness</td>
+                                            <td class="response_resource_rating">{{functional.response_resource}}</td>
+                                            <td class="response_resource_comments">
+                                                {{functional.response_resource_comments}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Personal/Self-Management</td>
+                                            <td class="self_management_rating">{{functional.self_management}}</td>
+                                            <td class="self_management_comments">{{functional.self_management_comments}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overall Impression</td>
+                                            <td class="functional_impression_rating">{{functional.impression}}</td>
+                                            <td class="functional_impression_comments">
+                                                {{functional.impression_comments}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Total Rating</b></td>
+                                            <td class="functional_total_rating">{{functional.totalRating}}</td>
+                                        </tr>
+                                    </tbody>
+                                    {{/with}}
+                                </table>
+                            </tr>
+                            <table>
+                                <tr>
+                                    <td class="PRF-info-label">Other Comments/Areas For Improvement and Recommendation
+                                    </td>
+                                    <td class="functional_other_comments">
+                                        {{ApplicationData.functionalInterviewFeedback.other_comments}}</td>
+                                    <td> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                                </tr>
+
+                                <!-- Third interview details-->
+                                {{#with ApplicationData.finalInterviewFeedback as |final|}}
+                                <tr>
+                                    <td class="PRF-info-label">Final Interview</td>
+                                </tr>
+                                <tr>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Competency</th>
+                                                <th>Rating</th>
+                                                <th>Comments</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Organizational Culture Fit</td>
+                                                <td class="org_fit_rating">{{final.org_fit}}</td>
+                                                <td class="org_fit_comments">{{final.org_fit_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Personal Core Values Displayed</td>
+                                                <td class="core_values_rating">{{final.core_values}}</td>
+                                                <td class="core_values_comments">{{final.core_values_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Leadership Attributes</td>
+                                                <td class="leadership_rating">{{final.leadership}}</td>
+                                                <td class="leadership_comments">{{final.leadership_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Innovation/Entrepreneurship</td>
+                                                <td class="innovation_rating">{{final.innovation}}</td>
+                                                <td class="innovation_comments">{{final.innovation_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Accountability and Stewardship</td>
+                                                <td class="accountability_rating">{{final.accountability}}</td>
+                                                <td class="accountability_comments">{{final.accountability_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Personal Effectiveness</td>
+                                                <td class="personal_effectiveness_rating">{{final.personal_effectiveness}}</td>
+                                                <td class="personal_effectiveness_comments">{{final.personal_effectiveness_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Potential for Growth/To Assume Next Higher Position</td>
+                                                <td class="potential_growth_rating">{{final.potential_growth}}</td>
+                                                <td class="potential_growth_comments">{{final.potential_growth_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Overall Impression</td>
+                                                <td class="final_impression_rating">{{final.overall_impression}}</td>
+                                                <td class="final_impression_comments">{{final.overall_impression_comments}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Total Rating</b></td>
+                                                <td class="final_total_rating">{{final.totalRating}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </tr>
+                                <table>
+                                    <tr>
+                                        <td class="PRF-info-label">Other Comments/Areas For Improvement and
+                                            Recommendation</td>
+                                        <td class="final_other_comments">{{final.other_comments}}</td>
+                                        <td> </td>
+                                    </tr>
+                                </table>
+                                {{/with}}
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!--TODO: add personal information form details [?] -->
+
+        </div>
+    </div>
+</div>

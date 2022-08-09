@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Nomination</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Nomination
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="col-md-12" id="PRF-card">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <tbody>
+                                        <tr>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Training ID</td>
+                                            <td class="trainingID">{{training.trainingID}}</td>
+
+                                            <td class="PRF-info-label">Date created</td>
+                                            <td class="requestDate">{{formatDateAndTime training.requestDate}}</td>
+
+                                            <td class="PRF-info-label">Last updated</td>
+                                            <td class="updatedDate">{{formatDateAndTime training.updatedDate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="PRF-info-label">Status</td>
+                                            <td class="status">{{training.status}}</td>
+                                            <td> </td>
+
+                                            <td class="PRF-info-label">Training Fee</td>
+                                            <td class="trainingFee">{{training.trainingFee}}</td>
+                                            <td> </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="PRF-info-label">Title</td>
+                                            <td class="title" colspan="5">{{training.trainingTitle}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Venue</td>
+                                            <td>{{training.venue}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Sponsor</td>
+                                            <td class="sponsor" colspan="2">{{training.sponsor}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">Inclusive Dates:</td>
+                                        </tr>
+                                        {{#each training.inclusiveDates}}
+                                            <tr>
+                                                <td colspan="6">{{formatDateAndTime this}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <thead>
+                                        <tr>
+                                            <th>Business Unit</th>
+                                            <th>Department</th>
+                                            <th>Position</th>
+                                            <th>Skill</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each training.skills}}
+                                            <tr>
+                                                <td>{{skillBusinessUnit}} </td>
+                                                <td>{{skillDepartment}} </td>
+                                                <td>{{skillPosition}} </td>
+                                                <td>{{skillName}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <thead>
+                                        <tr>
+                                            <th>Registration Requirements</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each training.registrationRequirements}}
+                                            <tr>
+                                                <td>{{this}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="PRF-info  ">
+                                <table class=" col s12 ">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>Position</th>
+                                            <th colspan="2">Contractual Period</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each training.employees}}
+                                            <tr>
+                                                <td>{{employeeName}} </td>
+                                                <td>{{employeePosition}} </td>
+                                                <td colspan="2">{{employeeContractPeriod}} </td>
+                                            </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+
+
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+
+
+</body>
+
+</html>

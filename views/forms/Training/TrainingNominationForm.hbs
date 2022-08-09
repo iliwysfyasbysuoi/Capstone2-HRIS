@@ -1,0 +1,356 @@
+<div class="row">
+	<div class="col-lg-12">
+		<form
+			class="card"
+			method="POST"
+			action="/submitTrainingNominationForm"
+			id="tnfForm"
+		>
+
+			<input
+				placeholder=""
+				id="skillSetupID"
+				name="skillSetupID"
+				type="hidden"
+				value="{{id}}"
+				required
+			/>
+			<div class="card-action">
+				<div class="col s12">
+					<div class="row">
+						<div class="form-group col s4">
+							<label for="trainingID">Training #</label>
+							<input
+								placeholder=""
+								id="trainingID"
+								name="trainingID"
+								type="text"
+								class="trainingID"
+								disabled
+							/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col s12">
+							<label for="trainingTitle">Title of Training Program</label>
+							<input
+								placeholder="Title"
+								id="trainingTitle"
+								name="trainingTitle"
+								type="text"
+								class="trainingTitle"
+								value="{{query.trainingTitle}}"
+								required
+							/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col s12">
+							<label for="sponsor">Sponsor/Organizer</label>
+							<input
+								placeholder="Sponsor/Organizer Name"
+								id="sponsor"
+								name="sponsor"
+								type="text"
+								class="sponsor"
+								value="{{query.sponsor}}"
+								required
+							/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col s12">
+							<label for="venue">Venue of the Training</label>
+							<input
+								placeholder="Venue"
+								id="venue"
+								name="venue"
+								type="text"
+								class="venue"
+								value="{{query.venue}}"
+								required
+							/>
+						</div>
+					</div>
+
+					<!-- Add and remove dates -->
+					<div class="row" id="dates">
+						<div class="toolpair col s12">
+							<div class="form-group col s6">
+								<label for="skillPosition"> Inclusive Dates</label>
+								<input
+									placeholder=""
+									name="inclusiveDates"
+									type="datetime-local"
+									class="inclusiveDates"
+									required
+								/>
+							</div>
+							<div class="col s4">
+								<a
+									class="btn-floating addDate"
+									style="position: relative; left: 15px;"
+								>
+									<i class="material-icons">add</i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearBoth"></div>
+
+			<div class="card-action">
+				<div class="col s12">
+					<div class="row">
+						<div class="form-group col s12">
+							<label for="reason">Reason(s)/Justification for the Training
+								Program</label>
+							<textarea
+								class="form-control"
+								id="trainingReason"
+								name="trainingReason"
+								rows="3"
+								class="trainingReason"
+								form="tnfForm"
+								value="{{query.reason}}"
+								required
+							></textarea>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col s9">
+							<label for="trainingFee">Training/Program Fee</label>
+						</div>
+						<div class="form-group col s4">
+							<input
+								placeholder=""
+								id="trainingFee"
+								name="trainingFee"
+								type="number"
+								class="trainingFee"
+								min="0"
+								value="{{query.trainingFee}}"
+								required
+							/>
+						</div>
+					</div>
+
+					<!-- Add and remove requirements -->
+					<div class="row">
+						<div class="form-group col s9">
+							<label for="registrationRequirements">Registration Requirements</label>
+						</div>
+					</div>
+					<div class="row" id="reqs">
+						<div class="toolpair col s12">
+							<div class="form-group col s9">
+								<input
+									placeholder="Requirement"
+									id="registrationRequirements"
+									name="registrationRequirements"
+									type="text"
+									class="registrationRequirements"
+									required
+								/>
+							</div>
+							<div class="form-group col s3 registrationRequirements">
+								<a
+									class="btn-floating addReq"
+									style="position: relative; left: 15px;"
+								>
+									<i class="material-icons">add</i>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col s6">
+							<label for="skillBusinessUnit">Business Unit</label>
+							<select
+								class="businessUnit"
+								id="businessUnitDropdown"
+								name="businessUnit"
+								required
+							>
+								<option value="" selected disabled>Select Business Unit</option>
+							</select>
+						</div>
+
+						<div class="form-group col s6">
+							<label for="departmentDropdown">Department</label>
+							<select
+								class="department"
+								id="departmentDropdown"
+								name="department"
+								required
+							>
+								<option value="" selected disabled>Select Department</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col s9">
+							<label>Target KPI</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col s9" id="tools_kpi">
+							<div class="toolsOfTrade">
+								<div class="toolpair col s12" style="padding:15px 0;">
+									<div class="col s10">
+										<select class="kpi" id="kpi0" name="kpi">
+											<option value="" selected disabled>Select a KPI</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="margin-left: 2px;">
+							<a class="waves-effect waves-light btn add_KPI"><i
+									class="material-icons left"
+								>add</i>Add more KPI's</a>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col s9">
+							<label>Target Skill</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col s9" id="tools">
+							<div class="toolsOfTrade">
+								<div class="toolpair col s12">
+									<div class="form-group col s6">
+										<label for="skillPosition0">Position</label>
+										<select
+											class="skillPosition"
+											id="skillPosition0"
+											name="skillPosition"
+											required
+										>
+											<option value="" selected disabled>Select Position</option>
+										</select>
+									</div>
+
+									<div class="col s4">
+										<label for="skillName0"> Skill Name</label>
+										<select
+											class="skillName"
+											id="skillName0"
+											name="skillName"
+											required
+										>
+											<option value="" selected disabled>Select Skill</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row" style="margin-left: 2px;">
+							<a class="waves-effect waves-light btn addSkill"><i
+									class="material-icons left"
+								>add</i>Add more skills</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="clearBoth"></div>
+
+			<!--Add and remove employees-->
+
+			<div class="card-action">
+				<div class="col s12">
+					<div class="row">
+						<a
+							class="waves-effect waves-light btn addEmployee"
+							style="float: right;"
+							id="submit"
+						>Add Employee</a>
+					</div>
+					<div class="row">
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Position Title</th>
+									<th>Employee Name</th>
+									<th>Training/Holding Contract Period</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody id="employeeTrainingList" class="employeeTrainingList">
+								<tr>
+									<td>
+										<select
+											class="employeePosition"
+											id="employeePosition0"
+											name="employeePosition"
+											required
+										>
+											<option value="" selected disabled>
+												Select Position</option>
+										</select>
+									</td>
+									<td>
+										<div class="hello">
+											<select
+												class="employeeName"
+												id="employeeName0"
+												name="employeeName"
+												required
+											>
+												<option value="" selected disabled>Select Employee</option>
+											</select>
+										</div>
+									</td>
+									<td>
+										<input
+											placeholder=""
+											id="employeeContractPeriod0"
+											name="employeeContractPeriod"
+											type="text"
+											class="employeeContractPeriod"
+											required
+										/>
+										<input
+											placeholder=""
+											id="employeeID0"
+											name="employeeID"
+											type="text"
+											hidden
+											required
+										/>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="clearBoth"></div>
+			<div class="clearBoth"></div>
+
+			<div class="card-action">
+				<div class="row">
+					<center><button
+							class="waves-effect waves-light btn"
+							type="submit"
+						>Submit for Approval</button></center>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+{{! i used snackbar/toast here instead of modal since actual notice lang siya, no need for other details }}
+<!-- The actual snackbar -->
+<div id="snackbar">Training cannot happen on the same day. Please modify.</div>

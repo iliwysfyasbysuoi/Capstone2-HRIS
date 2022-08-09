@@ -1,0 +1,357 @@
+<div class="row">
+    <div class="col-lg-12">
+        <form class="card" action="/ExitSurveyForm" method="POST">
+
+            <div class="col s12">
+
+                <!-- Personal Info -->
+                <div class="card-action">
+                    <div class="col s12">
+
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <label for="date_separation" class="form-control-label">Forwarding Address</label>
+                                <input placeholder="Forwarding Address" id="forwardAddress" class="validate" type="text"
+                                    name="forwardAddress" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s8">
+                                <label for="date_separation" class="form-control-label">Personal E-mail Address</label>
+                                <input placeholder="E-mail Address" id="forwardAddress" class="validate" type="text"
+                                    name="personalEmail" required>
+                            </div>
+                            <div class="form-group col s4">
+                                <label for="date_separation" class="form-control-label">Personal Mobile Number</label>
+                                <input type="text" id="mobileNum" maxlength="11" data-fv-numeric="true"
+                                    data-fv-numeric-message="Please enter valid phone numbers"
+                                    data-fv-phone-country11="IN" required="required"
+                                    data-fv-notempty-message="This field cannot be left blank."
+                                    placeholder="Mobile No. " class="form-control" name="mobileNum"
+                                    data-fv-field="mobileNum">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearBoth"></div>
+
+                <!-- Survey Questions -->
+                <div class="card-action">
+                    <div class="col s12">
+
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <label class="form-control-label">Why are you leaving your current position?</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-1" name="reasonLeave" value="Better pay elsewhere" />
+                                <label for="exit-1">Better pay elsewhere</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-2" name="reasonLeave"
+                                    value="Better benefits elsewhere" />
+                                <label for="exit-2">Better benefits elsewhere</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-3" name="reasonLeave"
+                                    value="Better job opportunities elsewhere" />
+                                <label for="exit-3">Better job opportunities elsewhere</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-4" name="reasonLeave" value="Commute" />
+                                <label for="exit-4">Commute</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-5" name="reasonLeave"
+                                    value="Conflict with other employees" />
+                                <label for="exit-5">Conflict with other employees</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-6" name="reasonLeave"
+                                    value="Family and personal reasons" />
+                                <label for="exit-6">Family and personal reasons</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-8" name="reasonLeave" value="Relocation/move" />
+                                <label for="exit-8">Relocation/move</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-9" name="reasonLeave" value="Company instability" />
+                                <label for="exit-9">Company instability</label>
+                            </div>
+                            <div class="form-group col s3">
+                                <input type="checkbox" id="exit-10" />
+                                <label for="exit-10">Other</label>
+                            </div>
+                        </div>
+                        <div class="row otherInput">
+                        </div>
+                        <input type="text" value="{{offboardingId}}" name="offboardingId" hidden>
+
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <label for="exit-other-reasons">Please elaborate your reason/s for leaving</label>
+                                <textarea class="form-control" id="exit-other-reasons" class="exit-other-reasons"
+                                    name="otherReasons" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <label>At the time of your onboarding, were your roles and responsibilities made clear
+                                    to you?</label>
+                            </div>
+                            <div class="form-group col s2">
+                                <input type="radio" id="Yes" class="satiscationRoles" name="satiscationRoles"
+                                    value="Yes" required>
+                                <label for="Yes">Yes</label><br>
+                                <input type="radio" id="Partially" class="satiscationRoles" name="satiscationRoles"
+                                    value="Partially" required>
+                                <label for="Partially">Partially</label><br>
+                                <input type="radio" id="No" class="satiscationRoles" name="satiscationRoles" value="No"
+                                    required>
+                                <label for="No">No</label>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>Did you have enough opportunities to explore your skills within our
+                                        organization?</label>
+                                </div>
+                                <div class="form-group col s2">
+                                    <input type="radio" id="satiscationOpportunitiesYes"
+                                        class="satiscationOpportunities" name="satiscationOpportunities" value="Yes"
+                                        required>
+                                    <label for="satiscationOpportunitiesYes">Yes</label><br>
+                                    <input type="radio" id="satiscationOpportunitiesNo" class="satiscationOpportunities"
+                                        name="satiscationOpportunities" value="No" required>
+                                    <label for="satiscationOpportunitiesNo">No</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>What recommendations would you make to improve the job you are currently
+                                        in?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="satiscationRecommendation"
+                                        name="satiscationRecommendation" class="satiscationRecommendation" rows="3"
+                                        required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>Which part of your job gave you the most satisfaction or enjoyment?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="satiscationEnjoyment" name="satiscationEnjoyment"
+                                        class="satiscationEnjoyment" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>Which part of your job frustrated you the most?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="satiscationFrustrate" id="satiscationFrustrate"
+                                        class="satiscationFrustrate" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>How fairly where you treated?</label>
+                                </div>
+                                <div class="form-group col s2">
+                                    <input type="radio" id="Extremely Fair" class="satiscationTreatment"
+                                        name="satiscationTreatment" value="Extremely Fair" required>
+                                    <label for="Extremely Fair">Extremely Fair</label><br>
+                                    <input type="radio" id="Very Fairly" class="satiscationTreatment"
+                                        name="satiscationTreatment" value="Very Fairly" required>
+                                    <label for="Very Fairly">Very Fairly</label><br>
+                                    <input type="radio" id="Somewhat Fairly" class="satiscationTreatment"
+                                        name="satiscationTreatment" value="Somewhat Fairly" required>
+                                    <label for="Somewhat Fairly">Somewhat Fairly</label><br>
+                                    <input type="radio" id="Not So Fairly" class="satiscationTreatment"
+                                        name="satiscationTreatment" value="Not So Fairly" required>
+                                    <label for="Not So Fairly">Not So Fairly</label><br>
+                                    <input type="radio" id="Not At All Fairly" class="satiscationTreatment"
+                                        name="satiscationTreatment" value="Not At All Fairly" required>
+                                    <label for="Not At All Fairly">Not At All Fairly</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>How often did you feel your contributions were recognized?</label>
+                                </div>
+                                <div class="form-group col s2">
+                                    <input type="radio" id="Always" class="satiscationContribution"
+                                        name="satiscationContribution" value="Always" required>
+                                    <label for="Always">Always</label><br>
+                                    <input type="radio" id="Most Of The Time" class="satiscationContribution"
+                                        name="satiscationContribution" value="Most Of The Time" required>
+                                    <label for="Most Of The Time">Most Of The Time</label><br>
+                                    <input type="radio" id="Once In A While" class="satiscationContribution"
+                                        name="satiscationContribution" value="Once In A While" required>
+                                    <label for="Once In A While">Once In A While</label><br>
+                                    <input type="radio" id="Never" class="satiscationContribution"
+                                        name="satiscationContribution" value="Never" required>
+                                    <label for="Never">Never</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>How easy was it for you to maintain a work-life balance?</label>
+                                </div>
+                                <div class="form-group col s2">
+                                    <input type="radio" id="Extremely Easy" class="satiscationWorklikeBalance"
+                                        name="satiscationWorklikeBalance" value="Extremely Easy" required>
+                                    <label for="Extremely Easy">Extremely Easy</label><br>
+                                    <input type="radio" id="Very Easy" class="satiscationWorklikeBalance"
+                                        name="satiscationWorklikeBalance" value="Very Easy" required>
+                                    <label for="Very Easy">Very Easy</label><br>
+                                    <input type="radio" id="Somewhat Easy" class="satiscationWorklikeBalance"
+                                        name="satiscationWorklikeBalance" value="Somewhat Easy" required>
+                                    <label for="Somewhat Easy">Somewhat Easy</label><br>
+                                    <input type="radio" id="Not So Easy" class="satiscationWorklikeBalance"
+                                        name="satiscationWorklikeBalance" value="Not So Easy" required>
+                                    <label for="Not So Easy">Not So Easy</label><br>
+                                    <input type="radio" id="Not At All Easy" class="satiscationWorklikeBalance"
+                                        name="satiscationWorklikeBalance" value="Not At All Easy" required>
+                                    <label for="Not At All Easy">Not At All Easy</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>Do you think your supervisor/manager gave you enough opportunities to use
+                                        your skills and
+                                        talents based on which you were hired?</label>
+                                </div>
+                                <div class="form-group col s2">
+                                    <input type="radio" id="satiscationTalentsYes" class="satiscationTalents"
+                                        name="satiscationTalents" value="Yes" required>
+                                    <label for="satiscationTalentsYes">Yes</label><br>
+                                    <input type="radio" id="satiscationTalentsNo" class="satiscationTalents"
+                                        name="satiscationTalents" value="No" required>
+                                    <label for="satiscationTalentsNo">No</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>How would you describe your relationship with your
+                                        supervisor/manager?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="satiscationManagerRelationship"
+                                        name="satiscationManagerRelationship" class="satiscationManagerRelationship"
+                                        rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>How well did the members of your team work together?</label>
+                                </div>
+                                <div class="form-group col s2">
+                                    <input type="radio" id="Extremely Well" class="satiscationTeamWork"
+                                        name="satiscationTeamWork" value="Extremely Well" required>
+                                    <label for="Extremely Well">Extremely Well</label><br>
+                                    <input type="radio" id="Very Well" class="satiscationTeamWork"
+                                        name="satiscationTeamWork" value="Very Well" required>
+                                    <label for="Very Well">Very Well</label><br>
+                                    <input type="radio" id="Somewhat Well" class="satiscationTeamWork"
+                                        name="satiscationTeamWork" value="Somewhat Well" required>
+                                    <label for="Somewhat Well">Somewhat Well</label><br>
+                                    <input type="radio" id="Not So Well" class="satiscationTeamWork"
+                                        name="satiscationTeamWork" value="Not So Well" required>
+                                    <label for="Not So Well">Not So Well</label><br>
+                                    <input type="radio" id="Not At All Well" class="satiscationTeamWork"
+                                        name="satiscationTeamWork" value="Not At All Well" required>
+                                    <label for="Not At All Well">Not At All Well</label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>How would you describe your relationship with the members of your
+                                        team?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="satiscationTeamRelationship"
+                                        name="satiscationTeamRelationship" class="satiscationTeamRelationship" rows="3"
+                                        required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>In your opinion, what is the most positive aspect of the company?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="companyPositive" name="companyPositive"
+                                        class="companyPositive" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>What would you say is the most negative aspect of the company?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="companyNegative" name="companyNegative"
+                                        class="companyNegative" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>If an opportunity arise in the future for you to return to Leonio Group, how
+                                        would you feel about working for us again?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="returnFuture" name="returnFuture"
+                                        class="returnFuture" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col s12">
+                                    <label>Do you have any general comments about your employment with Leonio Group that
+                                        you'd like to make for the record?</label>
+                                </div>
+                                <div class="form-group col s12">
+                                    <textarea class="form-control" id="generalComments" name="generalComments"
+                                        class="generalComments" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="clearBoth"></div>
+
+                <div class="card-action">
+                    <div class="row">
+                        <center><button class="waves-effect waves-light btn" id="submit" type="submit">Submit</button>
+                        </center>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="clearBoth"></div>
+    </div>
+    </forms>
+</div>

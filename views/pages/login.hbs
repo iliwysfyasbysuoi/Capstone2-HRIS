@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Leonio Group</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body style="height: 100%;">
+
+
+    <div id="wrappers" style="height: 100vh;">
+        <div class="row">
+            <div class=" col s12">
+                <div class="" style="justify-content: center; display: flex; margin: 25px 0px 25px 0px;">
+                    <img src="/img/leonio_group_logo_white.png" alt="Avatar" class="avatar"
+                        style="max-width:300px; text-align: center;">
+                </div>
+            </div>
+        </div>
+
+        {{!-- <div class="col-md-12"> --}}
+            <div class="row">
+                <div class="col s2">
+
+                </div>
+                <div class="col s8">
+                    <div class="card">
+                        <div class="card-action center card-title">
+                            Login
+                        </div>
+                        <div class="card-content " style="justify-content: center; display: flex;">
+
+                            <form action="/login" method="post">
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" name="email" class="validate">
+                                    <label for="email" data-error="Invalid Email" data-success="">Email</label>
+                                </div>
+
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" name="password" class="validate">
+                                    <label for="password" data-error="wrong" data-success="">Password</label>
+                                </div>
+
+                                <button type="submit" class="btn">Login</button> <span> {{err}}</span>
+
+                                <br><br>
+                                <p>Register instead?</p>
+                                <a href="/Register" type="button" class="waves-effect waves-light btn ">Register as
+                                    an applicant</a>
+                                    <br><br>
+                                
+                                <a href="/JobListing" type="button" class="waves-effect waves-light btn ">Browse Job Listings</a>
+                            </form>
+
+
+
+                            <div class="clearBoth"></div>
+                        </div>
+                    </div>
+                </div>
+
+            {{!-- </div> --}}
+            {{!-- <div class="col s2">
+
+            </div> --}}
+        </div>
+
+
+    </div>
+
+    <!-- JS Scripts-->
+    {{> partials/endOfBodyJSScripts}}
+
+    <script>
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

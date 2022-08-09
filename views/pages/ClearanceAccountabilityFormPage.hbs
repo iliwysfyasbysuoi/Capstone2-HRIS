@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clearance Accountability Form</title>
+    <script src="/js/accountability.js" type="text/javascript" defer> </script>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Clearance Accountability Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="  ">
+                            <table class=" col s12 ">
+                                <tbody>
+                                    <tr>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="PRF-info-label">Offboarding ID</td>
+                                        <td class="requisitionID">{{offboarding.offboardingID}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="PRF-info-label">Name</td>
+                                        <td class="PRFStatus">{{offboarding.name}}</td>
+                                        <td> </td>
+
+                                        <td class="PRF-info-label">Status</td>
+                                        <td class="PRFStatus">{{offboarding.status}}</td>
+                                        <td> </td>
+                                        <td class="PRF-info-label">Position</td>
+                                        <td>{{offboarding.position}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="PRF-info-label">Business Unit/Company</td>
+                                        <td>{{offboarding.businessUnit}}</td>
+                                        <td> </td>
+                                        <td class="PRF-info-label">Department</td>
+                                        <td>{{offboarding.department}}</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="PRF-info-label">Request Date</td>
+                                        <td>{{formatDateAndTime offboarding.requestDate}}</td>
+                                        <td> </td>
+                                        <td class="PRF-info-label">Update Date</td>
+                                        <td>{{formatDateAndTime offboarding.updatedDate}}</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="buttons">
+                        <form class="card" action="/SubmitClearanceAccountabilityForm" method="POST">
+
+                            {{#if message}}
+                            <div class="alert alert-danger center" role="alert">
+                                {{message}}
+                            </div>
+                            {{/if}}
+
+                            <input type="hidden" name="id" id="id" value="{{offboarding._id}}" />
+                            {{> forms/ClearanceAccountabilityForm }}
+                            <div class="card-action">
+                                <div class="row">
+                                    <center>
+
+                                        <button class="waves-effect waves-light btn submit" name="buttontype"
+                                            value="submit" type="submit">Submit</button>
+
+                                        <button class="waves-effect waves-light btn save" name="buttontype" value="save"
+                                            type="submit">Save</button>
+                                    </center>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+
+
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+
+
+</body>
+
+</html>

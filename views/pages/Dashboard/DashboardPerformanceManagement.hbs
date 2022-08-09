@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeonioLand Dashboard - Performance Management</title> 
+    {{!-- head stylesheets and js --}}
+  {{> partials/headlinks}}  
+   
+</head>
+
+<body>
+    <div id="wrapper"> 
+        {{> partials/topnav}}
+        {{> partials/sidenav}} 
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Dashboard - Performance Management 
+                </h1> 
+            </div>
+            <div id="page-inner">  
+                <div class="row"> 
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10" > 
+                        <form class="card" style="padding:2rem" action="submit-report/perfomgmt" method="post"> 
+                            {{#each dashHTMLData}}  
+                                {{#each forData}}
+                                    <input type="text" name="DataArray{{this.dataName}}" id="{{this.dataId}}" hidden>
+                                {{/each}}
+                                <div style="padding-bottom:{{#if hr}}50px{{else}}25px{{/if}}; padding-top:25px "> 
+                                    {{#if minDate}} 
+                                        {{title}}  
+                                        <div class="col-12 row" style="margin-top: 10px;"> 
+                                            <input type="text" name="{{dateId}}realStartDate" id="{{dateId}}realStartDate" hidden>
+                                            <input type="text" name="{{dateId}}realEndDate" id="{{dateId}}realEndDate" hidden> 
+                                            <div class="col-md-4"><i>From</i><input type="date" min="{{minDate}}" max="{{maxDate}}" id="{{dateId}}startDate" name="{{dateId}}startDate" value="" required/></div>
+                                             <div class="col-md-4"><i>to</i><input type="date" min="{{minDate}}" max="{{maxDate}}" id="{{dateId}}endDate" name="{{dateId}}endDate" value="" required/></div>
+                                            <button type='button' class="col-md-4 btn" id="{{dateId}}DateRange">Apply Date Range</button>
+                                            {{#if buDeptFilter}}
+                                                <input type="text" hidden id='realbufilter' name='realbufilterName' value="All Business Units"/>
+                                                <input type="text" hidden id='realdptfilter' name='realdptfilterName' value="All Departments"/>
+                                                <select name="" id="bufilter" class="col-md-5" required><option value="All Business Units" selected>All Business Units</option></select>
+                                                <select name="" id="dptfilter" class="col-md-5" required><option value="All Departments" selected>All Departments</option></select>
+                                                <button class="col-md-2 btn" id="buDeptFilterBtn" type="button">Apply Filter</button>
+                                            {{/if}}
+                                            {{#if deptPosFilter}}
+                                                <input type="text" hidden id='realdptrevfilter' name='realdptrevfilterName' value="All Departments"/>
+                                                <input type="text" hidden id='realposrevfilter' name='realposrevfilterName' value="All Positions"/>
+                                                <select name="" id="dptrevfilter" class="col-md-5" required><option value="All Departments" selected>All Departments</option></select>
+                                                <select name="" id="posrevfilter" class="col-md-5" required><option value="All Positions" selected>All Positions</option></select>
+                                                <button class="col-md-2 btn" id="deptPosFilterBtn" type="button">Apply Filter</button>
+                                            {{/if}}
+                                        </div> 
+                                    {{/if}} 
+
+                                    <h5>{{title}}</h5>
+                                    <div class="col-12"  style="margin-bottom:25px;" >
+                                        <canvas id="{{chartId}}" width="400" height="400" style="max-height: 45vh "></canvas> 
+                                    </div>    
+                                    {{#if rateDes}} 
+                                        <ul style="padding: 20px ;">
+                                            <li>1	Exceeds all targets and expectations by more than 50%</li>
+                                            <li>2	Met 100% of the targets and expectations and exceeded them by at least 10%</li>
+                                            <li>3	All targets and expectations met</li>
+                                            <li>4	Most targets and expectations met by at least 75%. Performance at this level is marginally below required levels</li>
+                                            <li>5	Employee did not meet the objective of the project/ showed negative or adverse influence</li>
+
+                                        </ul> 
+                                    {{/if }}
+                                    <h6>Chart Description</h6> 
+                                    <textarea class="form-control" id="{{chartId}}-ta"
+                                        name="{{chartId}}-ta-name" rows="10"  required></textarea> 
+                                </div>
+                                {{#if hr}}   <hr/>  {{/if}}
+                            {{/each}} 
+                            <center><button id="btn" class=" btn btn-outline-primary" type="submit" 
+                                    style="margin:10px">Submit Report</button></center>
+                        </form>  
+                    </div>    
+                    <div class="col-md-1"></div>  
+                </div>
+            </div> 
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  --> 
+    <!-- JS Scripts-->
+   
+    {{> partials/endOfBodyJSScripts}}    
+    <script src="/js/Dashboard/charts.js" type="text/javascript" defer> </script>
+    <script src="/js/Dashboard/perfomgmt.js" type="text/javascript" defer> </script>
+</body> 
+</html>

@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.offboardings"}],"uuid":"5d47cfc7fede450d861722a2c7f4bc42","collectionName":"offboardings","type":"collection"}

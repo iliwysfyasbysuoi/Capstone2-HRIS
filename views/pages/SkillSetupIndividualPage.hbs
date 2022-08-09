@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills Assessment</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Skills Set Up
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content">
+
+                                <div class="row">
+                                   <table class=" col s12 ">
+                                    <tbody>
+                                        <tr></tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Skill ID</td>
+                                            <td class="employeeName">{{skill.skillID}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Position Title/Designation</td>
+                                            <td class="employeePosition">{{skill.skillPositionTitle}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Division/Department</td>
+                                            <td class="employeeDepartment">{{skill.skillDepartment}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Business Unit</td>
+                                            <td class="employeeBusinessUnit">{{skill.skillBusinessUnit}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Number of Cycles</td>
+                                            <td class="employeeBusinessUnit">{{skill.cycles}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Review Cycle</td>
+                                            <td class="employeeBusinessUnit">{{skill.reviewCycle}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="9" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+                                        <tr>
+                                            <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Dates</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- for each skill-->
+                                                {{#each skill.dates}}
+                                                <tr>
+                                                    <td>{{formatDateAndTime this}}</td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                            </table>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Skills</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- for each skill-->
+                                                {{#each skill.targetSkills}}
+                                                <tr>
+                                                    <td>{{this}}</td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                            </table>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <!-- TODO: Add script for filter -->
+
+</body>
+</html>

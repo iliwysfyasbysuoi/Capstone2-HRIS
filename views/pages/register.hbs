@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Leonio Group</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body >
+
+    <div id="wrappers" >
+        <div class="row">
+            <div class=" col s12">
+                <div class="" style="justify-content: center; display: flex; margin: 25px 0px 25px 0px;">
+                    <img src="/img/leonio_group_logo_white.png" alt="Avatar" class="avatar"
+                        style="max-width:300px; text-align: center;">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s2">
+
+            </div>
+            <div class="col s8">
+                <div class="card">
+                    <div class="card-action center card-title">
+                        Register as Applicant
+                    </div>
+                    <div class="card-content " style="justify-content: center; display: flex;">
+
+
+                        <form action="/register" method="post">
+                            <div class="col  s12">
+                                <div class="input-field col s3">
+                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" type="text" class="validate" name="first_name" required>
+                                </div>
+                                <div class="input-field col s3">
+                                    <label for="middle_name">Middle Name</label>
+                                    <input id="middle_name" type="text" class="validate" name="middle_name" required>
+                                </div>
+                                <div class="input-field col s3">
+                                    <label for="last_name">Last Name</label>
+                                    <input id="last_name" type="text" class="validate" name="last_name" required>
+                                </div>
+                                <div class="input-field col s3">
+                                    <label for="nick_name">Nickname</label>
+                                    <input id="nick_name" type="text" class="validate" name="nick_name" required>
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="email" type="email" name="email" class="validate" required>
+                                <label for="email" data-error="Invalid Email" data-success="">Email</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input id="password" type="password" name="password" class="" required>
+                                <label for="password" data-error="wrong" data-success="">Password</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="confirm_password" type="password" name="confirm_password" class="" required>
+                                <label for="confirm_password" data-error="wrong" data-success="">Confirm
+                                    Password</label>
+                            </div>
+                            <p class="passwordError"></p>
+
+                            <button href="/Register" type="submit"
+                                class="waves-effect waves-light btn registerBtn">Register as
+                                an applicant</button><span class="err"> {{err}}</span>
+                            <br> <br>
+                            <p>Already a user?</p>
+                            <button type="button" class="btn" onclick="window.open('/Login')">Login</button>
+                            <a href="/JobListing" type="button" class="waves-effect waves-light btn ">Browse Job Listings</a>
+                        </form>
+
+
+
+                        <div class="clearBoth"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col s2">
+
+        </div>
+
+
+    </div>
+
+    <!-- JS Scripts-->
+    {{> partials/endOfBodyJSScripts}}
+
+    <script>
+
+
+
+        $("#password").on("keyup", function () {
+            if ($("#password").val() != $("#confirm_password").val()) {
+                $(".passwordError").html("Password doesn't match!");
+                $("#password").css("border-color", "red");
+                $("#confirm_password").css("border-color", "red");
+                $(".registerBtn").prop("disabled", true);
+            } else {
+                $(".passwordError").html("");
+                $("#password").css("border-color", "green");
+                $("#confirm_password").css("border-color", "green");
+                $(".registerBtn").prop("disabled", false);
+            }
+        })
+
+        $("#confirm_password").on("keyup", function () {
+            if ($("#password").val() != $("#confirm_password").val()) {
+                $(".passwordError").html("Password doesn't match!");
+                $("#password").css("border-color", "red");
+                $("#confirm_password").css("border-color", "red");
+                $(".registerBtn").prop("disabled", true);
+            } else {
+                $(".passwordError").html("");
+                $("#password").css("border-color", "green");
+                $("#confirm_password").css("border-color", "green");
+                $(".registerBtn").prop("disabled", false);
+            }
+        })
+
+    </script>
+
+
+
+</body>
+
+</html>

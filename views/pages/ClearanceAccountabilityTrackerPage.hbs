@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clearance</title>
+    <script src="/js/accountabilityTracker.js" type="text/javascript" defer> </script>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Clearance Accountability
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Employee Clearance
+                            </div>
+                            {{!-- <div class="card-content">
+                                <div class="row">
+                                    <div class="input-group col filter-select ">
+                                        <label>Filter Status</label>
+                                        <select class="filter-table">
+
+                                            <option value="none" selected>none</option>
+                                            <option value="Pending">Active</option>
+                                            <option value="Submitted">Approved</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                            </div> --}}
+
+
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Clearance #</th>
+                                            <th>Name</th>
+                                            <th>Position Title</th>
+                                            <th>Business Unit</th>
+                                            <th>Department</th>
+                                            <th>Request Date</th>
+                                            {{!-- <th>Status</th> --}}
+                                            <th>Last Updated</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dataInfo">
+                                        {{!-- {{#each ClearanceAccountabilityData}}
+                                        {{#ifEquals notifStatus "Notified"}}
+
+                                        <tr onclick="window.location.href = '/ClearanceAccountabilityForm/{{_id}}';">
+                                            <td>{{offboardingID}}</td>
+                                            <td>{{name}}</td>
+                                            <td>{{position}}</td>
+                                            <td>{{businessUnit}}</td>
+                                            <td>{{department}}</td>
+                                            <td>{{formatDate requestDate}}</td>
+                                            <td>{{status}}</td>
+                                            <td>{{formatDate updatedDate}}</td>
+                                        </tr>
+                                        {{/ifEquals}}
+                                        {{/each}} --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <script>
+            function search_table(value) {
+                $(".table td").each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            found = 'true';
+                        }
+
+                        if (found == 'true') {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    })
+                })
+            }
+
+            $('.filter-table').change(function () {
+                if ($('.filter-table').val() == "none") {
+                    window.location.href = "/ClearanceAccountabilityTracker";
+                } else {
+                    search_table($(this).val());
+                }
+            })
+
+
+
+
+        </script>
+
+</body>
+
+</html>

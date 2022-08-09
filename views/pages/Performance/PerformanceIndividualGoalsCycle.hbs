@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Goals Cycle Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    <script src="/js/Performance/PerformanceSetGoalsCycleFormPage.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Performance Cycle and Goals
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+                    {{#if data}}
+                    <div class="card col-lg-12">
+                        <div class="col s12">
+                            <div class="clearBoth"></div>
+                            <!-- Goals/KPI -->
+                            <div class="card-action">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div class="form-group col-12 s9">
+                                            <label for="skillDepartment">For the Position</label>
+                                            <input name="position" value="{{data.position}}" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Key Results Areas</th>
+                                                    <th>Description</th>
+                                                    <th>Performance Indicators/Measures</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="employeeTrainingList" class="employeeTrainingList">
+                                                {{#if data}}
+                                                {{#each data.listOfCycles}}
+                                                <tr>
+                                                    <td>
+                                                        <textarea disabled class="form-control" id="KPI" class="KPI"
+                                                            rows="3" name="KPI">
+                                                            {{keyResAreas}}</textarea>
+                                                    </td>
+                                                    <td>
+                                                        <textarea disabled class="form-control" id="description"
+                                                            class="description" rows="3" name="description">
+                                                             {{description}}</textarea>
+                                                    </td>
+                                                    <td>
+                                                        <textarea disabled class="form-control"
+                                                            id="performanceIndicator" class="performanceIndicator"
+                                                            rows="3" name="performanceIndicator">
+                                                                {{perfoIndicator}} </textarea>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                                {{/if}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearBoth"></div>
+                            <div class="card-action">
+                                <div class="row col-md-4 s4">
+                                    <label for="startDate">Start Date</label>
+                                    <input placeholder="" disabled value="{{formatDateToIso data.startDate}}"
+                                        type="date" class="validate" name="startDate" id="startDate">
+                                </div>
+                                <div class="row col-md-4 s4">
+                                    <label for="numberCycle">Number of Cycles</label>
+                                    <input placeholder="" disabled value={{data.numberOfCycles}} type="number" min="1"
+                                        max="100" class="validate" name="numberCycle" id="numberCycle">
+                                </div>
+                                <div class="row col-md-4 s4">
+                                    <label for="reviewCycle">Review Cycle</label>
+                                    <input class="reviewCycle" id="reviewCycle" name="reviewCycle" disabled
+                                        value="{{data.reviewCycle}}" />
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                {{#if data.dates}}
+                                <label for="startDate">Notify Employee on</label>
+                                {{#each data.dates}}
+                                <input placeholder="" disabled value="{{formatDateToIso this}}" type="date"
+                                    class="validate" name="startDate" id="startDate">
+                                {{/each}}
+                                {{/if}}
+                            </div>
+                            <div class="clearBoth"></div>
+
+                            {{!-- <div class="card-action">
+                                <div class="row">
+                                    <center><button class="waves-effect waves-light btn" id="submit"
+                                            type="submit">Submit</button></center>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="clearBoth"></div>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JS Scripts-->
+    {{> partials/endOfBodyJSScripts}}
+
+</body>
+
+</html>

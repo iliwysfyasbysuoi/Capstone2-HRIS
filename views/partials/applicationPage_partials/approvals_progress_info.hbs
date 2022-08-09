@@ -1,0 +1,175 @@
+<div class="col s12 flex-horizontal-center card ">
+    <div class="col s12 p-0 bg-light border-bottom-2">
+        <div class="text-center p-3">
+            <p class="h4">
+                Approvals Progress Information
+            </p>
+        </div>
+    </div>
+    {{#if applicationData.initialInterviewSchedule}}
+    <div class="col s12 m3 " id="InitialInterviewPane">
+        <div class="card-content text-center">
+            <p class="h4">Initial Interview</p>
+            <p>{{applicationData.initialInterviewSchedule.interviewer.firstName}}
+                {{applicationData.initialInterviewSchedule.interviewer.lastName}}</p>
+
+            <p class="">
+                <span class="initialInterview-status badge ">{{applicationData.approval1stInterview}}</span>
+                <br>
+                {{#ifEquals applicationData.approval1stInterview "Interview Scheduled"}}
+                on
+                <span class="initialInterviewScheduleDate">
+                    {{formatDateAndTime applicationData.initialInterviewSchedule.date}}
+                </span>
+                {{/ifEquals}}
+
+            </p>
+
+        </div>
+        <div class="card-content approval-details d-none">
+            <!-- HR Partner -->
+            <div>
+                <td class="HRPartnerInfo">
+                    <span class="PRF-info-label">Interviewer: </span>
+                    <span class="">{{applicationData.initialInterviewSchedule.interviewer.firstName}}
+                        {{applicationData.initialInterviewSchedule.interviewer.lastName}}</span>
+                    <br>
+                    <span class="PRF-info-label">Business Unit
+                    </span><span class="">{{applicationData.initialInterviewSchedule.interviewer.businessUnit}}
+                    </span>
+                    <br>
+                    <span class="PRF-info-label">Department
+                    </span><span class="">{{applicationData.initialInterviewSchedule.interviewer.department}}
+                    </span>
+                    <br>
+                    <span class="PRF-info-label">Position
+                    </span><span class="">{{applicationData.initialInterviewSchedule.interviewer.position}}</span>
+                </td>
+            </div>
+
+        </div>
+    </div>
+    {{/if}}
+    {{#if applicationData.functionalInterviewSchedule}}
+    <div class="col s12 m3" id="FunctionalInterviewPane">
+        <div class="card-content text-center">
+            <p class="h4">Functional Interview</p>
+            <p>{{applicationData.functionalInterviewSchedule.interviewer.firstName}}
+                {{applicationData.functionalInterviewSchedule.interviewer.lastName}}</p>
+
+            <p class="">
+                <span class="functionalInterview-status badge">{{applicationData.approval2ndInterview}}</span>
+                <br>
+                {{#ifEquals applicationData.approval2ndInterview "Interview Scheduled"}}
+                on
+                <span class="functionalInterviewScheduleDate">
+                    {{formatDateAndTime applicationData.functionalInterviewSchedule.date}}
+                </span>
+                {{/ifEquals}}
+
+            </p>
+
+        </div>
+        <div class="card-content approval-details d-none">
+            <!-- HR Partner -->
+            <div>
+                <td class="HRPartnerInfo">
+                    <span class="PRF-info-label">Interviewer: </span>
+                    <span class="">{{applicationData.functionalInterviewSchedule.interviewer.firstName}}
+                        {{applicationData.functionalInterviewSchedule.interviewer.lastName}}</span>
+                    <br>
+                    <span class="PRF-info-label">Business Unit
+                    </span><span class="">{{applicationData.functionalInterviewSchedule.interviewer.businessUnit}}
+                    </span>
+                    <br>
+                    <span class="PRF-info-label">Department
+                    </span><span class="">{{applicationData.functionalInterviewSchedule.interviewer.department}}
+                    </span>
+                    <br>
+                    <span class="PRF-info-label">Position
+                    </span><span class="">{{applicationData.functionalInterviewSchedule.interviewer.position}}</span>
+                </td>
+            </div>
+
+        </div>
+    </div>
+    {{/if}}
+    {{#if applicationData.finalInterviewSchedule}}
+    <div class="col s12 m3" id="FinalInterviewPane">
+        <div class="card-content text-center">
+            <p class="h4">Final Interview</p>
+            <p>{{applicationData.finalInterviewSchedule.interviewer.firstName}}
+                {{applicationData.finalInterviewSchedule.interviewer.lastName}}</p>
+
+            <p class="">
+                <span class="finalInterview-status badge">{{applicationData.approval3rdInterview}}</span>
+                <br>
+                {{#ifEquals applicationData.approval3rdInterview "Interview Scheduled"}}
+                on
+                <span class="finalInterviewScheduleDate">
+                    {{formatDateAndTime applicationData.finalInterviewSchedule.date}}
+                </span>
+                {{/ifEquals}}
+
+            </p>
+
+        </div>
+        <div class="card-content approval-details d-none">
+            <!-- HR Partner -->
+            <div>
+                <td class="">
+                    <span class="PRF-info-label">Interviewer: </span>
+                    <span class="">{{applicationData.finalInterviewSchedule.interviewer.firstName}}
+                        {{applicationData.finalInterviewSchedule.interviewer.lastName}}</span> <br>
+                    <span class="PRF-info-label">Business Unit
+                    </span><span class="">{{applicationData.finalInterviewSchedule.interviewer.businessUnit}}
+                    </span>
+                    <br>
+                    <span class="PRF-info-label">Department
+                    </span><span class="">{{applicationData.finalInterviewSchedule.interviewer.department}}
+                    </span>
+                    <br>
+                    <span class="PRF-info-label">Position
+                    </span><span class="">{{applicationData.finalInterviewSchedule.interviewer.position}}</span>
+                </td>
+            </div>
+
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if applicationData.approvalFinal}}
+    <div class="col s12 m3" id="FinalApprovalPane">
+        <div class="card-content text-center">
+            <p class="h4">Final Approval</p>
+            <p>{{applicationData.DHeadInformation.firstName}}
+                {{applicationData.DHeadInformation.lastName}}</p>
+            <p><span class="finalApproval-status badge">{{applicationData.approvalFinal}}</span></p>
+        </div>
+        <div class="card-content approval-details d-none">
+            <!-- HR Partner -->
+            <div id="HRPartnerApprovalPane">
+                <td class="HRPartnerInfo ">
+                    <span class="PRF-info-label">Name: </span>
+                    <span class="HRPartnerName">{{applicationData.DHeadInformation.firstName}}
+                        {{applicationData.DHeadInformation.lastName}}</span> <br>
+                    <span class="PRF-info-label">Business Unit
+                    </span><span class="HRPartnerBusinessUnit">{{applicationData.DHeadInformation.businessUnit}}</span>
+                    <br>
+                    <span class="PRF-info-label">Department
+                    </span><span class="HRPartnerDepartment">{{applicationData.DHeadInformation.department}}</span>
+                    <br>
+                    <span class="PRF-info-label">Position
+                    </span><span class="">{{applicationData.DHeadInformation.position}}</span>
+                </td>
+            </div>
+
+        </div>
+    </div>
+    {{/if}}
+</div>
+<div class="">
+    <div class="col s12 p-0 card">
+        <button class="full-button toggle-approval-details d-none">see more details</a>
+    </div>
+</div>

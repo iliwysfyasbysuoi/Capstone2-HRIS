@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.positions"}],"uuid":"38bb0972d2834ffe86c8d26cd626202b","collectionName":"positions","type":"collection"}

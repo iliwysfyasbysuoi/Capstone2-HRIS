@@ -1,0 +1,89 @@
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header">
+            {{!-- this is for HR's view --}}
+            <span class=""><i class="material-icons">dns</i>Pre-Employment Requirements
+                Checklist </span>
+            <div class="">
+                <div class="" id="pre-emp-reqs-progress-line">
+                    <p class=" text-center "></p>
+                    <div class="progress ">
+                        <div class="progress-bar teal submitted-bar white-text">
+                            <span class="submitted-bar-label"> </span> Submitted
+                        </div>
+                        <div class="progress-bar orange white-text darken-2 not-submitted-bar ">
+                            <span class="not-submitted-bar-label"> </span> Pending
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span><i class="material-icons right">arrow_drop_down</i> Click to more
+                details </span>
+        </div>
+        <div class="collapsible-body">
+            <div class="row p-5 pre-emp-content ">
+                <table class="table center">
+                    <thead>
+                        <tr>
+                            <th class="">Requirement</th>
+                            <th class="">Received?</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="">Background Investigation</td>
+                            <td class="">
+                                <div class="">
+                                    <input class="pre-emp-input toast-basic" type="checkbox" value="checked"
+                                        name="background_investigation" id="background_investigation" {{#ifEquals
+                                        applicationData.pre_employment_reqs.background_investigation true}} checked
+                                        {{/ifEquals}}>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="">Job Offer Accepted</td>
+                            <td class="">
+                                <div class="form-check">
+                                    <input class="form-check-input pre-emp-input" type="checkbox" value="checked"
+                                        name="job_offer_accepted" id="job_offer_accepted" {{#ifEquals
+                                        applicationData.pre_employment_reqs.job_offer_accepted true}} checked
+                                        {{/ifEquals}}>
+                                    <label class="form-check-label" for="job_offer_accepted">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="">Pre-Employment forms</td>
+                            <td class="">
+                                <div class="form-check">
+                                    <input class="form-check-input pre-emp-input" type="checkbox" value="checked"
+                                        name="pre_employment_forms" id="pre_employment_forms" {{#ifEquals
+                                        applicationData.pre_employment_reqs.pre_employment_forms true}} checked
+                                        {{/ifEquals}}>
+                                    <label class="form-check-label" for="pre_employment_forms">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="">Pre-Employment Medical</td>
+                            <td class="">
+                                <div class="form-check">
+                                    <input class="form-check-input pre-emp-input" type="checkbox" value="checked"
+                                        name="pre_employment_medical" id="pre_employment_medical" {{#ifEquals
+                                        applicationData.pre_employment_reqs.pre_employment_medical true}} checked
+                                        {{/ifEquals}}>
+                                    <label class="form-check-label" for="pre_employment_medical">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </li>
+</ul>

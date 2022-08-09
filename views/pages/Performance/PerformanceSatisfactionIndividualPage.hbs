@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Satisfaction Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Employee Satisfaction Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content">
+
+                                <div class="row">
+                                   <table class=" col s12 ">
+                                    <tbody>
+                                        <tr></tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Employee Name</td>
+                                            <td class="employeeName">{{userData.firstName}} {{userData.lastName}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="PRF-info-label">Position Title</td>
+                                            <td class="employeePosition">{{userData.position}}</td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Division/Department</td>
+                                            <td class="employeeDepartment">{{userData.department}}</td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td class="PRF-info-label">Business Unit</td>
+                                            <td class="employeeDepartment">{{userData.businessUnit}}</td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="10" class="PRF-info-divider"> &nbsp; </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <br>
+
+                                <div class="row">
+                                <div class="form-group col s12">
+                                    <label><b>Were your roles and responsibilities made clear to you?</b></label>
+                                </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="Yes" class ="satiscationRoles" name="satiscationRoles" value="{{appraisalData.rolesRespoAreClear}}" checked disabled checked>
+                                        <label for="Yes">{{appraisalData.rolesRespoAreClear}}</label><br>
+                                    </div>
+                                </div>
+
+                                 <div class="row">
+                                <div class="form-group col s12">
+                                    <label><b>Did you have enough opportunities to explore your skills within our organization?</b></label>
+                                </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="satiscationOpportunitiesYes" class ="satiscationOpportunities" name="satiscationOpportunities" value="{{appraisalData.enoughOpporToExploSkills}}" disabled checked>
+                                        <label for="satiscationOpportunitiesYes">{{appraisalData.enoughOpporToExploSkills}}</label><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>What recommendations would you make to improve the job you are currently in?</b></label>
+                                    </div>
+                                    <div class="form-group col s12">
+                                        <span id="satiscationRecommendation" class="satiscationRecommendation">{{appraisalData.recommToImporveText}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>Which part of your job gave you the most satisfaction or enjoyment?</b></label>
+                                    </div>
+                                    <div class="form-group col s12">
+                                        <span id="satiscationEnjoyment" class="satiscationEnjoyment">{{appraisalData.mostSatisfEnjText}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>Which part of your job frustrated you the most?</b></label>
+                                    </div>
+                                    <div class="form-group col s12">
+                                        <span id="satiscationFrustrate" class="satiscationFrustrate">{{appraisalData.frustrationText}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>How fairly where you treated?</b></label>
+                                    </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="Extremely Fair" class ="satiscationTreatment" name="satiscationTreatment" value="{{appraisalData.treatment}}" disabled checked>
+                                        <label for="Extremely Fair">{{appraisalData.treatment}}</label><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>How often did you feel your contributions were recognized?</b></label>
+                                    </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="Always" class ="satiscationContribution" name="satiscationContribution" value="{{appraisalData.recognition}}"  disabled checked>
+                                        <label for="Always">{{appraisalData.recognition}}</label><br>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>How easy was it for you to maintain a work-life balance?</b></label>
+                                    </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="Extremely Easy" class ="satiscationWorklikeBalance" name="satiscationWorklikeBalance" value="{{appraisalData.workLifeBalance}}"  disabled checked>
+                                        <label for="Extremely Easy">{{appraisalData.workLifeBalance}}</label><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>Do you think your supervisor/manager gave you enough opportunities to use your skills and
+                                                talents based on which you were hired?</b></label>
+                                    </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="satiscationTalentsYes" class ="satiscationTalents" name="satiscationTalents" value="{{appraisalData.superGaveEnouOppor}}"  disabled checked>
+                                        <label for="satiscationTalentsYes">{{appraisalData.superGaveEnouOppor}}</label><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>How would you describe your relationship with your supervisor/manager?</b></label>
+                                    </div>
+                                    <div class="form-group col s12">
+                                        <span id="satiscationManagerRelationship" class="satiscationManagerRelationship">{{appraisalData.relationWithSuperText}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>How well did the members of your team work together?</b></label>
+                                    </div>
+                                    <div class="form-group col s2">
+                                        <input type="radio" id="Extremely Well" class ="satiscationTeamWork" name="satiscationTeamWork" value="{{appraisalData.teamwork}}"  disabled checked>
+                                        <label for="Extremely Well">{{appraisalData.teamwork}}</label><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label><b>How would you describe your relationship with the members of your team?</b></label>
+                                    </div>
+                                    <div class="form-group col s12">
+                                        <span id="satiscationTeamRelationship" class="satiscationTeamRelationship">{{appraisalData.relationWithTeamText}}</textarea>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <!-- TODO: Add script for filter -->
+
+</body>
+</html>

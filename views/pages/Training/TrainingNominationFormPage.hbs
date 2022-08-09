@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Nomination Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+  <script src="/js/TrainingNominationFormPage.js" type="text/javascript" defer> </script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Nomination Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                <input id="skill" hidden value="{{skill}}" />
+                <input id="skillID" hidden value={{id}} />
+                <input id="training_id_ref" hidden value="{{query.training_id}}" />
+                <input id="auto_fill_emp_arr" hidden value="{{query.emp_id}}" />  
+                <input id="auto_fill_kpi_arr" hidden value="{{query.kpi_list}}" />   
+                {{> forms/Training/TrainingNominationForm }}
+
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}} 
+    
+
+
+</body>
+
+</html>

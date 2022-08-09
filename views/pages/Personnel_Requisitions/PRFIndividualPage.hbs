@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personnel Requisition Form</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+    <script src="/js/Personnel_Requisitions/PRFIndividualPage.js" type="text/javascript" defer> </script>
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Personnel Requisition Form
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row card">
+                    <div class="col s12 flex-horizontal-center card ">
+                        <div class="col s12 p-0 bg-light border-bottom-2">
+                            <div class="text-center p-3">
+                                <p class="h4">
+                                    Approvals Progress Information
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col s12 m2 " id="DepartmentHeadPane">
+                            <div class="card-content text-center">
+                                <p class="h4">Department Head</p>
+                                <p>{{PRF.approvalDHead.approver.firstName}} {{PRF.approvalDHead.approver.lastName}}</p>
+                                <p class="">
+                                    <span
+                                        class="approvalDHead-status badge">{{PRF.approvalDHead.approval}}</span>
+                                    <br>
+                                </p>
+                                                
+                            </div>
+                            <div class="card-content approval-details d-none">
+                                <!-- HR Partner -->
+                                <div>
+                                    <td class="HRPartnerInfo">
+                                        <span class="PRF-info-label">Name: </span>
+                                        <span
+                                            class="">{{PRF.approvalDHead.approver.firstName}}
+                                                {{PRF.approvalDHead.approver.lastName}}</span>
+                                        <br>
+                                        <span class="PRF-info-label">Business Unit
+                                        </span><span
+                                            class="">{{PRF.approvalDHead.approver.businessUnit}}
+                                        </span>
+                                        <br>
+                                        <span class="PRF-info-label">Department
+                                        </span><span
+                                            class="">{{PRF.approvalDHead.approver.department}}
+                                        </span>
+                                        <br>
+                                        <span class="PRF-info-label">Position
+                                        </span><span
+                                            class="">{{PRF.approvalDHead.approver.position}}</span>
+                                    </td>
+                                    <td class="vertical-align center">
+                                            {{#ifEquals PRF.approvalDHead.approval "Disapproved"}}
+                                            {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                            <div class="disapprovalReason_div">
+                                                <b>Reason: </b> {{disapprovalReason}}
+                                            </div>
+                                            {{/with}}
+                                            {{/ifEquals}}
+                                    </td>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col s12 m2" id="HRPartnerPane">
+                            <div class="card-content text-center">
+                                <p class="h4">HR Partner</p>
+                                <p>{{PRF.approvalHRPartner.approver.firstName}} {{PRF.approvalHRPartner.approver.lastName}}</p>
+
+                                <p class="">
+                                    <span class="approvalHRPartner-status badge">{{PRF.approvalHRPartner.approval}}</span>
+                                </p>
+
+                            </div>
+                            <div class="card-content approval-details d-none">
+                                <!-- HR Partner -->
+                                <div>
+                                    <td class="">
+                                        <span class="PRF-info-label">Name: </span>
+                                        <span
+                                            class="">{{PRF.approvalHRPartner.approver.firstName}} {{PRF.approvalHRPartner.approver.lastName}}</span>
+                                        <br>
+                                        <span class="PRF-info-label">Business Unit
+                                        </span><span
+                                            class="">{{PRF.approvalHRPartner.approver.businessUnit}}
+                                        </span>
+                                        <br>
+                                        <span class="PRF-info-label">Department
+                                        </span><span
+                                            class="">{{PRF.approvalHRPartner.approver.department}}
+                                        </span>
+                                        <br>
+                                        <span class="PRF-info-label">Position
+                                        </span><span
+                                            class="">{{PRF.approvalHRPartner.approver.position}}</span>
+                                    </td>
+                                    <td class="vertical-align center">
+                                            {{#ifEquals PRF.approvalHRPartner.approval "Disapproved"}}
+                                            {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                            <div class="disapprovalReason_div">
+                                                <b>Reason: </b> {{disapprovalReason}}
+                                            </div>
+                                            {{/with}}
+                                            {{/ifEquals}}
+                                    </td>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col s12 m2" id="BUHeadPane">
+                            <div class="card-content text-center">
+                                <p class="h4">Business Unit Head</p>
+                                <p>{{PRF.approvalBUHead.approver.firstName}} {{PRF.approvalBUHead.approver.lastName}}</p>
+                                <p class="">
+                                    <span
+                                        class="approvalBUHead-status badge">{{PRF.approvalBUHead.approval}}</span>
+                                    <br>
+                                </p>
+
+                            </div>
+                            <div class="card-content approval-details d-none">
+                                <!-- HR Partner -->
+                                <div>
+                                    <td class="">
+                                        <span class="PRF-info-label">Name: </span>
+                                        <span class="">{{PRF.approvalBUHead.approver.firstName}} {{PRF.approvalBUHead.approver.lastName}}</span> <br>
+                                        <span class="PRF-info-label">Business Unit
+                                        </span><span
+                                            class="">{{PRF.approvalBUHead.approver.businessUnit}}
+                                        </span>
+                                        <br>
+                                        <span class="PRF-info-label">Department
+                                        </span><span
+                                            class="">{{PRF.approvalBUHead.approver.department}}
+                                        </span>
+                                        <br>
+                                        <span class="PRF-info-label">Position
+                                        </span><span
+                                            class="">{{PRF.approvalBUHead.approver.position}}</span>
+                                    </td>
+                                    <td class="vertical-align center">
+                                            {{#ifEquals PRF.approvalBUHead.approval "Disapproved"}}
+                                            {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                            <div class="disapprovalReason_div">
+                                                <b>Reason: </b> {{disapprovalReason}}
+                                            </div>
+                                            {{/with}}
+                                            {{/ifEquals}}
+                                    </td>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col s12 m2" id="CHRODDirectorPane">
+                            <div class="card-content text-center">
+                                <p class="h4">CHROD Director</p>
+                                <p>{{PRF.approvalCHRODDirector.approver.firstName}} {{PRF.approvalCHRODDirector.approver.lastName}}</p>
+                                <p><span class="approvalCHRODDirector-status badge">{{PRF.approvalCHRODDirector.approval}}</span></p>
+                            </div>
+                            <div class="card-content approval-details d-none">
+                                <!-- HR Partner -->
+                                <div id="">
+                                    <td class=" ">
+                                        <span class="PRF-info-label">Name: </span>
+                                        <span class="">{{PRF.approvalCHRODDirector.approver.firstName}} {{PRF.approvalCHRODDirector.approver.lastName}}</span> <br>
+                                        <span class="PRF-info-label">Business Unit
+                                        </span><span
+                                            class="">{{PRF.approvalCHRODDirector.approver.businessUnit}}</span>
+                                        <br>
+                                        <span class="PRF-info-label">Department
+                                        </span><span
+                                            class="">{{PRF.approvalCHRODDirector.approver.department}}</span>
+                                        <br>
+                                        <span class="PRF-info-label">Position
+                                        </span><span class="">{{PRF.approvalCHRODDirector.approver.position}}</span>
+                                    </td>
+                                    <td class="vertical-align center">
+                                            
+                                            {{#ifEquals PRF.approvalCHRODDirector.approval "Disapproved"}}
+                                            {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                            <div class="disapprovalReason_div">
+                                                <b>Reason: </b> {{disapprovalReason}}
+                                            </div>
+                                            {{/with}}
+                                            {{/ifEquals}}
+                                    </td>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col s12 m2" id="CHRODHead">
+                            <div class="card-content text-center">
+                                <p class="h4">CHROD Head</p>
+                                <p>{{PRF.approvalCHRODHead.approver.firstName}} {{PRF.approvalCHRODHead.approver.lastName}}</p>
+                                <p><span class="approvalCHRODHead-status badge">{{PRF.approvalCHRODHead.approval}}</span></p>
+                            </div>
+                            <div class="card-content approval-details d-none">
+                                <!-- HR Partner -->
+                                <div id="">
+                                    <td class=" ">
+                                        <span class="PRF-info-label">Name: </span>
+                                        <span class="">{{PRF.approvalCHRODHead.approver.firstName}} {{PRF.approvalCHRODHead.approver.lastName}}</span> <br>
+                                        <span class="PRF-info-label">Business Unit
+                                        </span><span
+                                            class="">{{PRF.approvalCHRODHead.approver.businessUnit}}</span>
+                                        <br>
+                                        <span class="PRF-info-label">Department
+                                        </span><span
+                                            class="">{{PRF.approvalCHRODHead.approver.department}}</span>
+                                        <br>
+                                        <span class="PRF-info-label">Position
+                                        </span><span class="">{{PRF.approvalCHRODHead.approver.position}}</span>
+                                    </td>
+                                    <td class="vertical-align center">
+                                            {{#ifEquals PRF.approvalCHRODHead.approval "Disapproved"}}
+                                            {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                            <div class="disapprovalReason_div">
+                                                <b>Reason: </b> {{disapprovalReason}}
+                                            </div>
+                                            {{/with}}
+                                            {{/ifEquals}}
+                                    </td>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col s12 p-0 card">
+                            <button class="full-button toggle-approval-details ">see more details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row ">
+                     <div class="col col-md-9 " id="PRF-card">
+                        <div class="card">
+                            <div class="card-action">
+
+                            </div>
+                            <div class="card-content">
+                                <div class="PRF-info">
+                                    
+                                    
+                                    <table class=" col s12 " >
+                                        <tbody>
+                                            <tr>
+
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Requisition #</td>
+                                                <td class="requisitionID">{{PRF.requisitionID}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Status</td>
+                                                <td class="PRFStatus badge">{{PRF.status}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label approvedDate-label">
+                                                    {{#if PRF.approvedDate}}Approved Date{{/if}}
+                                                </td>
+                                                {{#if PRF.approvedDate}}
+                                                    <td class="optional-button approvedDate">
+                                                        {{PRF.approvedDateString}}
+                                                    </td>
+                                                {{/if}}
+
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Position Title</td>
+                                                <td>{{PRF.positionTitle}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Target Start Date</td>
+                                                <td>{{PRF.targetStartDateString}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Headcount</td>
+                                                <td>{{PRF.headcount}}</td>
+                                                {{!-- <td class="PRF-info-label">in TO</td>
+                                                <td>{{PRF.inTO}}</td> --}}
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Business Unit</td>
+                                                <td>{{PRF.businessUnit}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Department</td>
+                                                <td>{{PRF.department}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Location</td>
+                                                <td>{{PRF.location}}</td>
+                                                {{!-- <td class="PRF-info-label">Direct Supervisor</td>
+                                                <td> {{PRF.directSupervisor}}</td> --}}
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Position Level</td>
+                                                <td>{{PRF.positionLevel}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Job Code/Level</td>
+                                                <td>{{PRF.jobCode}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Bill To (Company)</td>
+                                                <td>{{PRF.billToCompany}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Type of Employment</td>
+                                                <td>{{PRF.employmentType}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Length of Assignment </td>
+                                                <td> {{PRF.assessmentLength.years}} Year & {{PRF.assessmentLength.years}}
+                                                    Months
+                                                </td>
+                                                <td> </td>
+                                                <td class="PRF-info-label"> </td>
+                                                <td> </td>
+                                                {{!-- <td class="PRF-info-label">Purpose of Request </td>
+                                                <td> {{PRF.purpose}}</td> --}}
+
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Purpose of Request </td>
+                                                <td> {{PRF.purpose}}</td>
+                                                <td> </td>
+                                                <td class="PRF-info-label">Details</td>
+                                                <td colspan="5">
+                                                    {{#ifEquals PRF.details ""}}
+                                                    None provided.
+                                                    {{/ifEquals}}
+
+
+                                                    {{PRF.details}}
+                                                </td>
+                                            </tr>
+                                            {{!-- <tr>
+                                                <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr> --}}
+                                            <tr>
+                                                <td class="PRF-info-label">Job Description</td>
+                                                <td colspan="7">{{PRF.jobDescription}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="PRF-info-label">Position Requirements</td>
+                                                <td colspan="7">{{PRF.positionRequirements}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                                            </tr>
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                    {{!-- tools of trade --}}
+                                    <div class="col s6">
+                                        <table class="table" id="tools_of_trade_table">
+                                            <thead>
+                                                <th colspan="2">Tools of Trade / Space / PPE Requirement</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Requirement</th>
+                                                    <th>Availability</th>
+                                                </tr>
+                                                {{#each PRF.toolsOfTrade as |tool|}}
+                                                <tr>
+                                                    {{!-- [0] is the tool, [1] is the availability --}}
+                                                    <td >{{tool.[0]}} </td>
+                                                    <td >{{tool.[1]}} </td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col s6 ">
+                                        <table class="table" id="skills_table">
+                                            <thead>
+                                                <th colspan="">Skills Required</th>
+                                            </thead>
+                                            <tbody>
+                                                {{#if PRF.skills}}
+                                                    {{#each PRF.skills as |skill|}}
+                                                    <tr>
+                                                        <td >{{skill}} </td>
+                                                    </tr>
+                                                    {{/each}}
+                                                {{else}}
+                                                    <tr>
+                                                        <td >Not specified </td>
+                                                    </tr>
+                                                {{/if}}
+                                            </tbody>
+                                        </table>
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" col col-md-3 " id="approvals-progress-card">
+                        <div class="card">
+                            <div class="card-action">
+                                Approvals Progress
+                            </div>
+                            <div class="card-content">
+
+                                <div class="progress">
+                                    <div class="progress-bar teal approved-bar white-text">
+                                        <span class="approved-bar-label "> </span> Approved
+                                    </div>
+                                    <div class="progress-bar red disapproved-bar white-text">
+                                        <span class="disapproved-bar-label "> </span> Disapproved
+                                    </div>
+                                    <div class="progress-bar grey pending-bar white-text">
+                                        <span class="pending-bar-label "> </span> Pending
+                                    </div>
+                                </div>
+                                <div class=" buttons-card">
+                                    {{!--
+                                    Buttons for Approve, Disapprove, List Job Vacancy, and got to Job Listing Page will be
+                                    here.
+                                    The elements are added via PRFIndividualPage.js since appearance of buttons
+                                    depends on the user and the status of the PRF.
+                                    --}}
+                                </div>
+
+
+
+                                {{!-- <table class="table table-responsive col s12 card">
+                                    <thead>
+                                        <td colspan="3" class="center card-title"> Approvals </td>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="PRF-info-label " style="width:100%;">Approver</td>
+                                            <td class="PRF-info-label center">Status</td>
+
+                                        </tr>
+
+                                        {{#ifEquals PRF.approvalDHead.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalDHead.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalDHead.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">Department Head </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{PRF.approvalDHead.approver.firstName}}
+                                                    {{PRF.approvalDHead.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{PRF.approvalDHead.approver.businessUnit}}</span> <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{PRF.approvalDHead.approver.department}}</span> <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{PRF.approvalDHead.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalDHead-status">{{PRF.approvalDHead.approval}}</span>
+                                                {{#ifEquals PRF.approvalDHead.approval "Disapproved"}}
+                                                {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                                <div class="disapprovalReason_div">
+                                                    <b>Reason: </b> {{disapprovalReason}}
+                                                </div>
+                                                {{/with}}
+                                                {{/ifEquals}}
+                                            </td>
+                                        </tr>
+
+
+                                        {{#ifEquals PRF.approvalHRPartner.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalHRPartner.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalHRPartner.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">HR Partner </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{PRF.approvalHRPartner.approver.firstName}}
+                                                    {{PRF.approvalHRPartner.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{PRF.approvalHRPartner.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{PRF.approvalHRPartner.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{PRF.approvalHRPartner.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalHRPartner-status">{{PRF.approvalHRPartner.approval}}</span>
+                                                {{#ifEquals PRF.approvalHRPartner.approval "Disapproved"}}
+                                                {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                                <div class="disapprovalReason_div">
+                                                    <b>Reason: </b> {{disapprovalReason}}
+                                                </div>
+                                                {{/with}}
+                                                {{/ifEquals}}
+                                            </td>
+                                        </tr>
+
+                                        {{#ifEquals PRF.approvalBUHead.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalBUHead.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalBUHead.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">Business Unit Head </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{PRF.approvalBUHead.approver.firstName}}
+                                                    {{PRF.approvalBUHead.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{PRF.approvalBUHead.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{PRF.approvalBUHead.approver.department}}</span> <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{PRF.approvalBUHead.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalBUHead-status">{{PRF.approvalBUHead.approval}}</span>
+                                                {{#ifEquals PRF.approvalBUHead.approval "Disapproved"}}
+                                                {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                                <div class="disapprovalReason_div">
+                                                    <b>Reason: </b> {{disapprovalReason}}
+                                                </div>
+                                                {{/with}}
+                                                {{/ifEquals}}
+                                            </td>
+                                        </tr>
+
+
+                                        {{#ifEquals PRF.approvalCHRODDirector.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalCHRODDirector.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalCHRODDirector.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">CHROD Director </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{PRF.approvalCHRODDirector.approver.firstName}}
+                                                    {{PRF.approvalCHRODDirector.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{PRF.approvalCHRODDirector.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{PRF.approvalCHRODDirector.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{PRF.approvalCHRODDirector.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center">
+                                                <span
+                                                    class="approvalCHRODDirector-status">{{PRF.approvalCHRODDirector.approval}}</span>
+                                                {{#ifEquals PRF.approvalCHRODDirector.approval "Disapproved"}}
+                                                {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                                <div class="disapprovalReason_div">
+                                                    <b>Reason: </b> {{disapprovalReason}}
+                                                </div>
+                                                {{/with}}
+                                                {{/ifEquals}}
+                                            </td>
+                                        </tr>
+
+
+
+                                        {{#ifEquals PRF.approvalCHRODHead.approval "Approved"}}
+                                        <tr class="success">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalCHRODHead.approval "Pending"}}
+                                        <tr class="info">
+                                            {{/ifEquals}}
+                                            {{#ifEquals PRF.approvalCHRODHead.approval "Disapproved"}}
+                                        <tr class="danger">
+                                            {{/ifEquals}}
+                                            <td class="">
+                                                <span class="PRF-info-label">CHROD Head </span> <br>
+                                                <span class="PRF-info-label">Name: </span>
+                                                <span>{{PRF.approvalCHRODHead.approver.firstName}}
+                                                    {{PRF.approvalCHRODHead.approver.lastName}}</span> <br>
+                                                <span class="PRF-info-label">Business Unit
+                                                </span><span>{{PRF.approvalCHRODHead.approver.businessUnit}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Department
+                                                </span><span>{{PRF.approvalCHRODHead.approver.department}}</span>
+                                                <br>
+                                                <span class="PRF-info-label">Position
+                                                </span><span>{{PRF.approvalCHRODHead.approver.position}} </span>
+
+                                            </td>
+                                            <td class="vertical-align center"><span
+                                                    class="approvalCHRODHead-status">{{PRF.approvalCHRODHead.approval}}</span>
+                                                {{#ifEquals PRF.approvalCHRODHead.approval "Disapproved"}}
+                                                {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                                <div class="disapprovalReason_div">
+                                                    <b>Reason: </b> {{disapprovalReason}}
+                                                </div>
+                                                {{/with}}
+                                                {{/ifEquals}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table> --}}
+                                <div class="center">
+                                    {{#with PRF.disapprovalReason as |disapprovalReason|}}
+                                    <td class="disapprovalReason_div">
+                                        <b>Disapproval reason: </b>    {{disapprovalReason}}
+                                    </td>
+                                    {{/with}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+               
+
+
+
+
+
+
+                <!-- /. PAGE WRAPPER  -->
+            </div>
+            <!-- /. WRAPPER  -->
+
+            <!-- JS Scripts-->
+            {{> partials/endOfBodyJSScripts}}
+
+            <!-- Modal Structure -->
+            <div id="disapproveModal" class="modal">
+                <form action="/disapprovePRF" id="disapprovalForm" method="post">
+                    <div class="modal-content">
+                        <h5 class="modal-header">
+                            {{!-- insert via JS --}}
+                            Reason for disapproval
+                        </h5>
+                        <p class="modal-text">
+                            {{!-- insert via JS --}}
+                            <input type="text" class="requisitionID" id="requisitionID" name="requisitionID"
+                                value="{{PRF.requisitionID}}" hidden>
+                            <textarea type="text" name="disapprovalReason" id="disapprovalReason"
+                                class="disapprovalReason materialize-textarea"></textarea>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        {{!-- insert buttons via JS --}}
+
+                        <button class="waves-effect waves-light btn btn-danger " id="disapproveBtn" type="submit">
+                            Disapprove
+                        </button>
+                        <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    </div>
+                </form>
+
+            </div>
+
+
+
+</body>
+
+</html>

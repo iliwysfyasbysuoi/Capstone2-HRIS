@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"hris-leonio-group.personalinformations"}],"uuid":"c6b9eda4f15c4f0f8b7372035bbaa819","collectionName":"personalinformations","type":"collection"}

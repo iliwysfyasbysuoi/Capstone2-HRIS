@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Nomination</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Training Nomination
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Training Nomination
+                            </div>
+                            <div class="card-content">
+
+                                <div class="row">
+                                    <div class="input-group col filter-select ">
+                                        <label>Filter Status</label>
+                                        <select class="filter-table">
+                                            <option value="none" selected>none</option>
+                                            <option value="For Approval">For Approval</option>
+                                            <option value="Disapproved">Disapproved</option>
+                                            <option value="Approved">Approved</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+
+
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Training Nomination #</th>
+                                            <th>Training Program Title</th>
+                                            <th>Organizer</th>
+                                            <th>Request Date</th>
+                                            <th>Status</th>
+                                            <th>Last Updated</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if TrainingNominationTrackerData}}
+                                        {{#each TrainingNominationTrackerData}}
+                                        <tr onclick="window.location.href = '/TrainingNominationTracker/{{_id}}';">
+                                            <td>{{trainingID}}</td>
+                                            <td>{{trainingTitle}}</td>
+                                            <td>{{sponsor}}</td>
+                                            <td>{{venue}}</td>
+                                            <td class="status">{{status}}</td>
+                                            <td>{{formatDateAndTime updatedDate}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{/if}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+        <script>
+            function search_table(value) {
+                $(".status").each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        console.log($(this).text())
+                        if ($(this).text().toLowerCase() == value.toLowerCase()) {
+                            found = 'true';
+                        }
+
+                        if (found == 'true') {
+                            $(this).parent().show();
+                        }
+                        else {
+                            $(this).parent().hide();
+                        }
+                    })
+                })
+            }
+
+            $('.filter-table').change(function () {
+                if ($('.filter-table').val() == "none") {
+                    window.location.href = "/TrainingNominationTracker";
+                } else {
+                    search_table($(this).val());
+                }
+            })
+        </script>
+</body>
+</html>

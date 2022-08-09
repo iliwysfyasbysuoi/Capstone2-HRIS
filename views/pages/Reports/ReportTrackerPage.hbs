@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Tracker</title> 
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}} 
+    <script src="/js/Reports/tracker.js" type="text/javascript" defer> </script>
+</head> 
+<body>
+    <div id="wrapper"> 
+        {{> partials/topnav}}
+        {{> partials/sidenav}} 
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Report Tracker
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row"> 
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card" style="height: 200vh;">
+                            <div class="card-action">
+                                Reports
+                            </div> 
+                            <div id='reports-filter-holder'></div>
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Form #</th>
+                                            <th>Type</th>
+                                            <th>Submitted By</th>
+                                            <th>Date Submitted</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list-of-reports"> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->  
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div> 
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  --> 
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}} 
+</body>
+</html>

@@ -1,0 +1,232 @@
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <table>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                            <tr>
+                                <td class="PRF-info-label">Evaluation #</td>
+                                <td class="evaluationID">{{evaluationID}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="PRF-info-divider"> &nbsp; </td>
+                            </tr>
+                            <tr>
+                                <td class="PRF-info-label">Title of Training Program</td>
+                                <td class="trainingTitle">{{trainingDetails.trainingTitle}}</td>
+                                <td> </td>
+
+                                <td class="PRF-info-label">Sponsor/Organizer</td>
+                                <td class="trainingSponsor">{{trainingDetails.trainingSponsor}}</td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td class="PRF-info-label">Venue of the Training</td>
+                                <td class="trainingVenue">{{trainingDetails.trainingVenue}}</td>
+                                <td> </td>
+                                <td class="PRF-info-label">Training Date</td>
+                                <td class="trainingDate">{{formatDateAndTime trainingDetails.trainingDate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="card" method="POST" action="/AnswerEvaluationForm/{{id}}" id="evaluationForm" >
+                <div class="card-action">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="form-group col s7">
+                                    <label for="programUsefulness">Usefulness of Program</label>
+                                    <p style="color:gray;"><i>The degree of usefulness of the program to both your work and personal development</i></p> 
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programUsefulness" id="programUsefulness" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programAdequacy">Adequacy of Program Content</label>
+                                <p style="color:gray;"><i>The depth of instruction or volume of knowledge from the program</i></p>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programAdequacy" id="programAdequacy" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programSkillsPractice">Skills Practice</label>
+                                <p style="color:gray;"><i>The adequacy of skills practice where such session is required</i></p>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programSkillsPractice" id="programSkillsPractice" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programInstructorKnowledge">Instructor's Effectiveness (Knowledge of Subject)</label>
+                                <p style="color:gray;"><i>The instructor's mastery of the subject and his ability to effectively answer the questions raised during training</i></p>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programInstructorKnowledge" id="programInstructorKnowledge" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                            <label for="programInstructorDelivery">Instructor's Effectiveness (Delivery of Subject)</label>
+                            <p style="color:gray;"><i>How well the instructor is able to make the participants enjoy and understand the subject</i></p>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programInstructorDelivery" id="programInstructorDelivery" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programFacility">Classroom Facilities</label>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programFacility" id="programFacility" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programAVSupport">Audio Visual Support</label>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programAVSupport" id="programAVSupport" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programLectureNotes">Quality of Lecture Notes/Hand-Outs</label>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programLectureNotes" id="programLectureNotes" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col s7">
+                                <label for="programDuration">Length/Duration of the Program</label>
+                            </div> 
+                            <div class="form-group col s4">
+                                <select name="programDuration" id="programDuration" required>
+                                    <option value="5" selected>5 - Most Favorable</option>
+                                    <option value="4">4 - Favorable</option>
+                                    <option value="3">3 - Average </option>
+                                    <option value="2">2 - Unfavorable </option>
+                                    <option value="1">1 - Most Unfavorable</option>
+                                    <option value="0">0 - Not Applicable</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearBoth"></div>
+
+                <div class="card-action">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <label for="comments">Additional Comments/Suggestions</label>
+                                <textarea class="form-control" id="comments" name="comments" rows="3" form="evaluationForm" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearBoth"></div>
+
+                <div class="card-action">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="form-group col s12">
+                                <label for="commitmentStatement">Commitment Statement</label>
+                                <p style="color:gray;">This confirms my commitment to undertake the following actions in relation to this training program that I have completed.</p>
+                                <textarea class="form-control" id="commitmentStatement" name="commitmentStatement" rows="3" form="evaluationForm" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearBoth"></div>
+
+                <div class="card-action">
+                    <div class="row">
+                        <center><button class="waves-effect waves-light btn" type="submit">Submit</button></center>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

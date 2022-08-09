@@ -1,0 +1,508 @@
+<div class="row">
+	<form
+		class="card col-lg-12"
+		action="/submit-performance-appraisal/{{id}}/{{date}}"
+		method="post"
+	>
+		<div class="card-action">
+			<div class="col s12">
+				<input id="cycleId" value="{{id}}" hidden />
+				<input id="date" value="{{date}}" hidden />
+				{{! <div class="row">
+                    <div class="form-group col s7">
+                        <label for="evaluationID">Appraisal #</label>
+                        <p class="evaluationID"> </p>
+                    </div>
+                </div>
+                <div class="clearBoth"></div> }}
+
+				<div class="row">
+					<div class="form-group col s12">
+						<p>Special Projects/Extra Milestones</p>
+					</div>
+
+				</div>
+				<div class="col s12">
+					<div class="row">
+						<a
+							class="waves-effect waves-light btn addEmployee"
+							style="float: right;"
+							id="submit"
+						>Add Special Task</a>
+					</div>
+					<div class="row">
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Description of Additional/Special Tasks</th>
+									<th>Outcomes/Results</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody id="employeeTrainingList" class="employeeTrainingList">
+								<tr>
+									<td>
+										<textarea
+											class="form-control"
+											name="description"
+											class="taskName"
+											rows="3"
+											required
+										></textarea>
+									</td>
+									<td>
+										<textarea
+											class="form-control"
+											name="results"
+											class="taskOutcome"
+											rows="3"
+											required
+										></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearBoth"></div>
+		<div class="card-action">
+			<div class="col s12">
+				<div class="row">
+					<div class="form-group col s12">
+						<label for="keyActions">Name one or two things that had been helpful
+							in completing the assigned tasks during the previous cycle.</label>
+						<textarea
+							class="form-control"
+							name="helpfulThingsText"
+							class="completionHelp"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearBoth"></div>
+		<div class="card-action">
+			<div class="col s12">
+				<div class="row">
+					<div class="form-group col s12">
+						<label for="keyActions">What Key Actions have you agreed to work on
+							in the next performance cycle?
+						</label>
+						<p style="color:gray;"><i>Please include any plans for improvement.</i></p>
+						<textarea
+							class="form-control"
+							name="agreedKeyActsNextCycText"
+							class="keyActions"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="clearBoth"></div>
+
+		<!--Satisfaction Form-->
+
+		<div class="card-action">
+			<div class="col s12">
+				<div class="row">
+					<div class="form-group col s12">
+						<p>Employee Satisfaction</p>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="form-group col s12">
+						<label>Were your roles and responsibilities made clear to you?
+						</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="Yes"
+							class="satiscationRoles"
+							name="rolesRespoAreClear"
+							value="Yes"
+							required
+						/>
+						<label for="Yes">Yes</label><br />
+						<input
+							type="radio"
+							id="Partially"
+							class="satiscationRoles"
+							name="rolesRespoAreClear"
+							value="Partially"
+							required
+						/>
+						<label for="Partially">Partially</label><br />
+						<input
+							type="radio"
+							id="No"
+							class="satiscationRoles"
+							name="rolesRespoAreClear"
+							value="No"
+							required
+						/>
+						<label for="No">No</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>Did you have enough opportunities to explore your skills
+							within our organization?</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="satiscationOpportunitiesYes"
+							class="satiscationOpportunities"
+							name="enoughOpporToExploSkills"
+							value="Yes"
+							required
+						/>
+						<label for="satiscationOpportunitiesYes">Yes</label><br />
+						<input
+							type="radio"
+							id="satiscationOpportunitiesNo"
+							class="satiscationOpportunities"
+							name="enoughOpporToExploSkills"
+							value="No"
+							required
+						/>
+						<label for="satiscationOpportunitiesNo">No</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>What recommendations would you make to improve the job you
+							are currently in?</label>
+					</div>
+					<div class="form-group col s12">
+						<textarea
+							class="form-control"
+							name="recommToImporveText"
+							class="satiscationRecommendation"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>Which part of your job gave you the most satisfaction or
+							enjoyment?</label>
+					</div>
+					<div class="form-group col s12">
+						<textarea
+							class="form-control"
+							name="mostSatisfEnjText"
+							class="satiscationEnjoyment"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>Which part of your job frustrated you the most?</label>
+					</div>
+					<div class="form-group col s12">
+						<textarea
+							class="form-control"
+							name="frustrationText"
+							class="satiscationFrustrate"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>How fairly where you treated?</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="Extremely Fair"
+							class="satiscationTreatment"
+							name="treatment"
+							value="Extremely Fair"
+							required
+						/>
+						<label for="Extremely Fair">Extremely Fair</label><br />
+						<input
+							type="radio"
+							id="Very Fairly"
+							class="satiscationTreatment"
+							name="treatment"
+							value="Very Fairly"
+							required
+						/>
+						<label for="Very Fairly">Very Fairly</label><br />
+						<input
+							type="radio"
+							id="Somewhat Fairly"
+							class="satiscationTreatment"
+							name="treatment"
+							value="Somewhat Fairly"
+							required
+						/>
+						<label for="Somewhat Fairly">Somewhat Fairly</label><br />
+						<input
+							type="radio"
+							id="Not So Fairly"
+							class="satiscationTreatment"
+							name="treatment"
+							value="Not So Fairly"
+							required
+						/>
+						<label for="Not So Fairly">Not So Fairly</label><br />
+						<input
+							type="radio"
+							id="Not At All Fairly"
+							class="satiscationTreatment"
+							name="treatment"
+							value="Not At All Fairly"
+							required
+						/>
+						<label for="Not At All Fairly">Not At All Fairly</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>How often did you feel your contributions were recognized?</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="Always"
+							class="satiscationContribution"
+							name="recognition"
+							value="Always"
+							required
+						/>
+						<label for="Always">Always</label><br />
+						<input
+							type="radio"
+							id="Most Of The Time"
+							class="satiscationContribution"
+							name="recognition"
+							value="Most Of The Time"
+							required
+						/>
+						<label for="Most Of The Time">Most Of The Time</label><br />
+						<input
+							type="radio"
+							id="Once In A While"
+							class="satiscationContribution"
+							name="recognition"
+							value="Once In A While"
+							required
+						/>
+						<label for="Once In A While">Once In A While</label><br />
+						<input
+							type="radio"
+							id="Never"
+							class="satiscationContribution"
+							name="recognition"
+							value="Never"
+							required
+						/>
+						<label for="Never">Never</label>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>How easy was it for you to maintain a work-life balance?</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="Extremely Easy"
+							class="satiscationWorklikeBalance"
+							name="workLifeBalance"
+							value="Extremely Easy"
+							required
+						/>
+						<label for="Extremely Easy">Extremely Easy</label><br />
+						<input
+							type="radio"
+							id="Very Easy"
+							class="satiscationWorklikeBalance"
+							name="workLifeBalance"
+							value="Very Easy"
+							required
+						/>
+						<label for="Very Easy">Very Easy</label><br />
+						<input
+							type="radio"
+							id="Somewhat Easy"
+							class="satiscationWorklikeBalance"
+							name="workLifeBalance"
+							value="Somewhat Easy"
+							required
+						/>
+						<label for="Somewhat Easy">Somewhat Easy</label><br />
+						<input
+							type="radio"
+							id="Not So Easy"
+							class="satiscationWorklikeBalance"
+							name="workLifeBalance"
+							value="Not So Easy"
+							required
+						/>
+						<label for="Not So Easy">Not So Easy</label><br />
+						<input
+							type="radio"
+							id="Not At All Easy"
+							class="satiscationWorklikeBalance"
+							name="workLifeBalance"
+							value="Not At All Easy"
+							required
+						/>
+						<label for="Not At All Easy">Not At All Easy</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>Do you think your supervisor/manager gave you enough
+							opportunities to use your skills and talents based on which you
+							were hired?</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="satiscationTalentsYes"
+							class="satiscationTalents"
+							name="superGaveEnouOppor"
+							value="Yes"
+							required
+						/>
+						<label for="satiscationTalentsYes">Yes</label><br />
+						<input
+							type="radio"
+							id="satiscationTalentsNo"
+							class="satiscationTalents"
+							name="superGaveEnouOppor"
+							value="No"
+							required
+						/>
+						<label for="satiscationTalentsNo">No</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>How would you describe your relationship with your
+							supervisor/manager?</label>
+					</div>
+					<div class="form-group col s12">
+						<textarea
+							class="form-control"
+							name="relationWithSuperText"
+							class="satiscationManagerRelationship"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>How well did the members of your team work together?</label>
+					</div>
+					<div class="form-group col s2">
+						<input
+							type="radio"
+							id="Extremely Well"
+							class="satiscationTeamWork"
+							name="teamwork"
+							value="Extremely Well"
+							required
+						/>
+						<label for="Extremely Well">Extremely Well</label><br />
+						<input
+							type="radio"
+							id="Very Well"
+							class="satiscationTeamWork"
+							name="teamwork"
+							value="Very Well"
+							required
+						/>
+						<label for="Very Well">Very Well</label><br />
+						<input
+							type="radio"
+							id="Somewhat Well"
+							class="satiscationTeamWork"
+							name="teamwork"
+							value="Somewhat Well"
+							required
+						/>
+						<label for="Somewhat Well">Somewhat Well</label><br />
+						<input
+							type="radio"
+							id="Not So Well"
+							class="satiscationTeamWork"
+							name="teamwork"
+							value="Not So Well"
+							required
+						/>
+						<label for="Not So Well">Not So Well</label><br />
+						<input
+							type="radio"
+							id="Not At All Well"
+							class="satiscationTeamWork"
+							name="teamwork"
+							value="Not At All Well"
+							required
+						/>
+						<label for="Not At All Well">Not At All Well</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col s12">
+						<label>How would you describe your relationship with the members of
+							your team?</label>
+					</div>
+					<div class="form-group col s12">
+						<textarea
+							class="form-control"
+							name="relationWithTeamText"
+							class="satiscationTeamRelationship"
+							rows="3"
+							required
+						></textarea>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="clearBoth"></div>
+
+		<div class="card-action">
+			<div class="row">
+				<center><button
+						class="waves-effect waves-light btn"
+						type="submit"
+					>Submit</button></center>
+			</div>
+		</div>
+	</form>
+</div>

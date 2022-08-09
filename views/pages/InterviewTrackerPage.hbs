@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exit Interview</title>
+
+    {{!-- head stylesheets and js --}}
+    {{> partials/headlinks}}
+
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        {{> partials/topnav}}
+        {{> partials/sidenav}}
+
+        <div id="page-wrapper">
+            <div class="header">
+                <h1 class="page-header">
+                    Exit Interview 
+                </h1>
+            </div>
+            <div id="page-inner">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--    Hover Rows  -->
+                        <div class="card">
+                            <div class="card-action">
+                                Exit Interview 
+                            </div>
+                            <div class="card-content">
+
+                            </div>
+
+
+                            <div class="table-responsive">
+                                <table class="table table-hover pointer green-thead">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position Title</th>
+                                            <th>Business Unit</th>
+                                            <th>Department</th>
+                                            <th>Interview Schedule</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#if ScheduledInterviewsData}}
+                                        {{#each ScheduledInterviewsData}}
+                                        <tr onclick="window.location.href = '/{{type}}Tracker/{{interviewId}}';">
+                                            <td>{{interviewee.firstName}} {{interviewee.lastName}}</td>
+                                            <td>{{interviewee.position}}</td>
+                                            <td>{{interviewee.businessUnit}}</td>
+                                            <td>{{interviewee.department}}</td>
+                                            <td>{{formatDateAndTime date}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End  Hover Rows  -->
+
+
+                    <footer>
+
+                    </footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <!-- JS Scripts-->
+        {{> partials/endOfBodyJSScripts}}
+
+
+</body>
+
+
+
+</html>

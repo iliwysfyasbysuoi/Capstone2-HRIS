@@ -1,0 +1,17 @@
+.job-schedule-error{
+    position: relative;
+    margin-top: -20px !important;
+    font-size: small !important;
+    color: red !important;
+}
+
+.tool{
+    width: 20px;
+    height: 20px;
+    font-size: 15px !important;
+    line-height: 16px !important;
+}
+
+input[type="text"][readonly="readonly"] {
+    color: black !important;
+}
